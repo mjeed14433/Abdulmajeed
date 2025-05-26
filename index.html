@@ -28,24 +28,29 @@
       text-align: center;
       border-radius: 0 0 30px 30px;
       box-shadow: 0 5px 15px rgba(22, 21, 61, 0.6);
+    }
+
+    .header-content {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .logos {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    header img.logo {
-      width: 100px;
+    .logos img {
+      width: 80px;
       height: auto;
-      object-fit: contain;
-      border-radius: 15px;
+      border-radius: 12px;
       box-shadow: 0 0 10px rgba(230, 231, 236, 0.7);
+      background: white;
     }
 
     header h1 {
@@ -59,6 +64,12 @@
       margin-top: 0;
       font-weight: 500;
       color: #d7d8df;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .ui-cards {
@@ -147,8 +158,9 @@
         width: 90%;
       }
 
-      header {
-        padding: 40px 20px 30px;
+      .logos {
+        flex-direction: column;
+        gap: 10px;
       }
 
       header h1 {
@@ -171,9 +183,14 @@
 </head>
 <body>
   <header>
-    <img class="logo" src="https://up6.cc/2025/05/174822486258821.png" alt="شعار عبدالمجيد" />
-    <h1>عبدالمجيد العنزي</h1>
-    <p>مبرمج | مصمم | ستريمر | صاحب متجر سـحابـة ستور</p>
+    <div class="header-content">
+      <div class="logos">
+        <img src="https://up6.cc/2025/05/174822486258821.png" alt="لوقو شخصي" />
+        <img src="https://up6.cc/2025/05/174822640376841.png" alt="لوقو المتجر" />
+      </div>
+      <h1>عبدالمجيد العنزي</h1>
+      <p>مبرمج | مصمم | ستريمر | صاحب متجر سـحابـة ستور</p>
+    </div>
   </header>
 
   <section class="ui-cards">
@@ -193,7 +210,7 @@
     </div>
 
     <div class="card" onclick="window.open('https://discord.gg/SUZXr9eXvK', '_blank')">
-      <h3>متجر سـحابـة الافضل</h3>
+      <h3>متجر سـحابـة + ديسكورد</h3>
       <p>اطّلع على منتجاتي وانضم للديسكورد</p>
     </div>
   </section>
