@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>قائمة اللاعبين - FiveM</title>
+  <title>S7abh Shop - قائمة اللاعبين</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -12,7 +12,6 @@
       box-sizing: border-box;
       font-family: 'Cairo', sans-serif;
     }
-
     body {
       display: flex;
       background-color: #121212;
@@ -20,7 +19,6 @@
       height: 100vh;
       overflow: hidden;
     }
-
     .sidebar {
       width: 250px;
       background: #f1c40f;
@@ -30,14 +28,12 @@
       justify-content: start;
       align-items: center;
     }
-
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: #000;
       margin-bottom: 40px;
     }
-
     .info-box {
       background-color: #1c1c1c;
       border-radius: 12px;
@@ -47,24 +43,20 @@
       color: #fff;
       font-size: 16px;
     }
-
     .info-box div {
       margin-bottom: 15px;
     }
-
     .main {
       flex: 1;
       padding: 30px;
       overflow-y: auto;
     }
-
     h1 {
       font-size: 28px;
       margin-bottom: 20px;
       color: #f1c40f;
       font-weight: 700;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
@@ -72,55 +64,44 @@
       border-radius: 10px;
       overflow: hidden;
     }
-
     th, td {
       padding: 15px;
       text-align: center;
       border-bottom: 1px solid #333;
     }
-
     th {
       background-color: #2c2c2c;
       color: #f1c40f;
       font-weight: 600;
     }
-
     tr:hover {
       background-color: #2a2a2a;
     }
-
     .rank {
       color: #f39c12;
       font-weight: bold;
     }
-
     .ping {
       color: #e74c3c;
       font-weight: bold;
     }
-
     ::-webkit-scrollbar {
       width: 8px;
     }
-
     ::-webkit-scrollbar-thumb {
       background: #f1c40f;
       border-radius: 4px;
     }
-
     @media (max-width: 768px) {
       .sidebar {
         display: none;
       }
-
       body {
         flex-direction: column;
       }
-
       .main {
         padding: 20px;
       }
-
       table, th, td {
         font-size: 14px;
       }
@@ -129,65 +110,22 @@
 </head>
 <body>
   <div class="sidebar">
-    <div class="logo">🔥 فايف إم</div>
+    <div class="logo">🔥 S7abh Shop</div>
     <div class="info-box">
-      <div>👥 عدد اللاعبين الآن: <span id="onlinePlayers">100</span></div>
-      <div>🥇 أعلى عدد اليوم: <span id="peakPlayers">150</span></div>
+      <div>👥 عدد اللاعبين الآن: <span>100</span></div>
+      <div>🥇 أعلى عدد اليوم: <span>150</span></div>
     </div>
   </div>
-
   <div class="main">
-    <h1>قائمة اللاعبين</h1>
+    <h1>🟡 قائمة بـ 100 لاعب متصل حاليا</h1>
     <table>
-  <thead>
-  <tr>
-    <th colspan="5">🟡 قائمة بـ 100 لاعب متصل حاليا</th>
-  </tr>
-  <tr>
-    <th>الاسم</th>
-    <th>ID</th>
-    <th>الرتبة</th>
-    <th>عدد الساعات</th>
-    <th>البينغ</th>
-  </tr>
-</thead>
-<tbody>
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>ID</th>
+          <th>الرتبة</th>
+          <th>عدد الساعات</th>
+          <th>البينغ</th>
+        </tr>
       </thead>
-              <tr>
-          <td>Reem 🚗</td>
-          <td>100</td>
-          <td class="rank">Admin</td>
-          <td>7h 33m</td>
-          <td class="ping">292</td>
-        </tr>
-        <tr>
-          <td>Leen 🎵</td>
-          <td>101</td>
-          <td class="rank">LSPD</td>
-          <td>14h 5m</td>
-          <td class="ping">222</td>
-        </tr>
-        <tr>
-          <td>Rashed 🎵</td>
-          <td>102</td>
-          <td class="rank">Taxi</td>
-          <td>1h 3m</td>
-          <td class="ping">49</td>
-        </tr>
-        <tr>
-          <td>Najd 🚔</td>
-          <td>103</td>
-          <td class="rank">Lawyer</td>
-          <td>1h 53m</td>
-          <td class="ping">291</td>
-        </tr>
-        <tr>
-          <td>Majed 🚗</td>
-          <td>104</td>
-          <td class="rank">Civilian</td>
-          <td>2h 48m</td>
-          <td class="ping">387</td>
-        </tr>
-        <!-- تم اختصار العرض هنا، لكن الملف النهائي يحتوي على 100 اسم -->
       <tbody>
-        <!-- بيانات اللاعبين -->
