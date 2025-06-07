@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>قائمة اللاعبين - FiveM</title>
+  <!-- استدعاء خط Cairo من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Cairo', sans-serif;
     }
 
     body {
@@ -61,6 +63,7 @@
       font-size: 28px;
       margin-bottom: 20px;
       color: #00e0ff;
+      font-weight: 700;
     }
 
     table {
@@ -80,6 +83,7 @@
     th {
       background-color: #2c2c2c;
       color: #00e0ff;
+      font-weight: 600;
     }
 
     tr:hover {
@@ -96,7 +100,6 @@
       font-weight: bold;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -126,7 +129,6 @@
   </style>
 </head>
 <body>
-
   <div class="sidebar">
     <div class="logo">🔥 فايف إم</div>
     <div class="info-box">
@@ -148,7 +150,6 @@
         </tr>
       </thead>
       <tbody id="playersTable">
-        <!-- مثال على لاعب -->
         <tr>
           <td>Hannah Worthington 👑</td>
           <td>123</td>
@@ -170,10 +171,8 @@
           <td>301h 5m</td>
           <td class="ping">365</td>
         </tr>
-        <!-- تقدر تضيف أكثر -->
       </tbody>
     </table>
   </div>
-
 </body>
 </html>
