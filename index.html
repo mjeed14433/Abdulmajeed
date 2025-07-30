@@ -15,21 +15,22 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: #1a1a2e;
-            color: #fff;
+            background: #101820;
+            color: #F5F5F5;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         /* Header */
         .header {
-            background: #16213e;
+            background: #101820;
             padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid #00FFB2;
         }
 
         .nav-container {
@@ -47,7 +48,7 @@
             gap: 10px;
             font-size: 1.5rem;
             font-weight: 900;
-            color: #5865f2;
+            color: #00FFB2;
         }
 
         .logo i {
@@ -68,7 +69,7 @@
         }
 
         .nav-links a:hover {
-            color: #5865f2;
+            color: #00FFB2;
         }
 
         .auth-section {
@@ -78,8 +79,8 @@
         }
 
         .discord-login {
-            background: #5865f2;
-            color: white;
+            background: #00FFB2;
+            color: #101820;
             padding: 0.7rem 1.5rem;
             border: none;
             border-radius: 25px;
@@ -93,7 +94,7 @@
         }
 
         .discord-login:hover {
-            background: #4752c4;
+            background: #00E5A0;
             transform: translateY(-2px);
         }
 
@@ -108,7 +109,8 @@
         }
 
         .credits {
-            background: linear-gradient(45deg, #5865f2, #7289da);
+            background: linear-gradient(45deg, #00FFB2, #00E5A0);
+            color: #101820;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-weight: 600;
@@ -119,7 +121,8 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #5865f2, #7289da);
+            background: linear-gradient(45deg, #00FFB2, #00E5A0);
+            color: #101820;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -146,9 +149,9 @@
         /* Sidebar */
         .sidebar {
             width: 280px;
-            background: #16213e;
+            background: #101820;
             padding: 2rem 0;
-            border-left: 1px solid #2c3e50;
+            border-left: 1px solid #00FFB2;
             transition: transform 0.3s ease;
             position: fixed;
             height: calc(100vh - 80px);
@@ -176,7 +179,7 @@
         }
 
         .sidebar-title {
-            color: #7289da;
+            color: #00FFB2;
             font-size: 0.9rem;
             font-weight: 600;
             padding: 0 1.5rem;
@@ -202,8 +205,8 @@
         }
 
         .sidebar-item:hover, .sidebar-item.active {
-            background: #5865f2;
-            color: #fff;
+            background: #00FFB2;
+            color: #101820;
         }
 
         .sidebar-item i {
@@ -236,7 +239,7 @@
         .content {
             flex: 1;
             padding: 2rem;
-            background: #0f1419;
+            background: #101820;
             margin-right: 280px;
             min-height: calc(100vh - 80px);
         }
@@ -260,14 +263,14 @@
         .login-required {
             text-align: center;
             padding: 4rem 2rem;
-            background: #16213e;
+            background: #101820;
             border-radius: 12px;
-            border: 1px solid #2c3e50;
+            border: 1px solid #00FFB2;
         }
 
         .login-required i {
             font-size: 4rem;
-            color: #5865f2;
+            color: #00FFB2;
             margin-bottom: 2rem;
         }
 
@@ -325,7 +328,7 @@
         .stat-value {
             font-size: 2rem;
             font-weight: 900;
-            color: #5865f2;
+            color: #00FFB2;
             line-height: 1;
         }
 
@@ -435,7 +438,7 @@
 
         .btn-secondary {
             background: transparent;
-            color: #5865f2;
+            color: #00FFB2;
             border: 2px solid #5865f2;
         }
 
@@ -669,6 +672,61 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Customization Styles */
+        .customization-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .current-avatar, .logo-preview, .banner-preview {
+            flex-shrink: 0;
+        }
+
+        .upload-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .color-section .setting-item {
+            border-bottom: 1px solid #2c3e50;
+            padding: 1rem 0;
+        }
+
+        .color-section .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        /* File Upload Styles */
+        .upload-area {
+            border: 2px dashed #5865f2;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            background: #16213e;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            background: #1a1f3a;
+            border-color: #7289da;
+        }
+
+        .upload-area.dragover {
+            background: #1a1f3a;
+            border-color: #43b581;
+        }
+
+        /* Preview Styles */
+        #logoPreview img, #bannerPreview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -804,10 +862,22 @@
             </div>
 
             <div class="sidebar-section">
+                <div class="sidebar-title">التخصيص</div>
+                <button class="sidebar-item" onclick="showPage('customization')">
+                    <i class="fas fa-palette"></i>
+                    تخصيص البوت
+                </button>
+            </div>
+
+            <div class="sidebar-section">
                 <div class="sidebar-title">الحساب</div>
                 <button class="sidebar-item" onclick="showPage('profile')">
                     <i class="fas fa-user"></i>
                     الملف الشخصي
+                </button>
+                <button class="sidebar-item" onclick="showPage('leaderboard')">
+                    <i class="fas fa-trophy"></i>
+                    الترتيب العالمي
                 </button>
                 <button class="sidebar-item" onclick="showPage('premium')">
                     <i class="fas fa-crown"></i>
@@ -912,7 +982,7 @@
                                 </div>
                                 <div class="stat-info">
                                     <div class="stat-value" id="dashboardCredits">0</div>
-                                    <div class="stat-label">الكريدت</div>
+                                    <div class="stat-label">الكوينز</div>
                                 </div>
                             </div>
                         </div>
@@ -1028,6 +1098,173 @@
                 </div>
             </div>
 
+            <!-- Leaderboard Page -->
+            <div id="leaderboard-page" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">🏆 الترتيب العالمي</h1>
+                    <p class="page-subtitle">أفضل اللاعبين في النظام</p>
+                </div>
+
+                <div class="settings-panel">
+                    <div class="settings-header">
+                        <i class="fas fa-trophy"></i>
+                        المتصدرون
+                    </div>
+                    <div class="settings-content">
+                        <div id="leaderboardList">
+                            <!-- سيتم ملؤها بـ JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customization Page -->
+            <div id="customization-page" class="page-content" style="display: none;">
+                <div class="login-required" id="customizationLoginRequired">
+                    <i class="fab fa-discord"></i>
+                    <h2>تسجيل الدخول مطلوب</h2>
+                    <p>يجب تسجيل الدخول بحساب Discord لتخصيص البوت</p>
+                    <button class="btn btn-primary" onclick="loginWithDiscord()">
+                        <i class="fab fa-discord"></i>
+                        تسجيل دخول بـ Discord
+                    </button>
+                </div>
+
+                <div id="customizationContent" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">🎨 تخصيص البوت</h1>
+                        <p class="page-subtitle">خصص مظهر البوت وإعداداته الشخصية</p>
+                    </div>
+
+                    <div class="settings-panel" style="margin-bottom: 2rem;">
+                        <div class="settings-header">
+                            <i class="fas fa-image"></i>
+                            صورة البوت
+                        </div>
+                        <div class="settings-content">
+                            <div class="customization-section">
+                                <div class="current-avatar">
+                                    <img id="botAvatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%235865f2'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-family='Arial'%3E🤖%3C/text%3E%3C/svg%3E" alt="صورة البوت" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #5865f2;">
+                                </div>
+                                <div class="upload-section">
+                                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="uploadAvatar(this)">
+                                    <button class="btn btn-primary" onclick="document.getElementById('avatarUpload').click()">
+                                        <i class="fas fa-upload"></i>
+                                        رفع صورة جديدة
+                                    </button>
+                                    <p style="color: #b9bbbe; font-size: 0.9rem; margin-top: 0.5rem;">
+                                        الحد الأقصى: 2MB | الأنواع المدعومة: JPG, PNG, GIF
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-panel" style="margin-bottom: 2rem;">
+                        <div class="settings-header">
+                            <i class="fas fa-tag"></i>
+                            اللوقو والعلامة التجارية
+                        </div>
+                        <div class="settings-content">
+                            <div class="customization-section">
+                                <div class="logo-preview">
+                                    <div id="logoPreview" style="width: 200px; height: 60px; background: #16213e; border: 2px dashed #5865f2; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #b9bbbe; margin-bottom: 1rem;">
+                                        <i class="fas fa-image" style="font-size: 2rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="upload-section">
+                                    <input type="file" id="logoUpload" accept="image/*" style="display: none;" onchange="uploadLogo(this)">
+                                    <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()">
+                                        <i class="fas fa-upload"></i>
+                                        رفع لوقو
+                                    </button>
+                                    <p style="color: #b9bbbe; font-size: 0.9rem; margin-top: 0.5rem;">
+                                        الأبعاد المثلى: 200x60 بكسل | PNG شفاف مفضل
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-panel" style="margin-bottom: 2rem;">
+                        <div class="settings-header">
+                            <i class="fas fa-image"></i>
+                            صورة البانر
+                        </div>
+                        <div class="settings-content">
+                            <div class="customization-section">
+                                <div class="banner-preview">
+                                    <div id="bannerPreview" style="width: 100%; height: 150px; background: linear-gradient(135deg, #5865f2, #7289da); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; margin-bottom: 1rem; position: relative; overflow: hidden;">
+                                        <div style="text-align: center;">
+                                            <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
+                                            <p>صورة البانر</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="upload-section">
+                                    <input type="file" id="bannerUpload" accept="image/*" style="display: none;" onchange="uploadBanner(this)">
+                                    <button class="btn btn-primary" onclick="document.getElementById('bannerUpload').click()">
+                                        <i class="fas fa-upload"></i>
+                                        رفع صورة بانر
+                                    </button>
+                                    <p style="color: #b9bbbe; font-size: 0.9rem; margin-top: 0.5rem;">
+                                        الأبعاد المثلى: 1200x300 بكسل | الحد الأقصى: 5MB
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-panel">
+                        <div class="settings-header">
+                            <i class="fas fa-palette"></i>
+                            الألوان والثيم
+                        </div>
+                        <div class="settings-content">
+                            <div class="color-section">
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>اللون الأساسي</h4>
+                                        <p>لون البوت الرئيسي في الرسائل والإعدادات</p>
+                                    </div>
+                                    <input type="color" id="primaryColor" value="#5865f2" onchange="updatePrimaryColor(this.value)" style="width: 50px; height: 40px; border: none; border-radius: 8px; cursor: pointer;">
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>لون الخلفية</h4>
+                                        <p>لون خلفية الرسائل المدمجة</p>
+                                    </div>
+                                    <input type="color" id="backgroundColor" value="#16213e" onchange="updateBackgroundColor(this.value)" style="width: 50px; height: 40px; border: none; border-radius: 8px; cursor: pointer;">
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>نمط الثيم</h4>
+                                        <p>اختر النمط العام للبوت</p>
+                                    </div>
+                                    <select id="themeStyle" onchange="updateTheme(this.value)" style="padding: 0.5rem; background: #0f1419; border: 1px solid #2c3e50; border-radius: 8px; color: #fff;">
+                                        <option value="modern">عصري</option>
+                                        <option value="classic">كلاسيكي</option>
+                                        <option value="minimal">بسيط</option>
+                                        <option value="gaming">ألعاب</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-success" onclick="saveCustomization()">
+                            <i class="fas fa-save"></i>
+                            حفظ التخصيصات
+                        </button>
+                        <button class="btn btn-secondary" onclick="resetCustomization()" style="margin-right: 1rem;">
+                            <i class="fas fa-undo"></i>
+                            إعادة تعيين
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Premium Page -->
             <div id="premium-page" class="page-content" style="display: none;">
                 <div class="page-header">
@@ -1046,7 +1283,7 @@
                         </div>
                         <div class="feature-description">
                             <ul style="list-style: none; padding: 0; margin: 1rem 0;">
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> مضاعفة الكريدت اليومي</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> مضاعفة الكوينز اليومي</li>
                                 <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> أوامر إضافية</li>
                                 <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> دعم أولوية</li>
                                 <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> شارات حصرية</li>
@@ -1167,6 +1404,10 @@
             document.getElementById('serversLoginRequired').style.display = 'none';
             document.getElementById('serversContent').style.display = 'block';
             populateServerDropdown();
+            
+            // Update customization page
+            document.getElementById('customizationLoginRequired').style.display = 'none';
+            document.getElementById('customizationContent').style.display = 'block';
             
             // Show server features in sidebar
             document.getElementById('serverFeatures').style.display = 'block';
@@ -1334,6 +1575,8 @@
             document.getElementById('dashboardContent').style.display = 'none';
             document.getElementById('serversLoginRequired').style.display = 'block';
             document.getElementById('serversContent').style.display = 'none';
+            document.getElementById('customizationLoginRequired').style.display = 'block';
+            document.getElementById('customizationContent').style.display = 'none';
             document.getElementById('serverFeatures').style.display = 'none';
             
             showNotification('تم تسجيل الخروج بنجاح', 'success');
@@ -1393,20 +1636,45 @@
             }
         }
 
-        // Load leaderboard
+        // Global leaderboard data - only top 2 players
+        const globalLeaderboard = [
+            { username: 'Saeed', coins: 1000000000 }, // مليار كوين
+            { username: 'iTrx', coins: 1000000000 }   // مليار كوين
+        ];
+
+        // Calculate level based on coins with 5% difficulty increase per million
+        function calculateLevel(coins) {
+            if (coins < 1000) return 1;
+            
+            let level = 1;
+            let requiredCoins = 1000; // البداية من 1000
+            let currentCoins = coins;
+            
+            while (currentCoins >= requiredCoins) {
+                currentCoins -= requiredCoins;
+                level++;
+                // كل مليون كوين يزيد الصعوبة 5%
+                if (level % 1000 === 0) { // كل 1000 مستوى (تقريباً مليون كوين)
+                    requiredCoins = Math.floor(requiredCoins * 1.05);
+                }
+            }
+            
+            return level;
+        }
+
+        // Load leaderboard - only show top 2
         function loadLeaderboard() {
             const leaderboardList = document.getElementById('leaderboardList');
             leaderboardList.innerHTML = '';
             
-            globalLeaderboard.forEach((player, index) => {
+            // Only show first 2 players
+            globalLeaderboard.slice(0, 2).forEach((player, index) => {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'setting-item';
                 
                 let rankIcon = '';
                 if (index === 0) rankIcon = '🥇';
                 else if (index === 1) rankIcon = '🥈';
-                else if (index === 2) rankIcon = '🥉';
-                else rankIcon = `#${index + 1}`;
                 
                 const level = calculateLevel(player.coins);
                 
@@ -1422,6 +1690,18 @@
                 
                 leaderboardList.appendChild(playerDiv);
             });
+
+            // Add message if no more players
+            const noMoreDiv = document.createElement('div');
+            noMoreDiv.className = 'setting-item';
+            noMoreDiv.style.textAlign = 'center';
+            noMoreDiv.style.color = '#b9bbbe';
+            noMoreDiv.innerHTML = `
+                <div class="setting-info">
+                    <p>🏆 الترتيب العالمي يظهر أفضل لاعبين فقط</p>
+                </div>
+            `;
+            leaderboardList.appendChild(noMoreDiv);
         }
 
         // Show notification
@@ -1462,6 +1742,156 @@
         document.querySelectorAll('.stat-card, .feature-card').forEach(el => {
             observer.observe(el);
         });
+
+        // Customization Functions
+        function uploadAvatar(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            // Check file size (2MB limit)
+            if (file.size > 2 * 1024 * 1024) {
+                showNotification('حجم الملف كبير جداً! الحد الأقصى 2MB', 'error');
+                return;
+            }
+            
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                showNotification('نوع الملف غير مدعوم! يرجى اختيار صورة', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('botAvatar').src = e.target.result;
+                showNotification('تم رفع صورة البوت بنجاح!', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadLogo(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            // Check file size (2MB limit)
+            if (file.size > 2 * 1024 * 1024) {
+                showNotification('حجم الملف كبير جداً! الحد الأقصى 2MB', 'error');
+                return;
+            }
+            
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                showNotification('نوع الملف غير مدعوم! يرجى اختيار صورة', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const logoPreview = document.getElementById('logoPreview');
+                logoPreview.innerHTML = `<img src="${e.target.result}" alt="اللوقو" style="width: 100%; height: 100%; object-fit: contain;">`;
+                showNotification('تم رفع اللوقو بنجاح!', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadBanner(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            // Check file size (5MB limit)
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('حجم الملف كبير جداً! الحد الأقصى 5MB', 'error');
+                return;
+            }
+            
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                showNotification('نوع الملف غير مدعوم! يرجى اختيار صورة', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const bannerPreview = document.getElementById('bannerPreview');
+                bannerPreview.style.backgroundImage = `url(${e.target.result})`;
+                bannerPreview.style.backgroundSize = 'cover';
+                bannerPreview.style.backgroundPosition = 'center';
+                bannerPreview.innerHTML = '';
+                showNotification('تم رفع صورة البانر بنجاح!', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updatePrimaryColor(color) {
+            // Update CSS custom property or apply color changes
+            document.documentElement.style.setProperty('--primary-color', color);
+            showNotification('تم تحديث اللون الأساسي!', 'success');
+        }
+
+        function updateBackgroundColor(color) {
+            // Update CSS custom property or apply color changes
+            document.documentElement.style.setProperty('--background-color', color);
+            showNotification('تم تحديث لون الخلفية!', 'success');
+        }
+
+        function updateTheme(theme) {
+            const themes = {
+                modern: 'عصري',
+                classic: 'كلاسيكي',
+                minimal: 'بسيط',
+                gaming: 'ألعاب'
+            };
+            showNotification(`تم تطبيق الثيم ${themes[theme]}!`, 'success');
+        }
+
+        function saveCustomization() {
+            // Simulate saving customization settings
+            showNotification('جاري حفظ التخصيصات...', 'info');
+            
+            setTimeout(() => {
+                // Simulate API call to save settings
+                const customizationData = {
+                    avatar: document.getElementById('botAvatar').src,
+                    logo: document.getElementById('logoPreview').innerHTML,
+                    banner: document.getElementById('bannerPreview').style.backgroundImage,
+                    primaryColor: document.getElementById('primaryColor').value,
+                    backgroundColor: document.getElementById('backgroundColor').value,
+                    theme: document.getElementById('themeStyle').value
+                };
+                
+                // Save to localStorage for demo
+                localStorage.setItem('botCustomization', JSON.stringify(customizationData));
+                
+                showNotification('تم حفظ جميع التخصيصات بنجاح! ✨', 'success');
+            }, 1500);
+        }
+
+        function resetCustomization() {
+            if (confirm('هل أنت متأكد من إعادة تعيين جميع التخصيصات؟')) {
+                // Reset to default values
+                document.getElementById('botAvatar').src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%235865f2'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-family='Arial'%3E🤖%3C/text%3E%3C/svg%3E";
+                
+                document.getElementById('logoPreview').innerHTML = '<i class="fas fa-image" style="font-size: 2rem;"></i>';
+                
+                const bannerPreview = document.getElementById('bannerPreview');
+                bannerPreview.style.backgroundImage = '';
+                bannerPreview.style.background = 'linear-gradient(135deg, #5865f2, #7289da)';
+                bannerPreview.innerHTML = `
+                    <div style="text-align: center;">
+                        <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
+                        <p>صورة البانر</p>
+                    </div>
+                `;
+                
+                document.getElementById('primaryColor').value = '#5865f2';
+                document.getElementById('backgroundColor').value = '#16213e';
+                document.getElementById('themeStyle').value = 'modern';
+                
+                // Remove from localStorage
+                localStorage.removeItem('botCustomization');
+                
+                showNotification('تم إعادة تعيين جميع التخصيصات!', 'success');
+            }
+        }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967513bcf2207917',t:'MTc1Mzg4MDgyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9675258c56d8f931',t:'MTc1Mzg4MTU1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
