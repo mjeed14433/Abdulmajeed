@@ -1088,6 +1088,15 @@
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
+            // Set default coins for new users
+            if (!localStorage.getItem('discordUser')) {
+                // البداية بـ 1000 كوين للجميع
+                const defaultUser = {
+                    credits: 1000,
+                    level: 1,
+                    rank: null
+                };
+            }
             checkLoginStatus();
             showPage('home');
             setupResponsiveHandlers();
@@ -1343,6 +1352,11 @@
             if (targetPage) {
                 targetPage.style.display = 'block';
             }
+
+            // Load leaderboard if showing leaderboard page
+            if (pageId === 'leaderboard') {
+                loadLeaderboard();
+            }
             
             // Update sidebar active state
             document.querySelectorAll('.sidebar-item').forEach(item => {
@@ -1377,6 +1391,37 @@
                 sidebar.classList.remove('show');
                 overlay.classList.remove('show');
             }
+        }
+
+        // Load leaderboard
+        function loadLeaderboard() {
+            const leaderboardList = document.getElementById('leaderboardList');
+            leaderboardList.innerHTML = '';
+            
+            globalLeaderboard.forEach((player, index) => {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'setting-item';
+                
+                let rankIcon = '';
+                if (index === 0) rankIcon = '🥇';
+                else if (index === 1) rankIcon = '🥈';
+                else if (index === 2) rankIcon = '🥉';
+                else rankIcon = `#${index + 1}`;
+                
+                const level = calculateLevel(player.coins);
+                
+                playerDiv.innerHTML = `
+                    <div class="setting-info">
+                        <h4>${rankIcon} ${player.username}</h4>
+                        <p>المستوى: ${level} | الكوينز: ${player.coins.toLocaleString()}</p>
+                    </div>
+                    <div style="color: #5865f2; font-weight: bold;">
+                        ${player.username === currentUser?.username ? 'أنت' : ''}
+                    </div>
+                `;
+                
+                leaderboardList.appendChild(playerDiv);
+            });
         }
 
         // Show notification
@@ -1418,5 +1463,5 @@
             observer.observe(el);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967508737620f92d',t:'MTc1Mzg4MDM2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967513bcf2207917',t:'MTc1Mzg4MDgyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
