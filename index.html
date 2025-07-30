@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سمارت بوت - البوت العربي الذكي</title>
+    <title>ألترا بوت - البوت العربي الذكي | UltraBot</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -1095,7 +1095,7 @@
         <div class="nav-container">
             <div class="logo">
                 <i class="fas fa-robot"></i>
-                سمارت بوت
+                ألترا بوت | UltraBot
             </div>
             <ul class="nav-links">
                 <li><a href="#" onclick="showPage('home')">الرئيسية</a></li>
@@ -1229,7 +1229,7 @@
             <!-- Home Page -->
             <div id="home-page" class="page-content">
                 <div class="hero-section">
-                    <h1 class="hero-title">سمارت بوت</h1>
+                    <h1 class="hero-title">ألترا بوت | UltraBot</h1>
                     <p class="hero-subtitle">البوت العربي الذكي الأول في ديسكورد</p>
                     <p class="hero-subtitle">بوت متعدد الأغراض: ترحيب، إشراف، موسيقى، ألعاب</p>
                     <div class="cta-buttons">
@@ -1331,6 +1331,98 @@
                                 <i class="fas fa-users-cog"></i>
                                 إدارة المستخدمين
                             </button>
+                            <button class="admin-btn" onclick="showCoinsPanel()">
+                                <i class="fas fa-coins"></i>
+                                إدارة الكوينز بالأيدي
+                            </button>
+                            ${(currentUser?.username === 'saeed' || currentUser?.username === 'itrx') ? `
+                                <button class="admin-btn" onclick="showCreateAccountPanel()">
+                                    <i class="fas fa-user-plus"></i>
+                                    إنشاء حساب
+                                </button>
+                                <button class="admin-btn" onclick="showPromoteAdminPanel()">
+                                    <i class="fas fa-user-shield"></i>
+                                    ترقية أدمن
+                                </button>
+                            ` : ''}
+                        </div>
+                        
+                        <!-- Coins Management Panel -->
+                        <div id="coinsPanel" style="display: none; margin-top: 2rem; background: rgba(16, 24, 32, 0.8); padding: 1.5rem; border-radius: 12px;">
+                            <h3 style="margin-bottom: 1rem; color: #00FFB2;">
+                                <i class="fas fa-coins"></i> إدارة الكوينز بالأيدي
+                            </h3>
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                                <input type="number" id="targetUserId" placeholder="أيدي المستخدم" style="flex: 1; min-width: 150px; padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                                <input type="number" id="coinsAmount" placeholder="كمية الكوينز" style="flex: 1; min-width: 150px; padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                                <button onclick="addCoinsByUserId()" style="padding: 0.8rem 1.5rem; background: #43b581; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-plus"></i> إضافة
+                                </button>
+                            </div>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <button onclick="showUserInfo()" style="padding: 0.8rem 1.5rem; background: #5865f2; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-info"></i> معلومات المستخدم
+                                </button>
+                                <button onclick="hideCoinsPanel()" style="padding: 0.8rem 1.5rem; background: #f04747; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-times"></i> إغلاق
+                                </button>
+                            </div>
+                            <div id="userInfoDisplay" style="margin-top: 1rem; padding: 1rem; background: #16213e; border-radius: 8px; display: none;">
+                                <!-- User info will be displayed here -->
+                            </div>
+                        </div>
+
+                        <!-- Create Account Panel -->
+                        <div id="createAccountPanel" style="display: none; margin-top: 2rem; background: rgba(16, 24, 32, 0.8); padding: 1.5rem; border-radius: 12px;">
+                            <h3 style="margin-bottom: 1rem; color: #00FFB2;">
+                                <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+                            </h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                                <input type="text" id="newUsername" placeholder="اسم المستخدم" style="padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                                <input type="email" id="newEmail" placeholder="الإيميل" style="padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                                <input type="password" id="newPassword" placeholder="كلمة المرور" style="padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                                <input type="text" id="newDisplayName" placeholder="الاسم المعروض" style="padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                            </div>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <button onclick="createNewAccount()" style="padding: 0.8rem 1.5rem; background: #43b581; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-plus"></i> إنشاء الحساب
+                                </button>
+                                <button onclick="hideCreateAccountPanel()" style="padding: 0.8rem 1.5rem; background: #f04747; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-times"></i> إغلاق
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Promote Admin Panel -->
+                        <div id="promoteAdminPanel" style="display: none; margin-top: 2rem; background: rgba(16, 24, 32, 0.8); padding: 1.5rem; border-radius: 12px;">
+                            <h3 style="margin-bottom: 1rem; color: #00FFB2;">
+                                <i class="fas fa-user-shield"></i> ترقية أدمن
+                            </h3>
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #fff;">طريقة البحث:</label>
+                                <select id="searchMethod" style="width: 100%; padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff; margin-bottom: 1rem;">
+                                    <option value="id">بالأيدي</option>
+                                    <option value="email">بالإيميل</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                                <input type="text" id="searchValue" placeholder="أدخل الأيدي أو الإيميل" style="flex: 1; min-width: 200px; padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                                <input type="text" id="adminName" placeholder="اسم الأدمن" style="flex: 1; min-width: 200px; padding: 0.8rem; background: #16213e; border: 1px solid #00FFB2; border-radius: 8px; color: #fff;">
+                            </div>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <button onclick="promoteToAdmin()" style="padding: 0.8rem 1.5rem; background: #5865f2; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-crown"></i> ترقية لأدمن
+                                </button>
+                                <button onclick="searchUserForPromotion()" style="padding: 0.8rem 1.5rem; background: #43b581; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-search"></i> البحث
+                                </button>
+                                <button onclick="hidePromoteAdminPanel()" style="padding: 0.8rem 1.5rem; background: #f04747; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    <i class="fas fa-times"></i> إغلاق
+                                </button>
+                            </div>
+                            <div id="promotionUserInfo" style="margin-top: 1rem; padding: 1rem; background: #16213e; border-radius: 8px; display: none;">
+                                <!-- User info for promotion will be displayed here -->
+                            </div>
                         </div>
                     </div>
 
@@ -1401,7 +1493,12 @@
                         <p class="page-subtitle">اختر سيرفر لإدارة إعدادات البوت</p>
                     </div>
 
-                    <div class="server-selector">
+                    <!-- Server Cards -->
+                    <div id="serverCards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <!-- Server cards will be populated here -->
+                    </div>
+
+                    <div class="server-selector" style="display: none;">
                         <label for="serverSelect" style="display: block; margin-bottom: 1rem; font-weight: 600;">
                             <i class="fas fa-server"></i> اختر السيرفر:
                         </label>
@@ -1591,6 +1688,11 @@
         </main>
     </div>
 
+    <!-- Footer -->
+    <footer style="background: #101820; border-top: 1px solid #00FFB2; padding: 1rem 0; text-align: center; color: #b9bbbe; font-size: 0.9rem;">
+        <p>© 2025 ألترا بوت | UltraBot - من صنع <strong style="color: #00FFB2;">iCore Studio 2025</strong></p>
+    </footer>
+
     <script>
         // Global state
         let isLoggedIn = false;
@@ -1603,9 +1705,10 @@
         // Premium accounts with credentials
         const premiumAccounts = {
             'saeed': {
+                id: 1001,
                 username: 'saeed',
                 password: 'saeed2024',
-                email: 'saeed@smartbot.com',
+                email: 'saeed@ultrabot.com',
                 displayName: 'Saeed',
                 credits: 1000000000, // مليار كوين
                 level: 100,
@@ -1615,9 +1718,10 @@
                 premiumType: 'advanced'
             },
             'itrx': {
+                id: 1002,
                 username: 'itrx',
                 password: 'itrx2024',
-                email: 'itrx@smartbot.com',
+                email: 'itrx@ultrabot.com',
                 displayName: 'iTrx',
                 credits: 980000000, // 980 مليون كوين
                 level: 95,
@@ -1630,6 +1734,12 @@
 
         // All registered users
         let allUsers = { ...premiumAccounts };
+        
+        // Next user ID counter (starts from 1003 after premium accounts)
+        let nextUserId = 1003;
+
+        // Admin users (can manage but not create accounts)
+        let adminUsers = {};
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
@@ -1726,6 +1836,7 @@
             
             // Create new user (regular user - no premium features)
             const newUser = {
+                id: nextUserId++,
                 username: username,
                 password: password,
                 email: email,
@@ -1788,6 +1899,7 @@
                 showNotification('تم تسجيل الدخول بـ Google بنجاح!', 'success');
                 // Create demo Google user
                 currentUser = {
+                    id: nextUserId++,
                     username: 'google_user',
                     displayName: 'مستخدم Google',
                     email: 'user@gmail.com',
@@ -1812,11 +1924,32 @@
             isLoggedIn = true;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             
-            // Simulate user servers for demo
+            // Simulate user servers for demo with icons
             userServers = [
-                { id: 'server1', name: 'سيرفر الألعاب', hasBot: true },
-                { id: 'server2', name: 'مجتمع المطورين', hasBot: true },
-                { id: 'server3', name: 'سيرفر الأصدقاء', hasBot: false }
+                { 
+                    id: 'server1', 
+                    name: 'سيرفر الألعاب', 
+                    hasBot: true,
+                    icon: 'https://cdn.discordapp.com/icons/123456789/a_1234567890abcdef.png',
+                    memberCount: 1250,
+                    onlineCount: 320
+                },
+                { 
+                    id: 'server2', 
+                    name: 'مجتمع المطورين', 
+                    hasBot: true,
+                    icon: 'https://cdn.discordapp.com/icons/987654321/b_0987654321fedcba.png',
+                    memberCount: 850,
+                    onlineCount: 180
+                },
+                { 
+                    id: 'server3', 
+                    name: 'سيرفر الأصدقاء', 
+                    hasBot: false,
+                    icon: null,
+                    memberCount: 45,
+                    onlineCount: 12
+                }
             ];
             
             updateUIForLoggedInUser();
@@ -1853,6 +1986,7 @@
             document.getElementById('serversLoginRequired').style.display = 'none';
             document.getElementById('serversContent').style.display = 'block';
             populateServerDropdown();
+            populateServerCards();
             
             // Update customization page
             document.getElementById('customizationLoginRequired').style.display = 'none';
@@ -1939,6 +2073,62 @@
                     select.appendChild(option);
                 }
             });
+        }
+
+        // Populate server cards
+        function populateServerCards() {
+            const container = document.getElementById('serverCards');
+            container.innerHTML = '';
+            
+            userServers.forEach(server => {
+                if (server.hasBot) {
+                    const card = document.createElement('div');
+                    card.className = 'feature-card';
+                    card.style.cursor = 'pointer';
+                    card.onclick = () => selectServerFromCard(server.id);
+                    
+                    const iconHtml = server.icon 
+                        ? `<img src="${server.icon}" alt="${server.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">`
+                        : `<div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, #5865f2, #7289da); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">${server.name.substring(0, 2)}</div>`;
+                    
+                    card.innerHTML = `
+                        <div class="feature-header">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                ${iconHtml}
+                                <div>
+                                    <div class="feature-title" style="font-size: 1.2rem; margin-bottom: 0.5rem;">
+                                        ${server.name}
+                                    </div>
+                                    <div style="color: #b9bbbe; font-size: 0.9rem;">
+                                        <i class="fas fa-users"></i> ${server.memberCount.toLocaleString()} عضو
+                                        <span style="margin: 0 0.5rem;">•</span>
+                                        <i class="fas fa-circle" style="color: #43b581; font-size: 0.7rem;"></i> ${server.onlineCount} متصل
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-left" style="color: #00FFB2;"></i>
+                        </div>
+                        <div class="feature-description" style="margin-top: 1rem;">
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span style="background: #43b581; color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem;">
+                                    <i class="fas fa-robot"></i> البوت نشط
+                                </span>
+                                <span style="background: #5865f2; color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem;">
+                                    <i class="fas fa-cog"></i> قابل للإدارة
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(card);
+                }
+            });
+        }
+
+        // Select server from card
+        function selectServerFromCard(serverId) {
+            selectServer(serverId);
+            document.getElementById('serverSelect').value = serverId;
         }
 
         // Select server
@@ -2183,21 +2373,32 @@
                 userDiv.className = 'setting-item';
                 
                 const badges = [];
-                if (user.isAdmin) badges.push('<span style="background: #ff6b6b; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">مدير</span>');
+                if (user.isAdmin) {
+                    if (user.username === 'saeed' || user.username === 'itrx') {
+                        badges.push('<span style="background: #ff6b6b; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">مدير رئيسي</span>');
+                    } else {
+                        badges.push('<span style="background: #5865f2; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">أدمن</span>');
+                    }
+                }
                 if (user.isPremium) badges.push('<span style="background: #faa61a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">بريميوم</span>');
                 
                 userDiv.innerHTML = `
                     <div class="setting-info">
                         <h4>${user.displayName} ${badges.join(' ')}</h4>
-                        <p>المستوى: ${user.level} | الكوينز: ${user.credits.toLocaleString()} | الإيميل: ${user.email}</p>
+                        <p>الأيدي: ${user.id} | المستوى: ${user.level} | الكوينز: ${user.credits.toLocaleString()} | الإيميل: ${user.email}</p>
                     </div>
                     <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-warning" onclick="showConfirm('إضافة 1000 كوين لـ ${user.displayName}؟', () => addCoinsToUser('${user.username}', 1000))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                            <i class="fas fa-coins"></i>
-                        </button>
-                        <button class="btn btn-success" onclick="showConfirm('تفعيل البريميوم لـ ${user.displayName}؟', () => grantPremiumToUser('${user.username}'))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                            <i class="fas fa-crown"></i>
-                        </button>
+                        ${currentUser && currentUser.isAdmin ? `
+                            <button class="btn btn-warning" onclick="showConfirm('إضافة 1000 كوين لـ ${user.displayName}؟', () => addCoinsToUser('${user.username}', 1000))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
+                                <i class="fas fa-coins"></i>
+                            </button>
+                            <button class="btn btn-success" onclick="showConfirm('تفعيل البريميوم لـ ${user.displayName}؟', () => grantPremiumToUser('${user.username}'))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
+                                <i class="fas fa-crown"></i>
+                            </button>
+                            <button class="btn btn-primary" onclick="showConfirm('رفع مستوى ${user.displayName} بـ 5 مستويات؟', () => addLevelsToUser('${user.username}', 5))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
+                                <i class="fas fa-level-up-alt"></i>
+                            </button>
+                        ` : ''}
                     </div>
                 `;
                 
@@ -2224,6 +2425,15 @@
             }
         }
 
+        // Add levels to user (admin function)
+        function addLevelsToUser(username, levels) {
+            if (allUsers[username]) {
+                allUsers[username].level += levels;
+                loadUsersList();
+                showNotification(`تم رفع مستوى ${allUsers[username].displayName} بـ ${levels} مستويات`, 'success');
+            }
+        }
+
         // Show notification
         function showNotification(message, type = 'info') {
             const notification = document.getElementById('notification');
@@ -2240,6 +2450,310 @@
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 1024) {
                     toggleSidebar(false);
+                }
+            });
+        }
+
+        // Show coins management panel
+        function showCoinsPanel() {
+            document.getElementById('coinsPanel').style.display = 'block';
+        }
+
+        // Hide coins management panel
+        function hideCoinsPanel() {
+            document.getElementById('coinsPanel').style.display = 'none';
+            document.getElementById('userInfoDisplay').style.display = 'none';
+            document.getElementById('targetUserId').value = '';
+            document.getElementById('coinsAmount').value = '';
+        }
+
+        // Add coins by user ID
+        function addCoinsByUserId() {
+            const userId = parseInt(document.getElementById('targetUserId').value);
+            const amount = parseInt(document.getElementById('coinsAmount').value);
+            
+            if (!userId || !amount) {
+                showNotification('يرجى إدخال الأيدي وكمية الكوينز', 'error');
+                return;
+            }
+            
+            // Find user by ID
+            const targetUser = Object.values(allUsers).find(user => user.id === userId);
+            
+            if (!targetUser) {
+                showNotification('لم يتم العثور على مستخدم بهذا الأيدي', 'error');
+                return;
+            }
+            
+            showConfirm(`إضافة ${amount.toLocaleString()} كوين للمستخدم ${targetUser.displayName} (ID: ${userId})؟`, () => {
+                targetUser.credits += amount;
+                
+                // Update if it's the current user
+                if (currentUser && currentUser.id === userId) {
+                    currentUser.credits = targetUser.credits;
+                    updateUserData();
+                }
+                
+                showNotification(`تم إضافة ${amount.toLocaleString()} كوين للمستخدم ${targetUser.displayName}`, 'success');
+                document.getElementById('coinsAmount').value = '';
+                
+                // Update users list if visible
+                if (document.getElementById('users-page').style.display !== 'none') {
+                    loadUsersList();
+                }
+            });
+        }
+
+        // Show user info by ID
+        function showUserInfo() {
+            const userId = parseInt(document.getElementById('targetUserId').value);
+            
+            if (!userId) {
+                showNotification('يرجى إدخال الأيدي أولاً', 'error');
+                return;
+            }
+            
+            const targetUser = Object.values(allUsers).find(user => user.id === userId);
+            
+            if (!targetUser) {
+                showNotification('لم يتم العثور على مستخدم بهذا الأيدي', 'error');
+                document.getElementById('userInfoDisplay').style.display = 'none';
+                return;
+            }
+            
+            const badges = [];
+            if (targetUser.isAdmin) badges.push('<span style="background: #ff6b6b; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">مدير</span>');
+            if (targetUser.isPremium) badges.push('<span style="background: #faa61a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">بريميوم</span>');
+            
+            document.getElementById('userInfoDisplay').innerHTML = `
+                <h4 style="color: #00FFB2; margin-bottom: 1rem;">
+                    <i class="fas fa-user"></i> معلومات المستخدم
+                </h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <strong>الاسم:</strong> ${targetUser.displayName} ${badges.join(' ')}
+                    </div>
+                    <div>
+                        <strong>الأيدي:</strong> ${targetUser.id}
+                    </div>
+                    <div>
+                        <strong>اسم المستخدم:</strong> ${targetUser.username}
+                    </div>
+                    <div>
+                        <strong>الإيميل:</strong> ${targetUser.email}
+                    </div>
+                    <div>
+                        <strong>الكوينز:</strong> ${targetUser.credits.toLocaleString()}
+                    </div>
+                    <div>
+                        <strong>المستوى:</strong> ${targetUser.level}
+                    </div>
+                    <div>
+                        <strong>الترتيب:</strong> ${targetUser.rank || 'غير محدد'}
+                    </div>
+                    <div>
+                        <strong>تاريخ الإنشاء:</strong> ${new Date().toLocaleDateString('ar-SA')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('userInfoDisplay').style.display = 'block';
+        }
+
+        // Show create account panel
+        function showCreateAccountPanel() {
+            document.getElementById('createAccountPanel').style.display = 'block';
+        }
+
+        // Hide create account panel
+        function hideCreateAccountPanel() {
+            document.getElementById('createAccountPanel').style.display = 'none';
+            clearCreateAccountForm();
+        }
+
+        // Clear create account form
+        function clearCreateAccountForm() {
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newEmail').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('newDisplayName').value = '';
+        }
+
+        // Create new account (Super Admin only)
+        function createNewAccount() {
+            if (!currentUser || !currentUser.isAdmin || (currentUser.username !== 'saeed' && currentUser.username !== 'itrx')) {
+                showNotification('فقط المديرين الرئيسيين يمكنهم إنشاء حسابات', 'error');
+                return;
+            }
+
+            const username = document.getElementById('newUsername').value.toLowerCase().trim();
+            const email = document.getElementById('newEmail').value.trim();
+            const password = document.getElementById('newPassword').value;
+            const displayName = document.getElementById('newDisplayName').value.trim();
+
+            if (!username || !email || !password || !displayName) {
+                showNotification('يرجى ملء جميع الحقول', 'error');
+                return;
+            }
+
+            if (allUsers[username]) {
+                showNotification('اسم المستخدم موجود بالفعل', 'error');
+                return;
+            }
+
+            // Check if email exists
+            const emailExists = Object.values(allUsers).some(user => user.email === email);
+            if (emailExists) {
+                showNotification('الإيميل مستخدم بالفعل', 'error');
+                return;
+            }
+
+            showConfirm(`إنشاء حساب جديد للمستخدم ${displayName}؟`, () => {
+                const newUser = {
+                    id: nextUserId++,
+                    username: username,
+                    password: password,
+                    email: email,
+                    displayName: displayName,
+                    credits: 1000, // Starting credits
+                    level: 1,
+                    rank: null,
+                    isAdmin: false,
+                    isPremium: false,
+                    premiumType: null,
+                    verified: true
+                };
+
+                allUsers[username] = newUser;
+                clearCreateAccountForm();
+                hideCreateAccountPanel();
+                showNotification(`تم إنشاء حساب ${displayName} بنجاح! الأيدي: ${newUser.id}`, 'success');
+                
+                // Update users list if visible
+                if (document.getElementById('users-page').style.display !== 'none') {
+                    loadUsersList();
+                }
+            });
+        }
+
+        // Show promote admin panel
+        function showPromoteAdminPanel() {
+            document.getElementById('promoteAdminPanel').style.display = 'block';
+        }
+
+        // Hide promote admin panel
+        function hidePromoteAdminPanel() {
+            document.getElementById('promoteAdminPanel').style.display = 'none';
+            clearPromoteAdminForm();
+        }
+
+        // Clear promote admin form
+        function clearPromoteAdminForm() {
+            document.getElementById('searchValue').value = '';
+            document.getElementById('adminName').value = '';
+            document.getElementById('promotionUserInfo').style.display = 'none';
+        }
+
+        // Search user for promotion
+        function searchUserForPromotion() {
+            const searchMethod = document.getElementById('searchMethod').value;
+            const searchValue = document.getElementById('searchValue').value.trim();
+
+            if (!searchValue) {
+                showNotification('يرجى إدخال قيمة البحث', 'error');
+                return;
+            }
+
+            let targetUser = null;
+
+            if (searchMethod === 'id') {
+                const userId = parseInt(searchValue);
+                targetUser = Object.values(allUsers).find(user => user.id === userId);
+            } else if (searchMethod === 'email') {
+                targetUser = Object.values(allUsers).find(user => user.email === searchValue);
+            }
+
+            if (!targetUser) {
+                showNotification('لم يتم العثور على المستخدم', 'error');
+                document.getElementById('promotionUserInfo').style.display = 'none';
+                return;
+            }
+
+            if (targetUser.isAdmin) {
+                showNotification('هذا المستخدم أدمن بالفعل', 'error');
+                return;
+            }
+
+            // Display user info
+            const badges = [];
+            if (targetUser.isPremium) badges.push('<span style="background: #faa61a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">بريميوم</span>');
+
+            document.getElementById('promotionUserInfo').innerHTML = `
+                <h4 style="color: #00FFB2; margin-bottom: 1rem;">
+                    <i class="fas fa-user"></i> معلومات المستخدم المختار
+                </h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div><strong>الاسم:</strong> ${targetUser.displayName} ${badges.join(' ')}</div>
+                    <div><strong>الأيدي:</strong> ${targetUser.id}</div>
+                    <div><strong>اسم المستخدم:</strong> ${targetUser.username}</div>
+                    <div><strong>الإيميل:</strong> ${targetUser.email}</div>
+                    <div><strong>الكوينز:</strong> ${targetUser.credits.toLocaleString()}</div>
+                    <div><strong>المستوى:</strong> ${targetUser.level}</div>
+                </div>
+            `;
+
+            document.getElementById('promotionUserInfo').style.display = 'block';
+            document.getElementById('adminName').value = targetUser.displayName;
+        }
+
+        // Promote to admin
+        function promoteToAdmin() {
+            if (!currentUser || !currentUser.isAdmin || (currentUser.username !== 'saeed' && currentUser.username !== 'itrx')) {
+                showNotification('فقط المديرين الرئيسيين يمكنهم ترقية الأدمن', 'error');
+                return;
+            }
+
+            const searchMethod = document.getElementById('searchMethod').value;
+            const searchValue = document.getElementById('searchValue').value.trim();
+            const adminName = document.getElementById('adminName').value.trim();
+
+            if (!searchValue || !adminName) {
+                showNotification('يرجى البحث عن المستخدم وإدخال اسم الأدمن', 'error');
+                return;
+            }
+
+            let targetUser = null;
+
+            if (searchMethod === 'id') {
+                const userId = parseInt(searchValue);
+                targetUser = Object.values(allUsers).find(user => user.id === userId);
+            } else if (searchMethod === 'email') {
+                targetUser = Object.values(allUsers).find(user => user.email === searchValue);
+            }
+
+            if (!targetUser) {
+                showNotification('لم يتم العثور على المستخدم', 'error');
+                return;
+            }
+
+            if (targetUser.isAdmin) {
+                showNotification('هذا المستخدم أدمن بالفعل', 'error');
+                return;
+            }
+
+            showConfirm(`ترقية ${targetUser.displayName} إلى أدمن باسم "${adminName}"؟`, () => {
+                // Promote to admin (limited admin - can't create accounts)
+                targetUser.isAdmin = true;
+                targetUser.displayName = adminName;
+                adminUsers[targetUser.username] = targetUser;
+
+                clearPromoteAdminForm();
+                hidePromoteAdminPanel();
+                showNotification(`تم ترقية ${adminName} إلى أدمن بنجاح!`, 'success');
+                
+                // Update users list if visible
+                if (document.getElementById('users-page').style.display !== 'none') {
+                    loadUsersList();
                 }
             });
         }
@@ -2262,5 +2776,5 @@
             observer.observe(el);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96756c3b446ef925',t:'MTc1Mzg4NDQ1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96759bf6802bf92d',t:'MTc1Mzg4NjQwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
