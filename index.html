@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ألترا بوت - البوت العربي الذكي | UltraBot</title>
+    <title>ألترا بوت - الإصدار 16 | UltraBot V16</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #B6A591;
+            --secondary-color: #D4C4B0;
+            --background-color: #1A1513;
+            --text-color: #F5F5F5;
+            --card-bg: rgba(182, 165, 145, 0.1);
+            --border-color: rgba(182, 165, 145, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,8 +25,8 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #F5F5F5;
+            background: linear-gradient(135deg, var(--background-color) 0%, #16213e 50%, #0f3460 100%);
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
@@ -38,7 +47,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid #b6a591;
+            border-bottom: 2px solid var(--primary-color);
         }
 
         .nav-container {
@@ -56,14 +65,7 @@
             gap: 15px;
             font-size: 1.5rem;
             font-weight: 900;
-            color: #b6a591;
-        }
-
-        .logo svg {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(182, 165, 145, 0.3);
+            color: var(--primary-color);
         }
 
         .nav-links {
@@ -82,8 +84,8 @@
         }
 
         .nav-links a:hover {
-            color: #b6a591;
-            background: rgba(182, 165, 145, 0.1);
+            color: var(--primary-color);
+            background: var(--card-bg);
         }
 
         .auth-section {
@@ -93,8 +95,8 @@
         }
 
         .language-switcher {
-            background: rgba(182, 165, 145, 0.2);
-            border: 1px solid #b6a591;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
             border-radius: 8px;
             padding: 0.5rem;
             display: flex;
@@ -113,13 +115,13 @@
         }
 
         .lang-btn.active {
-            background: #b6a591;
-            color: #1a1a2e;
+            background: var(--primary-color);
+            color: var(--background-color);
         }
 
-        .login-btn {
-            background: linear-gradient(45deg, #b6a591, #c4b59a);
-            color: #1a1a2e;
+        .login-btn, .logout-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-color);
             padding: 0.7rem 1.5rem;
             border: none;
             border-radius: 8px;
@@ -133,7 +135,7 @@
             box-shadow: 0 4px 15px rgba(182, 165, 145, 0.3);
         }
 
-        .login-btn:hover {
+        .login-btn:hover, .logout-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(182, 165, 145, 0.4);
         }
@@ -150,13 +152,14 @@
             width: 280px;
             background: rgba(22, 33, 62, 0.8);
             backdrop-filter: blur(10px);
-            border-left: 2px solid rgba(182, 165, 145, 0.3);
+            border-left: 2px solid var(--border-color);
             padding: 2rem 0;
             position: fixed;
             right: 0;
             top: 100px;
             height: calc(100vh - 100px);
             overflow-y: auto;
+            transition: transform 0.3s;
         }
 
         .sidebar-section {
@@ -164,7 +167,7 @@
         }
 
         .sidebar-title {
-            color: #b6a591;
+            color: var(--primary-color);
             font-size: 0.9rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -182,13 +185,14 @@
             text-decoration: none;
             transition: all 0.3s;
             border-right: 3px solid transparent;
+            cursor: pointer;
         }
 
         .sidebar-item:hover,
         .sidebar-item.active {
-            background: rgba(182, 165, 145, 0.1);
-            color: #b6a591;
-            border-right-color: #b6a591;
+            background: var(--card-bg);
+            color: var(--primary-color);
+            border-right-color: var(--primary-color);
         }
 
         .sidebar-item i {
@@ -203,112 +207,120 @@
             padding: 2rem;
         }
 
-        /* Hero Section */
-        .hero-section {
+        /* Login Form */
+        .login-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
             text-align: center;
-            padding: 4rem 0;
-            margin-bottom: 4rem;
         }
 
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 900;
+        .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(182, 165, 145, 0.3);
+        }
+
+        .form-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-color);
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #b6a591, #fff, #c4b59a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: #c0c0c0;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+        .form-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(182, 165, 145, 0.4);
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 4rem;
-        }
-
-        .btn-discord {
-            background: linear-gradient(45deg, #5865F2, #4752C4);
+        .google-btn {
+            background: #4285f4;
             color: white;
-            padding: 1.2rem 2.5rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+        }
+
+        .google-btn:hover {
+            background: #357ae8;
+        }
+
+        .form-link {
+            color: var(--primary-color);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 6px 25px rgba(88, 101, 242, 0.3);
-        }
-
-        .btn-dashboard {
-            background: linear-gradient(45deg, #b6a591, #c4b59a);
-            color: #1a1a2e;
-            padding: 1.2rem 2.5rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 6px 25px rgba(182, 165, 145, 0.3);
         }
 
-        .btn-discord:hover,
-        .btn-dashboard:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 35px rgba(88, 101, 242, 0.4);
+        .form-link:hover {
+            text-decoration: underline;
         }
 
-        .btn-dashboard:hover {
-            box-shadow: 0 10px 35px rgba(182, 165, 145, 0.4);
+        /* Dashboard */
+        .dashboard-header {
+            margin-bottom: 3rem;
         }
 
-        /* Stats Section */
-        .stats-section {
-            margin-bottom: 4rem;
-        }
-
-        .stats-title {
-            text-align: center;
+        .welcome-text {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #b6a591;
-            margin-bottom: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .user-info {
+            color: #c0c0c0;
+            font-size: 1.1rem;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            margin-bottom: 3rem;
         }
 
         .stat-card {
-            background: rgba(182, 165, 145, 0.1);
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            border: 2px solid rgba(182, 165, 145, 0.2);
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
             text-align: center;
             transition: all 0.3s;
             position: relative;
@@ -322,7 +334,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(45deg, #b6a591, #c4b59a);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
         }
 
         .stat-card:hover {
@@ -332,13 +344,13 @@
         }
 
         .stat-icon {
-            font-size: 3rem;
-            color: #b6a591;
+            font-size: 2.5rem;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: #fff;
             margin-bottom: 0.5rem;
@@ -346,73 +358,465 @@
         }
 
         .stat-label {
-            font-size: 1.1rem;
             color: #c0c0c0;
             font-weight: 500;
         }
 
-        /* Features Preview */
-        .features-preview {
-            background: rgba(22, 33, 62, 0.3);
-            padding: 4rem 2rem;
-            border-radius: 20px;
-            margin-bottom: 4rem;
-        }
-
-        .features-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #b6a591;
+        /* Copy Links */
+        .copy-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
             margin-bottom: 3rem;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+        .copy-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
         }
 
-        .feature-item {
+        .copy-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1.5rem;
-            background: rgba(182, 165, 145, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(182, 165, 145, 0.1);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .copy-input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
             transition: all 0.3s;
         }
 
-        .feature-item:hover {
-            background: rgba(182, 165, 145, 0.1);
-            transform: translateX(-5px);
+        .copy-btn:hover {
+            background: var(--secondary-color);
         }
 
-        .feature-icon {
-            font-size: 2rem;
-            color: #b6a591;
-            min-width: 60px;
+        /* Server Management */
+        .servers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .server-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .server-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(182, 165, 145, 0.2);
+        }
+
+        .server-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .server-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--background-color);
+        }
+
+        .server-info h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4ade80;
+            font-size: 0.9rem;
+        }
+
+        .server-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .server-stat {
             text-align: center;
         }
 
-        .feature-content h4 {
-            color: #fff;
-            font-size: 1.2rem;
+        .server-stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .server-stat-label {
+            font-size: 0.8rem;
+            color: #c0c0c0;
+        }
+
+        .server-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .feature-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background: #374151;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: var(--primary-color);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+
+        /* Premium Section */
+        .premium-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .premium-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .premium-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .premium-card.featured::before {
+            content: 'الأكثر شعبية';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: var(--background-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
+        }
+
+        .premium-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .premium-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-color);
             margin-bottom: 0.5rem;
         }
 
-        .feature-content p {
+        .premium-period {
             color: #c0c0c0;
-            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .premium-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .premium-features li {
+            padding: 0.5rem 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .premium-features li i {
+            color: #4ade80;
+        }
+
+        /* Leaderboard */
+        .leaderboard-table {
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .leaderboard-header {
+            background: var(--primary-color);
+            color: var(--background-color);
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .leaderboard-item:hover {
+            background: rgba(182, 165, 145, 0.05);
+        }
+
+        .leaderboard-rank {
+            width: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .leaderboard-user {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .leaderboard-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--background-color);
+        }
+
+        .leaderboard-info h4 {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .leaderboard-badges {
+            display: flex;
+            gap: 0.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .leaderboard-stats {
+            display: flex;
+            gap: 2rem;
+            color: #c0c0c0;
+            font-size: 0.9rem;
+        }
+
+        /* Admin Panel */
+        .admin-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-color);
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(182, 165, 145, 0.4);
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        .notification.success {
+            background: #10b981;
+        }
+
+        .notification.error {
+            background: #ef4444;
+        }
+
+        .notification.info {
+            background: #3b82f6;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn.confirm {
+            background: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .modal-btn.cancel {
+            background: #6b7280;
+            color: white;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
             .sidebar {
                 transform: translateX(100%);
-                transition: transform 0.3s;
             }
 
             .sidebar.open {
@@ -431,56 +835,72 @@
                 display: block;
                 background: none;
                 border: none;
-                color: #b6a591;
+                color: var(--primary-color);
                 font-size: 1.5rem;
                 cursor: pointer;
             }
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .main-content {
+                padding: 1rem;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
             }
 
-            .main-content {
-                padding: 1rem;
+            .servers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .premium-plans {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-text {
+                font-size: 2rem;
             }
         }
 
-        /* Menu Toggle for Mobile */
         .menu-toggle {
             display: none;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Hide sections by default */
+        .content-section {
+            display: none;
         }
 
-        .stat-card {
-            animation: fadeInUp 0.6s ease-out;
+        .content-section.active {
+            display: block;
         }
 
-        .stat-card:nth-child(1) { animation-delay: 0.1s; }
-        .stat-card:nth-child(2) { animation-delay: 0.2s; }
-        .stat-card:nth-child(3) { animation-delay: 0.3s; }
-        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+        /* Premium required message */
+        .premium-required {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
+        }
+
+        .premium-required i {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .premium-required h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .premium-required p {
+            color: #c0c0c0;
+            margin-bottom: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -500,7 +920,7 @@
                         </linearGradient>
                     </defs>
                 </svg>
-                <span data-ar="ألترا بوت" data-en="UltraBot">ألترا بوت</span>
+                <span data-ar="ألترا بوت - الإصدار 16" data-en="UltraBot - Version 16">ألترا بوت - الإصدار 16</span>
             </div>
             
             <nav class="nav-links">
@@ -515,10 +935,10 @@
                     <button class="lang-btn active" onclick="switchLanguage('ar')">عربي</button>
                     <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
                 </div>
-                <a href="#" class="login-btn">
+                <button class="login-btn" id="authBtn" onclick="showLogin()">
                     <i class="fas fa-sign-in-alt"></i>
                     <span data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</span>
-                </a>
+                </button>
                 <button class="menu-toggle" onclick="toggleSidebar()">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -526,169 +946,326 @@
         </div>
     </header>
 
+    <!-- Login Container -->
+    <div class="login-container" id="loginContainer">
+        <h2 class="login-title" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label" data-ar="اسم المستخدم أو الإيميل" data-en="Username or Email">اسم المستخدم أو الإيميل</label>
+                <input type="text" class="form-input" id="loginUsername" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                <input type="password" class="form-input" id="loginPassword" required>
+            </div>
+            <button type="submit" class="form-btn" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</button>
+            <button type="button" class="form-btn google-btn" onclick="loginWithGoogle()">
+                <i class="fab fa-google"></i>
+                <span data-ar="تسجيل الدخول بـ Google" data-en="Login with Google">تسجيل الدخول بـ Google</span>
+            </button>
+            <p>
+                <span data-ar="ليس لديك حساب؟" data-en="Don't have an account?">ليس لديك حساب؟</span>
+                <a href="#" class="form-link" onclick="showRegister()" data-ar="إنشاء حساب جديد" data-en="Create new account">إنشاء حساب جديد</a>
+            </p>
+        </form>
+    </div>
+
+    <!-- Register Container -->
+    <div class="login-container" id="registerContainer" style="display: none;">
+        <h2 class="login-title" data-ar="إنشاء حساب جديد" data-en="Create New Account">إنشاء حساب جديد</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label class="form-label" data-ar="اسم المستخدم" data-en="Username">اسم المستخدم</label>
+                <input type="text" class="form-input" id="registerUsername" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" data-ar="الإيميل" data-en="Email">الإيميل</label>
+                <input type="email" class="form-input" id="registerEmail" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                <input type="password" class="form-input" id="registerPassword" required>
+            </div>
+            <button type="submit" class="form-btn" data-ar="إنشاء الحساب" data-en="Create Account">إنشاء الحساب</button>
+            <p>
+                <span data-ar="لديك حساب بالفعل؟" data-en="Already have an account?">لديك حساب بالفعل؟</span>
+                <a href="#" class="form-link" onclick="showLogin()" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</a>
+            </p>
+        </form>
+    </div>
+
     <!-- Main Layout -->
-    <div class="main-layout">
+    <div class="main-layout" id="mainLayout" style="display: none;">
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-section">
                 <div class="sidebar-title" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</div>
-                <a href="#" class="sidebar-item active">
+                <div class="sidebar-item active" onclick="showSection('dashboard')">
                     <i class="fas fa-home"></i>
                     <span data-ar="نظرة عامة" data-en="Overview">نظرة عامة</span>
-                </a>
-                <a href="#" class="sidebar-item">
+                </div>
+                <div class="sidebar-item" onclick="showSection('servers')">
                     <i class="fas fa-server"></i>
                     <span data-ar="إدارة السيرفرات" data-en="Server Management">إدارة السيرفرات</span>
-                </a>
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-cog"></i>
-                    <span data-ar="إعدادات البوت" data-en="Bot Settings">إعدادات البوت</span>
-                </a>
+                </div>
+                <div class="sidebar-item" onclick="showSection('premium')">
+                    <i class="fas fa-crown"></i>
+                    <span data-ar="البريميوم" data-en="Premium">البريميوم</span>
+                </div>
+                <div class="sidebar-item" onclick="showSection('leaderboard')">
+                    <i class="fas fa-trophy"></i>
+                    <span data-ar="الترتيب العالمي" data-en="Global Ranking">الترتيب العالمي</span>
+                </div>
             </div>
 
             <div class="sidebar-section">
                 <div class="sidebar-title" data-ar="التخصيص" data-en="Customization">التخصيص</div>
-                <a href="#" class="sidebar-item">
+                <div class="sidebar-item" onclick="showSection('customization')">
                     <i class="fas fa-palette"></i>
                     <span data-ar="تخصيص البوت" data-en="Bot Customization">تخصيص البوت</span>
-                </a>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="adminSection" style="display: none;">
+                <div class="sidebar-title" data-ar="الإدارة" data-en="Administration">الإدارة</div>
+                <div class="sidebar-item" onclick="showSection('admin')">
+                    <i class="fas fa-cog"></i>
+                    <span data-ar="لوحة الإدارة" data-en="Admin Panel">لوحة الإدارة</span>
+                </div>
             </div>
 
             <div class="sidebar-section">
                 <div class="sidebar-title" data-ar="الحساب" data-en="Account">الحساب</div>
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-user"></i>
-                    <span data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
-                </a>
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-trophy"></i>
-                    <span data-ar="الترتيب العالمي" data-en="Global Ranking">الترتيب العالمي</span>
-                </a>
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-crown"></i>
-                    <span data-ar="البريميوم" data-en="Premium">البريميوم</span>
-                </a>
-                <a href="#" class="sidebar-item">
+                <div class="sidebar-item" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i>
                     <span data-ar="تسجيل الخروج" data-en="Logout">تسجيل الخروج</span>
-                </a>
+                </div>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Hero Section -->
-            <section class="hero-section">
-                <h1 class="hero-title" data-ar="ألترا بوت | UltraBot" data-en="UltraBot | ألترا بوت">ألترا بوت | UltraBot</h1>
-                <p class="hero-subtitle" data-ar="أول بوت ديسكورد عربي ذكي يقدم خدمات متعددة: الترحيب بالأعضاء الجدد، الإشراف، تشغيل الموسيقى، والألعاب. بوت شامل لجميع احتياجات سيرفرك" data-en="The first smart Arabic Discord bot offering multiple services: welcoming new members, moderation, music playback, and games. A comprehensive bot for all your server needs">
-                    أول بوت ديسكورد عربي ذكي يقدم خدمات متعددة: الترحيب بالأعضاء الجدد، الإشراف، تشغيل الموسيقى، والألعاب. بوت شامل لجميع احتياجات سيرفرك
-                </p>
-
-                <div class="hero-buttons">
-                    <a href="#" class="btn-discord">
-                        <i class="fab fa-discord"></i>
-                        <span data-ar="إضافة البوت" data-en="Add Bot">إضافة البوت</span>
-                    </a>
-                    <a href="#" class="btn-dashboard">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span>
-                    </a>
+            <!-- Dashboard Section -->
+            <section class="content-section active" id="dashboardSection">
+                <div class="dashboard-header">
+                    <h1 class="welcome-text" data-ar="مرحباً، " data-en="Welcome, ">مرحباً، <span id="usernameDisplay"></span></h1>
+                    <p class="user-info" id="userInfo"></p>
                 </div>
-            </section>
 
-            <!-- Stats Section -->
-            <section class="stats-section">
-                <h2 class="stats-title" data-ar="قوة البوت بالأرقام" data-en="Bot Power in Numbers">قوة البوت بالأرقام</h2>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
+                            <i class="fas fa-coins"></i>
                         </div>
-                        <span class="stat-number">99.9%</span>
-                        <div class="stat-label" data-ar="وقت التشغيل" data-en="Uptime">وقت التشغيل</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <span class="stat-number">+5M</span>
-                        <div class="stat-label" data-ar="عدد المستخدمين" data-en="Users">عدد المستخدمين</div>
+                        <span class="stat-number" id="userCredits">0</span>
+                        <div class="stat-label" data-ar="الكوينز" data-en="Credits">الكوينز</div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i class="fas fa-server"></i>
                         </div>
-                        <span class="stat-number">+150K</span>
-                        <div class="stat-label" data-ar="عدد السيرفرات" data-en="Servers">عدد السيرفرات</div>
+                        <span class="stat-number" id="userServers">0</span>
+                        <div class="stat-label" data-ar="السيرفرات" data-en="Servers">السيرفرات</div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-headset"></i>
+                            <i class="fas fa-level-up-alt"></i>
                         </div>
-                        <span class="stat-number">24/7</span>
-                        <div class="stat-label" data-ar="الدعم الفني" data-en="Support">الدعم الفني</div>
+                        <span class="stat-number" id="userLevel">1</span>
+                        <div class="stat-label" data-ar="المستوى" data-en="Level">المستوى</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <span class="stat-number" id="userRank">-</span>
+                        <div class="stat-label" data-ar="الترتيب" data-en="Rank">الترتيب</div>
+                    </div>
+                </div>
+
+                <div class="copy-section">
+                    <h3 class="copy-title" data-ar="روابط النسخ" data-en="Copy Links">روابط النسخ</h3>
+                    <div class="copy-item">
+                        <input type="text" class="copy-input" value="https://discord.com/api/oauth2/authorize?client_id=123456789&permissions=8&scope=bot" readonly>
+                        <button class="copy-btn" onclick="copyToClipboard(this)" data-ar="نسخ رابط البوت" data-en="Copy Bot Link">نسخ رابط البوت</button>
+                    </div>
+                    <div class="copy-item">
+                        <input type="text" class="copy-input" id="userIdInput" readonly>
+                        <button class="copy-btn" onclick="copyToClipboard(this)" data-ar="نسخ الأيدي" data-en="Copy User ID">نسخ الأيدي</button>
+                    </div>
+                    <div class="copy-item">
+                        <input type="text" class="copy-input" value="https://discord.gg/ultrabot" readonly>
+                        <button class="copy-btn" onclick="copyToClipboard(this)" data-ar="نسخ رابط الدعم" data-en="Copy Support Link">نسخ رابط الدعم</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Features Preview -->
-            <section class="features-preview">
-                <h2 class="features-title" data-ar="المميزات الرئيسية" data-en="Key Features">المميزات الرئيسية</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-hand-wave"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4 data-ar="الترحيب التلقائي" data-en="Auto Welcome">الترحيب التلقائي</h4>
-                            <p data-ar="ترحيب مخصص بالأعضاء الجدد مع رسائل وصور ترحيبية" data-en="Custom welcome for new members with welcome messages and images">ترحيب مخصص بالأعضاء الجدد مع رسائل وصور ترحيبية</p>
-                        </div>
+            <!-- Servers Section -->
+            <section class="content-section" id="serversSection">
+                <h2 class="welcome-text" data-ar="إدارة السيرفرات" data-en="Server Management">إدارة السيرفرات</h2>
+                <div class="servers-grid" id="serversGrid">
+                    <!-- Servers will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Premium Section -->
+            <section class="content-section" id="premiumSection">
+                <h2 class="welcome-text" data-ar="باقات البريميوم" data-en="Premium Plans">باقات البريميوم</h2>
+                <div class="premium-plans">
+                    <div class="premium-card">
+                        <h3 class="premium-title" data-ar="الباقة الأساسية" data-en="Basic Plan">الباقة الأساسية</h3>
+                        <div class="premium-price">$4.99</div>
+                        <div class="premium-period" data-ar="شهرياً" data-en="per month">شهرياً</div>
+                        <ul class="premium-features">
+                            <li><i class="fas fa-check"></i> <span data-ar="مضاعفة الكوينز اليومي" data-en="Double daily credits">مضاعفة الكوينز اليومي</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="أوامر إضافية" data-en="Additional commands">أوامر إضافية</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="دعم أولوية" data-en="Priority support">دعم أولوية</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="شارات حصرية" data-en="Exclusive badges">شارات حصرية</span></li>
+                        </ul>
+                        <button class="form-btn" onclick="subscribeToPremium('basic')" data-ar="اشتراك" data-en="Subscribe">اشتراك</button>
                     </div>
 
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4 data-ar="الإشراف المتقدم" data-en="Advanced Moderation">الإشراف المتقدم</h4>
-                            <p data-ar="أدوات إشراف قوية لحماية سيرفرك من المخالفين" data-en="Powerful moderation tools to protect your server from violators">أدوات إشراف قوية لحماية سيرفرك من المخالفين</p>
-                        </div>
+                    <div class="premium-card featured">
+                        <h3 class="premium-title" data-ar="الباقة المتقدمة" data-en="Advanced Plan">الباقة المتقدمة</h3>
+                        <div class="premium-price">$9.99</div>
+                        <div class="premium-period" data-ar="شهرياً" data-en="per month">شهرياً</div>
+                        <ul class="premium-features">
+                            <li><i class="fas fa-check"></i> <span data-ar="جميع مميزات الأساسي" data-en="All basic features">جميع مميزات الأساسي</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تخصيص البوت بالكامل" data-en="Full bot customization">تخصيص البوت بالكامل</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="إعدادات متقدمة" data-en="Advanced settings">إعدادات متقدمة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تحليلات مفصلة" data-en="Detailed analytics">تحليلات مفصلة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="دعم VIP" data-en="VIP support">دعم VIP</span></li>
+                        </ul>
+                        <button class="form-btn" onclick="subscribeToPremium('advanced')" data-ar="اشتراك" data-en="Subscribe">اشتراك</button>
                     </div>
+                </div>
+            </section>
 
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4 data-ar="تشغيل الموسيقى" data-en="Music Player">تشغيل الموسيقى</h4>
-                            <p data-ar="مشغل موسيقى عالي الجودة مع دعم جميع المنصات" data-en="High-quality music player with support for all platforms">مشغل موسيقى عالي الجودة مع دعم جميع المنصات</p>
-                        </div>
+            <!-- Leaderboard Section -->
+            <section class="content-section" id="leaderboardSection">
+                <h2 class="welcome-text" data-ar="الترتيب العالمي" data-en="Global Ranking">الترتيب العالمي</h2>
+                <div class="leaderboard-table">
+                    <div class="leaderboard-header" data-ar="أفضل 10 لاعبين (1M+ كوين)" data-en="Top 10 Players (1M+ Credits)">أفضل 10 لاعبين (1M+ كوين)</div>
+                    <div id="leaderboardList">
+                        <!-- Leaderboard will be populated by JavaScript -->
                     </div>
+                </div>
+            </section>
 
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4 data-ar="الألعاب التفاعلية" data-en="Interactive Games">الألعاب التفاعلية</h4>
-                            <p data-ar="مجموعة متنوعة من الألعاب الممتعة لأعضاء سيرفرك" data-en="A variety of fun games for your server members">مجموعة متنوعة من الألعاب الممتعة لأعضاء سيرفرك</p>
-                        </div>
-                    </div>
+            <!-- Customization Section -->
+            <section class="content-section" id="customizationSection">
+                <div id="customizationContent">
+                    <!-- Will be populated based on user premium status -->
+                </div>
+            </section>
+
+            <!-- Admin Section -->
+            <section class="content-section" id="adminSection">
+                <h2 class="welcome-text" data-ar="لوحة الإدارة" data-en="Admin Panel">لوحة الإدارة</h2>
+                <div class="admin-actions">
+                    <button class="admin-btn" onclick="addCredits()">
+                        <i class="fas fa-coins"></i>
+                        <span data-ar="إضافة 1000 كوين" data-en="Add 1000 Credits">إضافة 1000 كوين</span>
+                    </button>
+                    <button class="admin-btn" onclick="levelUp()">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span data-ar="رفع 10 مستويات" data-en="Level Up +10">رفع 10 مستويات</span>
+                    </button>
+                    <button class="admin-btn" onclick="activatePremium()">
+                        <i class="fas fa-crown"></i>
+                        <span data-ar="تفعيل البريميوم" data-en="Activate Premium">تفعيل البريميوم</span>
+                    </button>
+                    <button class="admin-btn" onclick="showAllUsers()">
+                        <i class="fas fa-users"></i>
+                        <span data-ar="عرض المستخدمين" data-en="Show Users">عرض المستخدمين</span>
+                    </button>
+                </div>
+                <div id="adminContent">
+                    <!-- Admin content will be populated here -->
                 </div>
             </section>
         </main>
     </div>
 
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-text" id="modalText"></p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" id="modalConfirm" data-ar="تأكيد" data-en="Confirm">تأكيد</button>
+                <button class="modal-btn cancel" onclick="hideModal()" data-ar="إلغاء" data-en="Cancel">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Global variables
+        let currentUser = null;
+        let currentLanguage = 'ar';
+
+        // Built-in premium accounts
+        const premiumAccounts = {
+            'saeed': {
+                username: 'saeed',
+                email: 'saeed@ultrabot.com',
+                password: 'admin123',
+                credits: 1000000000,
+                level: 100,
+                isAdmin: true,
+                isPremium: 'advanced',
+                servers: 25,
+                userId: 'UID_' + Math.random().toString(36).substr(2, 9).toUpperCase()
+            },
+            'itrx': {
+                username: 'itrx',
+                email: 'itrx@ultrabot.com', 
+                password: 'admin123',
+                credits: 980000000,
+                level: 95,
+                isAdmin: true,
+                isPremium: 'advanced',
+                servers: 22,
+                userId: 'UID_' + Math.random().toString(36).substr(2, 9).toUpperCase()
+            }
+        };
+
+        // Initialize the application
+        function init() {
+            // Load saved users
+            const savedUsers = localStorage.getItem('allUsers');
+            if (!savedUsers) {
+                localStorage.setItem('allUsers', JSON.stringify(premiumAccounts));
+            } else {
+                // Merge with premium accounts
+                const users = JSON.parse(savedUsers);
+                Object.assign(users, premiumAccounts);
+                localStorage.setItem('allUsers', JSON.stringify(users));
+            }
+
+            // Check if user is logged in
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showDashboard();
+            }
+
+            updateLanguage();
+        }
+
+        // Language switching
         function switchLanguage(lang) {
+            currentLanguage = lang;
             const body = document.body;
             const elements = document.querySelectorAll('[data-ar][data-en]');
             const langButtons = document.querySelectorAll('.lang-btn');
             
-            // Update body class and direction
             if (lang === 'en') {
                 body.classList.add('en');
                 body.setAttribute('dir', 'ltr');
@@ -697,7 +1274,6 @@
                 body.setAttribute('dir', 'rtl');
             }
             
-            // Update text content
             elements.forEach(element => {
                 if (lang === 'en') {
                     element.textContent = element.getAttribute('data-en');
@@ -706,39 +1282,482 @@
                 }
             });
             
-            // Update active language button
             langButtons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }
 
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('open');
-        }
-
-        // Add smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-ar][data-en]');
+            elements.forEach(element => {
+                if (currentLanguage === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                } else {
+                    element.textContent = element.getAttribute('data-ar');
                 }
             });
-        });
+        }
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(22, 33, 62, 0.98)';
+        // Authentication functions
+        function showLogin() {
+            document.getElementById('loginContainer').style.display = 'block';
+            document.getElementById('registerContainer').style.display = 'none';
+        }
+
+        function showRegister() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('registerContainer').style.display = 'block';
+        }
+
+        function showDashboard() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('registerContainer').style.display = 'none';
+            document.getElementById('mainLayout').style.display = 'flex';
+            
+            updateAuthButton();
+            updateUserInfo();
+            updateDashboardStats();
+            generateServers();
+            updateLeaderboard();
+            
+            if (currentUser.isAdmin) {
+                document.getElementById('adminSection').style.display = 'block';
+            }
+        }
+
+        function updateAuthButton() {
+            const authBtn = document.getElementById('authBtn');
+            if (currentUser) {
+                authBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i> <span data-ar="تسجيل الخروج" data-en="Logout">تسجيل الخروج</span>`;
+                authBtn.onclick = logout;
+                authBtn.className = 'logout-btn';
             } else {
-                header.style.background = 'rgba(22, 33, 62, 0.95)';
+                authBtn.innerHTML = `<i class="fas fa-sign-in-alt"></i> <span data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</span>`;
+                authBtn.onclick = showLogin;
+                authBtn.className = 'login-btn';
+            }
+            updateLanguage();
+        }
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+            
+            // Check credentials
+            const user = Object.values(allUsers).find(u => 
+                (u.username === username || u.email === username) && u.password === password
+            );
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                showNotification('تم تسجيل الدخول بنجاح!', 'success');
+                showDashboard();
+            } else {
+                showNotification('اسم المستخدم أو كلمة المرور غير صحيحة', 'error');
             }
         });
+
+        // Register form handler
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+            
+            // Check if user already exists
+            if (allUsers[username] || Object.values(allUsers).find(u => u.email === email)) {
+                showNotification('المستخدم موجود بالفعل', 'error');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                username: username,
+                email: email,
+                password: password,
+                credits: 1000,
+                level: 1,
+                isAdmin: false,
+                isPremium: false,
+                servers: Math.floor(Math.random() * 5) + 1,
+                userId: 'UID_' + Math.random().toString(36).substr(2, 9).toUpperCase()
+            };
+            
+            allUsers[username] = newUser;
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            
+            showNotification('تم إنشاء الحساب بنجاح!', 'success');
+            showLogin();
+        });
+
+        function loginWithGoogle() {
+            // Simulate Google login
+            showNotification('تم تسجيل الدخول بـ Google بنجاح!', 'success');
+            
+            const googleUser = {
+                username: 'GoogleUser_' + Math.random().toString(36).substr(2, 5),
+                email: 'user@gmail.com',
+                credits: 5000,
+                level: 5,
+                isAdmin: false,
+                isPremium: false,
+                servers: 3,
+                userId: 'UID_' + Math.random().toString(36).substr(2, 9).toUpperCase()
+            };
+            
+            currentUser = googleUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            showDashboard();
+        }
+
+        function logout() {
+            showModal(
+                currentLanguage === 'ar' ? 'تأكيد تسجيل الخروج' : 'Confirm Logout',
+                currentLanguage === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure you want to logout?',
+                function() {
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                    document.getElementById('mainLayout').style.display = 'none';
+                    document.getElementById('loginContainer').style.display = 'block';
+                    updateAuthButton();
+                    hideModal();
+                    showNotification(currentLanguage === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Logged out successfully', 'info');
+                }
+            );
+        }
+
+        // Dashboard functions
+        function updateUserInfo() {
+            document.getElementById('usernameDisplay').textContent = currentUser.username;
+            document.getElementById('userIdInput').value = currentUser.userId;
+            
+            const userInfo = document.getElementById('userInfo');
+            const premiumText = currentUser.isPremium ? 
+                (currentLanguage === 'ar' ? `عضو بريميوم (${currentUser.isPremium})` : `Premium Member (${currentUser.isPremium})`) :
+                (currentLanguage === 'ar' ? 'عضو عادي' : 'Regular Member');
+            
+            userInfo.textContent = premiumText;
+        }
+
+        function updateDashboardStats() {
+            document.getElementById('userCredits').textContent = formatNumber(currentUser.credits);
+            document.getElementById('userServers').textContent = currentUser.servers;
+            document.getElementById('userLevel').textContent = currentUser.level;
+            
+            // Calculate rank
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+            const eligibleUsers = Object.values(allUsers).filter(u => u.credits >= 1000000);
+            eligibleUsers.sort((a, b) => b.credits - a.credits);
+            
+            const userRank = eligibleUsers.findIndex(u => u.username === currentUser.username) + 1;
+            document.getElementById('userRank').textContent = userRank > 0 ? userRank : '-';
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000000) {
+                return (num / 1000000000).toFixed(1) + 'B';
+            } else if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        // Server management
+        function generateServers() {
+            const serversGrid = document.getElementById('serversGrid');
+            serversGrid.innerHTML = '';
+            
+            const serverNames = ['Gaming Hub', 'Tech Community', 'Art Gallery', 'Music Lounge', 'Study Group'];
+            
+            for (let i = 0; i < currentUser.servers; i++) {
+                const serverCard = document.createElement('div');
+                serverCard.className = 'server-card';
+                
+                const serverName = serverNames[i] || `Server ${i + 1}`;
+                const members = Math.floor(Math.random() * 1000) + 100;
+                const online = Math.floor(members * 0.3);
+                
+                serverCard.innerHTML = `
+                    <div class="server-header">
+                        <div class="server-icon">${serverName.charAt(0)}</div>
+                        <div class="server-info">
+                            <h3>${serverName}</h3>
+                            <div class="server-status">
+                                <i class="fas fa-circle"></i>
+                                <span data-ar="نشط" data-en="Active">نشط</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="server-stats">
+                        <div class="server-stat">
+                            <div class="server-stat-number">${members}</div>
+                            <div class="server-stat-label" data-ar="عضو" data-en="Members">عضو</div>
+                        </div>
+                        <div class="server-stat">
+                            <div class="server-stat-number">${online}</div>
+                            <div class="server-stat-label" data-ar="متصل" data-en="Online">متصل</div>
+                        </div>
+                    </div>
+                    
+                    <div class="server-features">
+                        <div class="feature-toggle">
+                            <span data-ar="الترحيب" data-en="Welcome">الترحيب</span>
+                            <div class="toggle-switch ${Math.random() > 0.5 ? 'active' : ''}" onclick="toggleFeature(this)"></div>
+                        </div>
+                        <div class="feature-toggle">
+                            <span data-ar="الإشراف" data-en="Moderation">الإشراف</span>
+                            <div class="toggle-switch ${Math.random() > 0.5 ? 'active' : ''}" onclick="toggleFeature(this)"></div>
+                        </div>
+                        <div class="feature-toggle">
+                            <span data-ar="الرقابة" data-en="Auto-Mod">الرقابة</span>
+                            <div class="toggle-switch ${Math.random() > 0.5 ? 'active' : ''}" onclick="toggleFeature(this)"></div>
+                        </div>
+                        <div class="feature-toggle">
+                            <span data-ar="المستويات" data-en="Levels">المستويات</span>
+                            <div class="toggle-switch ${Math.random() > 0.5 ? 'active' : ''}" onclick="toggleFeature(this)"></div>
+                        </div>
+                        <div class="feature-toggle">
+                            <span data-ar="الموسيقى" data-en="Music">الموسيقى</span>
+                            <div class="toggle-switch ${Math.random() > 0.5 ? 'active' : ''}" onclick="toggleFeature(this)"></div>
+                        </div>
+                    </div>
+                `;
+                
+                serversGrid.appendChild(serverCard);
+            }
+            
+            updateLanguage();
+        }
+
+        function toggleFeature(toggle) {
+            toggle.classList.toggle('active');
+            const featureName = toggle.parentElement.querySelector('span').textContent;
+            const status = toggle.classList.contains('active') ? 
+                (currentLanguage === 'ar' ? 'تم تفعيل' : 'Enabled') : 
+                (currentLanguage === 'ar' ? 'تم إلغاء' : 'Disabled');
+            
+            showNotification(`${status} ${featureName}`, 'info');
+        }
+
+        // Leaderboard
+        function updateLeaderboard() {
+            const leaderboardList = document.getElementById('leaderboardList');
+            leaderboardList.innerHTML = '';
+            
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+            const eligibleUsers = Object.values(allUsers).filter(u => u.credits >= 1000000);
+            eligibleUsers.sort((a, b) => b.credits - a.credits);
+            
+            eligibleUsers.slice(0, 10).forEach((user, index) => {
+                const item = document.createElement('div');
+                item.className = 'leaderboard-item';
+                
+                const badges = [];
+                if (index < 3) badges.push(['🥇🥈🥉'[index], 'gold']);
+                if (user.isAdmin) badges.push(['👑', 'admin']);
+                if (user.isPremium) badges.push(['⭐', 'premium']);
+                
+                item.innerHTML = `
+                    <div class="leaderboard-rank">${index + 1}</div>
+                    <div class="leaderboard-user">
+                        <div class="leaderboard-avatar">${user.username.charAt(0).toUpperCase()}</div>
+                        <div class="leaderboard-info">
+                            <h4>${user.username}</h4>
+                            <div class="leaderboard-badges">
+                                ${badges.map(badge => `<span>${badge[0]}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leaderboard-stats">
+                        <div>${formatNumber(user.credits)} <span data-ar="كوين" data-en="Credits">كوين</span></div>
+                        <div data-ar="مستوى ${user.level}" data-en="Level ${user.level}">مستوى ${user.level}</div>
+                    </div>
+                `;
+                
+                leaderboardList.appendChild(item);
+            });
+            
+            updateLanguage();
+        }
+
+        // Premium functions
+        function subscribeToPremium(plan) {
+            showModal(
+                currentLanguage === 'ar' ? 'تأكيد الاشتراك' : 'Confirm Subscription',
+                currentLanguage === 'ar' ? `هل تريد الاشتراك في الباقة ${plan === 'basic' ? 'الأساسية' : 'المتقدمة'}؟` : `Do you want to subscribe to the ${plan} plan?`,
+                function() {
+                    currentUser.isPremium = plan;
+                    updateUserInStorage();
+                    updateUserInfo();
+                    hideModal();
+                    showNotification(currentLanguage === 'ar' ? 'تم تفعيل البريميوم بنجاح!' : 'Premium activated successfully!', 'success');
+                }
+            );
+        }
+
+        // Customization
+        function showCustomization() {
+            const customizationContent = document.getElementById('customizationContent');
+            
+            if (!currentUser.isPremium || currentUser.isPremium !== 'advanced') {
+                customizationContent.innerHTML = `
+                    <div class="premium-required">
+                        <i class="fas fa-crown"></i>
+                        <h3 data-ar="مطلوب البريميوم المتقدم" data-en="Advanced Premium Required">مطلوب البريميوم المتقدم</h3>
+                        <p data-ar="يجب الاشتراك في الباقة المتقدمة للوصول إلى تخصيص البوت" data-en="You need to subscribe to the Advanced plan to access bot customization">يجب الاشتراك في الباقة المتقدمة للوصول إلى تخصيص البوت</p>
+                        <button class="form-btn" onclick="showSection('premium')" data-ar="ترقية الآن" data-en="Upgrade Now">ترقية الآن</button>
+                    </div>
+                `;
+            } else {
+                customizationContent.innerHTML = `
+                    <h2 class="welcome-text" data-ar="تخصيص البوت" data-en="Bot Customization">تخصيص البوت</h2>
+                    <div class="copy-section">
+                        <h3 class="copy-title" data-ar="إعدادات التخصيص" data-en="Customization Settings">إعدادات التخصيص</h3>
+                        <p data-ar="هنا يمكنك تخصيص البوت بالكامل حسب احتياجاتك" data-en="Here you can fully customize the bot according to your needs">هنا يمكنك تخصيص البوت بالكامل حسب احتياجاتك</p>
+                    </div>
+                `;
+            }
+            
+            updateLanguage();
+        }
+
+        // Admin functions
+        function addCredits() {
+            if (!currentUser.isAdmin) return;
+            
+            currentUser.credits += 1000;
+            updateUserInStorage();
+            updateDashboardStats();
+            showNotification(currentLanguage === 'ar' ? 'تم إضافة 1000 كوين!' : '1000 credits added!', 'success');
+        }
+
+        function levelUp() {
+            if (!currentUser.isAdmin) return;
+            
+            currentUser.level += 10;
+            updateUserInStorage();
+            updateDashboardStats();
+            showNotification(currentLanguage === 'ar' ? 'تم رفع 10 مستويات!' : 'Leveled up by 10!', 'success');
+        }
+
+        function activatePremium() {
+            if (!currentUser.isAdmin) return;
+            
+            currentUser.isPremium = 'advanced';
+            updateUserInStorage();
+            updateUserInfo();
+            showNotification(currentLanguage === 'ar' ? 'تم تفعيل البريميوم المتقدم!' : 'Advanced Premium activated!', 'success');
+        }
+
+        function showAllUsers() {
+            if (!currentUser.isAdmin) return;
+            
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+            const adminContent = document.getElementById('adminContent');
+            
+            let usersHtml = '<div class="copy-section"><h3 class="copy-title" data-ar="جميع المستخدمين" data-en="All Users">جميع المستخدمين</h3>';
+            
+            Object.values(allUsers).forEach(user => {
+                usersHtml += `
+                    <div class="copy-item">
+                        <div style="flex: 1;">
+                            <strong>${user.username}</strong> - ${formatNumber(user.credits)} كوين - مستوى ${user.level}
+                            ${user.isPremium ? ' (بريميوم)' : ''}
+                            ${user.isAdmin ? ' (مدير)' : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            usersHtml += '</div>';
+            adminContent.innerHTML = usersHtml;
+            updateLanguage();
+        }
+
+        function updateUserInStorage() {
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+            allUsers[currentUser.username] = currentUser;
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+        }
+
+        // Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all sidebar items
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + 'Section').classList.add('active');
+            
+            // Add active class to clicked sidebar item
+            event.target.classList.add('active');
+            
+            // Special handling for customization
+            if (sectionName === 'customization') {
+                showCustomization();
+            }
+        }
+
+        // Utility functions
+        function copyToClipboard(button) {
+            const input = button.parentElement.querySelector('.copy-input');
+            input.select();
+            document.execCommand('copy');
+            
+            const originalText = button.textContent;
+            button.textContent = currentLanguage === 'ar' ? 'تم النسخ!' : 'Copied!';
+            button.style.background = '#10b981';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function showModal(title, text, confirmCallback) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalText').textContent = text;
+            document.getElementById('modal').classList.add('show');
+            
+            document.getElementById('modalConfirm').onclick = confirmCallback;
+        }
+
+        function hideModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
 
         // Close sidebar when clicking outside on mobile
         document.addEventListener('click', (e) => {
@@ -753,30 +1772,8 @@
             }
         });
 
-        // Animate numbers on scroll
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumber = entry.target.querySelector('.stat-number');
-                    const finalNumber = statNumber.textContent;
-                    
-                    // Simple animation for demonstration
-                    statNumber.style.transform = 'scale(1.1)';
-                    setTimeout(() => {
-                        statNumber.style.transform = 'scale(1)';
-                    }, 200);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-card').forEach(card => {
-            observer.observe(card);
-        });
+        // Initialize the application
+        init();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9676cb88168c08bb',t:'MTc1Mzg5ODg0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9676d8e7754208bb',t:'MTc1Mzg5OTM4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
