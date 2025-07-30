@@ -83,7 +83,7 @@
             color: #101820;
             padding: 0.7rem 1.5rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 3px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
@@ -498,8 +498,8 @@
         .server-dropdown {
             width: 100%;
             padding: 0.8rem;
-            background: #0f1419;
-            border: 1px solid #2c3e50;
+            background: #16213e;
+            border: 1px solid #00FFB2;
             border-radius: 8px;
             color: #fff;
             font-family: inherit;
@@ -507,7 +507,7 @@
         }
 
         .server-dropdown option {
-            background: #0f1419;
+            background: #16213e;
             color: #fff;
         }
 
@@ -515,12 +515,13 @@
         .settings-panel {
             background: #16213e;
             border-radius: 12px;
-            border: 1px solid #2c3e50;
+            border: 1px solid #00FFB2;
             overflow: hidden;
         }
 
         .settings-header {
-            background: #5865f2;
+            background: #00FFB2;
+            color: #101820;
             padding: 1rem 1.5rem;
             font-weight: 600;
             display: flex;
@@ -537,7 +538,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 1rem 0;
-            border-bottom: 1px solid #2c3e50;
+            border-bottom: 1px solid #00FFB2;
         }
 
         .setting-item:last-child {
@@ -1371,9 +1372,9 @@
                 
                 // Simulate user servers
                 userServers = [
-                    { id: 'server1', name: 'iCore Studio', hasBot: true },
-                    { id: 'server2', name: 'Khat Studio', hasBot: true },
-                    { id: 'server3', name: ' لأصدقاء', hasBot: false }
+                    { id: 'server1', name: 'سيرفر الألعاب', hasBot: true },
+                    { id: 'server2', name: 'مجتمع المطورين', hasBot: true },
+                    { id: 'server3', name: 'سيرفر الأصدقاء', hasBot: false }
                 ];
 
                 isLoggedIn = true;
@@ -1641,8 +1642,8 @@
 
         // Global leaderboard data - only top 2 players
         const globalLeaderboard = [
-            { username: 'Saeed', coins: 0 }, // تصفير الكوينز
-            { username: 'iTrx', coins: 0 }   // تصفير الكوينز
+            { username: 'Saeed', coins: 1000000000 }, // مليار كوينز
+            { username: 'iTrx', coins: 980000000 }   // 980 مليون كوينز
         ];
 
         // Calculate level based on coins with 5% difficulty increase per million
@@ -1896,5 +1897,5 @@
             }
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967531b144d37917',t:'MTc1Mzg4MjA1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96754538f6b2f935',t:'MTc1Mzg4Mjg1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
