@@ -1,211 +1,807 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Khat Studio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سمارت كوينز - العملة الذكية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(to bottom right, #000, #0a0f2c);
-      color: white;
-      line-height: 1.6;
-    }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background-color: #000;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .logo {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 0;
-    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      padding: 6px 14px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      border: 1px solid #90b4ff33;
-      box-shadow: 0 0 5px #4d88ff33;
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    nav ul li a:hover,
-    nav ul li a.active {
-      background-color: #1f3b6f;
-      box-shadow: 0 0 10px #4d88ffcc;
-    }
+        .logo::before {
+            content: "💎";
+            font-size: 2rem;
+        }
 
-    section {
-      padding: 80px 20px;
-      text-align: center;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-    .hero h1 {
-      font-size: 46px;
-      color: #90b4ff;
-    }
+        .nav-links a:hover {
+            color: #667eea;
+        }
 
-    .hero p {
-      font-size: 30px;
-      margin-top: 10px;
-    }
+        .login-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
 
-    .badge {
-      margin-top: 10px;
-      background-color: #4d6dad;
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      display: inline-block;
-      box-shadow: 0 0 8px #4d6dad99;
-    }
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
 
-    .eng-text h2 {
-      margin-top: 50px;
-      font-size: 34px;
-      color: #e3e3e3;
-      letter-spacing: 2px;
-    }
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
 
-    section[id] {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 60px;
-    }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-    h2.section-title {
-      font-size: 26px;
-      margin-bottom: 20px;
-    }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
 
-    p.section-content {
-      font-size: 17px;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-      nav ul {
-        flex-direction: column;
-        width: 100%;
-      }
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
 
-      nav ul li a {
-        width: 100%;
-        display: block;
-      }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
 
-      .hero h1 {
-        font-size: 30px;
-        text-align: center;
-      }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
 
-      .hero p {
-        font-size: 22px;
-        text-align: center;
-      }
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 4rem 0;
+        }
 
-      .eng-text h2 {
-        font-size: 22px;
-      }
-    }
-  </style>
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Smart Coins Section */
+        .smart-coins {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .coins-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .coin-stat {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .coin-stat h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Bot Section */
+        .bot-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .bot-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bot-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .bot-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Premium Section */
+        .premium {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 4rem 0;
+        }
+
+        .premium-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .plan-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .plan-features li:before {
+            content: "✅";
+            margin-left: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #667eea;
+        }
+
+        .form-group {
+            margin: 1rem 0;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Color Theme Variables */
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #ffecd2;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">سمارت كوينز</div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#bot">البوت</a></li>
+                <li><a href="#premium">المميز</a></li>
+                <li><a href="#contact">تواصل</a></li>
+            </ul>
+            <button class="login-btn" onclick="openModal('loginModal')">تسجيل الدخول</button>
+        </nav>
+    </header>
 
-  <header>
-    <div class="logo">Khat Studio</div>
-    <nav>
-      <ul>
-        <li><a href="#about" class="active">About</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#partners">Partners</a></li>
-        <li><a href="#ticket">Ticket</a></li>
-        <li><a href="#feedback">Feedback</a></li>
-        <li><a href="#works">Our works</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="fade-in">سمارت كوينز</h1>
+            <p class="fade-in">العملة الذكية الجديدة مع نظام الضرائب المتقدم والحد اليومي</p>
+            <div class="cta-buttons fade-in">
+                <button class="btn btn-primary" onclick="openModal('buyModal')">شراء العملة</button>
+                <button class="btn btn-secondary" onclick="openModal('botModal')">تجربة البوت</button>
+            </div>
+        </div>
+    </section>
 
-  <section class="hero">
-    <h1>الجيل الجديد</h1>
-    <p>من الكتابة</p>
-    <span class="badge">Marketer</span>
-    <div class="eng-text">
-      <h2>NEXT-GEN OF WRITING</h2>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">مميزات سمارت كوينز</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>نظام الضرائب الذكي</h3>
+                    <p>نظام ضرائب متقدم لمنع التضخم والحفاظ على استقرار العملة</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⏰</div>
+                    <h3>حد يومي محدود</h3>
+                    <p>10,000 عملة فقط يومياً لضمان الندرة والقيمة</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔥</div>
+                    <h3>حرق العملات المخالفة</h3>
+                    <p>الحسابات المخالفة يتم تصفير عملاتها تلقائياً</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3>الدفع بالدولار</h3>
+                    <p>شراء العملة بالدولار الأمريكي لضمان الاستقرار</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Coins Info -->
+    <section class="smart-coins">
+        <div class="container">
+            <h2 class="section-title">إحصائيات العملة</h2>
+            <div class="coins-info">
+                <div class="coin-stat">
+                    <h3 id="dailyLimit">10,000</h3>
+                    <p>الحد اليومي للعملة</p>
+                </div>
+                <div class="coin-stat">
+                    <h3 id="currentPrice">$0.50</h3>
+                    <p>السعر الحالي</p>
+                </div>
+                <div class="coin-stat">
+                    <h3 id="totalSupply">1,000,000</h3>
+                    <p>إجمالي المعروض</p>
+                </div>
+                <div class="coin-stat">
+                    <h3 id="burnedCoins">50,000</h3>
+                    <p>العملات المحروقة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bot Section -->
+    <section class="bot-section" id="bot">
+        <div class="container">
+            <h2 class="section-title">البوت الذكي</h2>
+            <div class="bot-features">
+                <div class="bot-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>إدارة تلقائية</h3>
+                    <p>البوت يدير حساباتك ومعاملاتك تلقائياً</p>
+                </div>
+                <div class="bot-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>تحليلات متقدمة</h3>
+                    <p>تقارير مفصلة عن أداء استثماراتك</p>
+                </div>
+                <div class="bot-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>تنبيهات فورية</h3>
+                    <p>إشعارات فورية لجميع المعاملات والتحديثات</p>
+                </div>
+                <div class="bot-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>حماية متقدمة</h3>
+                    <p>نظام حماية متطور ضد الاحتيال والمخالفات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Section -->
+    <section class="premium" id="premium">
+        <div class="container">
+            <h2 class="section-title">الاشتراكات المميزة</h2>
+            <div class="premium-plans">
+                <div class="plan-card">
+                    <h3>الخطة الأساسية</h3>
+                    <div class="plan-price">$9.99</div>
+                    <p>شهرياً</p>
+                    <ul class="plan-features">
+                        <li>شراء حتى 1000 عملة يومياً</li>
+                        <li>تقارير أساسية</li>
+                        <li>دعم فني عادي</li>
+                        <li>رسوم ضرائب 5%</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="subscribePlan('basic')">اشترك الآن</button>
+                </div>
+                <div class="plan-card">
+                    <h3>الخطة المتقدمة</h3>
+                    <div class="plan-price">$19.99</div>
+                    <p>شهرياً</p>
+                    <ul class="plan-features">
+                        <li>شراء حتى 5000 عملة يومياً</li>
+                        <li>تقارير متقدمة</li>
+                        <li>دعم فني أولوية</li>
+                        <li>رسوم ضرائب 3%</li>
+                        <li>بوت ذكي متقدم</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="subscribePlan('advanced')">اشترك الآن</button>
+                </div>
+                <div class="plan-card">
+                    <h3>الخطة الاحترافية</h3>
+                    <div class="plan-price">$49.99</div>
+                    <p>شهرياً</p>
+                    <ul class="plan-features">
+                        <li>شراء حتى 10000 عملة يومياً</li>
+                        <li>تقارير شاملة</li>
+                        <li>دعم فني VIP</li>
+                        <li>رسوم ضرائب 1%</li>
+                        <li>بوت ذكي احترافي</li>
+                        <li>تحليلات AI</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="subscribePlan('pro')">اشترك الآن</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>سمارت كوينز</h3>
+                    <p>العملة الذكية الجديدة مع نظام متقدم للحماية والاستقرار</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <a href="#home">الرئيسية</a>
+                    <a href="#features">المميزات</a>
+                    <a href="#bot">البوت</a>
+                    <a href="#premium">المميز</a>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <a href="mailto:info@smartcoins.com">info@smartcoins.com</a>
+                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                </div>
+                <div class="footer-section">
+                    <h3>تطوير</h3>
+                    <p>صُنع بواسطة خَط ستديو</p>
+                    <p>جميع الحقوق محفوظة © 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>تسجيل الدخول</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>البريد الإلكتروني:</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور:</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">دخول</button>
+            </form>
+        </div>
     </div>
-  </section>
 
-  <section id="about">
-    <h2 class="section-title">About</h2>
-    <p class="section-content">نحن في خط ستوديو نقدم حلولًا إبداعية في عالم التصميم والكتابة والتسويق الرقمي.</p>
-  </section>
+    <!-- Buy Modal -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('buyModal')">&times;</span>
+            <h2>شراء سمارت كوينز</h2>
+            <p><strong>تنبيه:</strong> هذا نموذج تجريبي - لا يتم الدفع الفعلي</p>
+            <form onsubmit="handleBuy(event)">
+                <div class="form-group">
+                    <label>كمية العملة المطلوبة:</label>
+                    <input type="number" id="coinAmount" min="1" max="10000" required onchange="calculatePrice()">
+                </div>
+                <div class="form-group">
+                    <label>المبلغ بالدولار:</label>
+                    <input type="text" id="dollarAmount" readonly>
+                </div>
+                <div class="form-group">
+                    <label>الضرائب (5%):</label>
+                    <input type="text" id="taxAmount" readonly>
+                </div>
+                <div class="form-group">
+                    <label>المجموع النهائي:</label>
+                    <input type="text" id="totalAmount" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary">شراء الآن</button>
+            </form>
+        </div>
+    </div>
 
-  <section id="news">
-    <h2 class="section-title">News</h2>
-    <p class="section-content">تابع آخر أخبارنا وإطلاقات المشاريع الجديدة والتحديثات الخاصة بمنصتنا.</p>
-  </section>
+    <!-- Bot Modal -->
+    <div id="botModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('botModal')">&times;</span>
+            <h2>البوت الذكي</h2>
+            <p><strong>تنبيه:</strong> هذا نموذج تجريبي للبوت</p>
+            <div style="background: #f5f5f5; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                <p><strong>🤖 البوت:</strong> مرحباً! أنا البوت الذكي لسمارت كوينز</p>
+                <p><strong>🤖 البوت:</strong> يمكنني مساعدتك في إدارة حسابك ومراقبة استثماراتك</p>
+                <p><strong>🤖 البوت:</strong> رصيدك الحالي: 0 سمارت كوين</p>
+            </div>
+            <form onsubmit="handleBotCommand(event)">
+                <div class="form-group">
+                    <label>أرسل أمر للبوت:</label>
+                    <input type="text" placeholder="مثال: عرض الرصيد" required>
+                </div>
+                <button type="submit" class="btn btn-primary">إرسال</button>
+            </form>
+        </div>
+    </div>
 
-  <section id="partners">
-    <h2 class="section-title">Partners</h2>
-    <p class="section-content">نفخر بشراكتنا مع نخبة من الأسماء في مجالات التقنية والتصميم وصناعة المحتوى.</p>
-  </section>
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
 
-  <section id="ticket">
-    <h2 class="section-title">Ticket</h2>
-    <p class="section-content">للدعم الفني أو فتح تذكرة خدمة، يمكنك التواصل معنا مباشرة عبر النموذج.</p>
-  </section>
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
 
-  <section id="feedback">
-    <h2 class="section-title">Feedback</h2>
-    <p class="section-content">نقدّر آراء عملائنا ونعمل دائمًا على تحسين تجربتهم.</p>
-  </section>
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
 
-  <section id="works">
-    <h2 class="section-title">Our Works</h2>
-    <p class="section-content">استعرض بعض من أبرز أعمالنا في مجالات التصميم، البراندنق، وكتابة المحتوى.</p>
-  </section>
+        // Calculate price for buying coins
+        function calculatePrice() {
+            const amount = document.getElementById('coinAmount').value;
+            const price = 0.50; // Price per coin in USD
+            const subtotal = amount * price;
+            const tax = subtotal * 0.05; // 5% tax
+            const total = subtotal + tax;
 
-</body>
+            document.getElementById('dollarAmount').value = '$' + subtotal.toFixed(2);
+            document.getElementById('taxAmount').value = '$' + tax.toFixed(2);
+            document.getElementById('totalAmount').value = '$' + total.toFixed(2);
+        }
+
+        // Handle login form
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('تم تسجيل الدخول بنجاح! (نموذج تجريبي)');
+            closeModal('loginModal');
+        }
+
+        // Handle buy form
+        function handleBuy(event) {
+            event.preventDefault();
+            const amount = document.getElementById('coinAmount').value;
+            alert(`تم شراء ${amount} سمارت كوين بنجاح! (نموذج تجريبي)`);
+            closeModal('buyModal');
+            
+            // Update daily limit counter
+            const currentLimit = parseInt(document.getElementById('dailyLimit').textContent.replace(',', ''));
+            const newLimit = currentLimit - parseInt(amount);
+            document.getElementById('dailyLimit').textContent = newLimit.toLocaleString();
+        }
+
+        // Handle bot commands
+        function handleBotCommand(event) {
+            event.preventDefault();
+            const command = event.target.querySelector('input').value;
+            alert(`البوت: تم تنفيذ الأمر "${command}" (نموذج تجريبي)`);
+            event.target.reset();
+        }
+
+        // Subscribe to plan
+        function subscribePlan(planType) {
+            const plans = {
+                basic: 'الأساسية',
+                advanced: 'المتقدمة',
+                pro: 'الاحترافية'
+            };
+            alert(`تم الاشتراك في الخطة ${plans[planType]} بنجاح! (نموذج تجريبي)`);
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.feature-card, .bot-card, .plan-card, .coin-stat').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Update statistics periodically (demo)
+        setInterval(() => {
+            const priceElement = document.getElementById('currentPrice');
+            const currentPrice = parseFloat(priceElement.textContent.replace('$', ''));
+            const change = (Math.random() - 0.5) * 0.02; // Random change up to 2 cents
+            const newPrice = Math.max(0.01, currentPrice + change);
+            priceElement.textContent = '$' + newPrice.toFixed(2);
+        }, 5000);
+
+        // Color theme changer (demo functionality)
+        function changeTheme(color) {
+            document.documentElement.style.setProperty('--primary-color', color);
+        }
+
+        // Add theme selector (hidden by default, can be activated)
+        const themeColors = ['#667eea', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
+        let currentTheme = 0;
+
+        // Double click to change theme (easter egg)
+        document.addEventListener('dblclick', () => {
+            currentTheme = (currentTheme + 1) % themeColors.length;
+            changeTheme(themeColors[currentTheme]);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9674e46bd608f931',t:'MTc1Mzg3ODg4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
