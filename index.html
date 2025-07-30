@@ -42,12 +42,12 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1rem;
+            padding: 0 2rem;
         }
 
         .logo {
@@ -59,7 +59,7 @@
             color: #b6a591;
         }
 
-        .logo img {
+        .logo svg {
             width: 50px;
             height: 50px;
             border-radius: 10px;
@@ -117,10 +117,6 @@
             color: #1a1a2e;
         }
 
-        .lang-btn:hover {
-            background: rgba(182, 165, 145, 0.3);
-        }
-
         .login-btn {
             background: linear-gradient(45deg, #b6a591, #c4b59a);
             color: #1a1a2e;
@@ -142,34 +138,82 @@
             box-shadow: 0 6px 20px rgba(182, 165, 145, 0.4);
         }
 
-        /* Hero Section */
-        .hero {
+        /* Main Layout */
+        .main-layout {
+            display: flex;
             margin-top: 100px;
-            padding: 4rem 1rem;
-            min-height: 80vh;
+            min-height: calc(100vh - 100px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            border-left: 2px solid rgba(182, 165, 145, 0.3);
+            padding: 2rem 0;
+            position: fixed;
+            right: 0;
+            top: 100px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            color: #b6a591;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-item {
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
+            gap: 12px;
+            padding: 0.8rem 1.5rem;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-right: 3px solid transparent;
         }
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background: rgba(182, 165, 145, 0.1);
+            color: #b6a591;
+            border-right-color: #b6a591;
         }
 
-        .hero-content {
-            z-index: 2;
+        .sidebar-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-right: 280px;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 4rem;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 900;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(45deg, #b6a591, #fff, #c4b59a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -178,29 +222,27 @@
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
-            color: #e0e0e0;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             color: #c0c0c0;
             margin-bottom: 3rem;
-            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1.5rem;
+            justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 4rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, #b6a591, #c4b59a);
-            color: #1a1a2e;
-            padding: 1rem 2rem;
+        .btn-discord {
+            background: linear-gradient(45deg, #5865F2, #4752C4);
+            color: white;
+            padding: 1.2rem 2.5rem;
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;
@@ -210,20 +252,15 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 6px 25px rgba(182, 165, 145, 0.3);
+            gap: 12px;
+            box-shadow: 0 6px 25px rgba(88, 101, 242, 0.3);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 35px rgba(182, 165, 145, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #b6a591;
-            padding: 1rem 2rem;
-            border: 2px solid #b6a591;
+        .btn-dashboard {
+            background: linear-gradient(45deg, #b6a591, #c4b59a);
+            color: #1a1a2e;
+            padding: 1.2rem 2.5rem;
+            border: none;
             border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
@@ -232,182 +269,218 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            box-shadow: 0 6px 25px rgba(182, 165, 145, 0.3);
         }
 
-        .btn-secondary:hover {
-            background: #b6a591;
-            color: #1a1a2e;
+        .btn-discord:hover,
+        .btn-dashboard:hover {
             transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(88, 101, 242, 0.4);
         }
 
-        /* Bot Illustration */
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+        .btn-dashboard:hover {
+            box-shadow: 0 10px 35px rgba(182, 165, 145, 0.4);
         }
 
-        .bot-container {
-            position: relative;
-            animation: float 6s ease-in-out infinite;
+        /* Stats Section */
+        .stats-section {
+            margin-bottom: 4rem;
         }
 
-        .bot-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(182, 165, 145, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
+        .stats-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #b6a591;
+            margin-bottom: 3rem;
         }
 
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-element {
-            position: absolute;
-            animation: floatAround 8s linear infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            top: 20%;
-            right: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 20%;
-            animation-delay: -2s;
-        }
-
-        .floating-element:nth-child(3) {
-            top: 30%;
-            left: 10%;
-            animation-delay: -4s;
-        }
-
-        .floating-element:nth-child(4) {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: -6s;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 4rem 1rem;
-            background: rgba(22, 33, 62, 0.3);
-        }
-
-        .features-container {
-            max-width: 1200px;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(182, 165, 145, 0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(182, 165, 145, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #b6a591, #c4b59a);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(182, 165, 145, 0.15);
+            box-shadow: 0 15px 40px rgba(182, 165, 145, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: #b6a591;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            font-weight: 500;
+        }
+
+        /* Features Preview */
+        .features-preview {
+            background: rgba(22, 33, 62, 0.3);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
         }
 
         .features-title {
             text-align: center;
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 3rem;
             color: #b6a591;
+            margin-bottom: 3rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        .feature-card {
-            background: rgba(182, 165, 145, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(182, 165, 145, 0.2);
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(182, 165, 145, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(182, 165, 145, 0.1);
             transition: all 0.3s;
-            text-align: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(182, 165, 145, 0.15);
-            box-shadow: 0 10px 30px rgba(182, 165, 145, 0.2);
+        .feature-item:hover {
+            background: rgba(182, 165, 145, 0.1);
+            transform: translateX(-5px);
         }
 
         .feature-icon {
-            font-size: 3rem;
+            font-size: 2rem;
             color: #b6a591;
-            margin-bottom: 1rem;
+            min-width: 60px;
+            text-align: center;
         }
 
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .feature-content h4 {
             color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        .feature-description {
+        .feature-content p {
             color: #c0c0c0;
-            line-height: 1.6;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        @keyframes floatAround {
-            0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+            font-size: 0.95rem;
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-right: 0;
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: #b6a591;
+                font-size: 1.5rem;
+                cursor: pointer;
             }
+        }
 
+        @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
             }
 
             .hero-buttons {
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
             }
 
-            .features-grid {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
+
+            .main-content {
+                padding: 1rem;
+            }
         }
 
-        /* English Language Styles */
-        body.en .hero-container {
-            direction: ltr;
+        /* Menu Toggle for Mobile */
+        .menu-toggle {
+            display: none;
         }
 
-        body.en .nav-container {
-            direction: ltr;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
+        .stat-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -432,8 +505,8 @@
             
             <nav class="nav-links">
                 <a href="#" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
-                <a href="#" data-ar="الميزات" data-en="Features">الميزات</a>
-                <a href="#" data-ar="الأسعار" data-en="Pricing">الأسعار</a>
+                <a href="#" data-ar="المميزات" data-en="Features">المميزات</a>
+                <a href="#" data-ar="البريميوم" data-en="Premium">البريميوم</a>
                 <a href="#" data-ar="الدعم" data-en="Support">الدعم</a>
             </nav>
             
@@ -446,161 +519,168 @@
                     <i class="fas fa-sign-in-alt"></i>
                     <span data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</span>
                 </a>
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title" data-ar="ألترا بوت" data-en="UltraBot">ألترا بوت</h1>
-                <h2 class="hero-subtitle" data-ar="البوت العربي الذكي للمستقبل" data-en="The Smart Arabic Bot for the Future">البوت العربي الذكي للمستقبل</h2>
-                <p class="hero-description" data-ar="اكتشف قوة الذكاء الاصطناعي مع ألترا بوت - المساعد الذكي الذي يفهم اللغة العربية بطلاقة ويقدم حلولاً متقدمة لجميع احتياجاتك الرقمية" data-en="Discover the power of AI with UltraBot - the smart assistant that understands Arabic fluently and provides advanced solutions for all your digital needs">
-                    اكتشف قوة الذكاء الاصطناعي مع ألترا بوت - المساعد الذكي الذي يفهم اللغة العربية بطلاقة ويقدم حلولاً متقدمة لجميع احتياجاتك الرقمية
-                </p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        <span data-ar="ابدأ الآن مجاناً" data-en="Start Free Now">ابدأ الآن مجاناً</span>
-                    </a>
-                    <a href="#" class="btn-secondary">
-                        <i class="fas fa-play"></i>
-                        <span data-ar="شاهد العرض التوضيحي" data-en="Watch Demo">شاهد العرض التوضيحي</span>
-                    </a>
-                </div>
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</div>
+                <a href="#" class="sidebar-item active">
+                    <i class="fas fa-home"></i>
+                    <span data-ar="نظرة عامة" data-en="Overview">نظرة عامة</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-server"></i>
+                    <span data-ar="إدارة السيرفرات" data-en="Server Management">إدارة السيرفرات</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-cog"></i>
+                    <span data-ar="إعدادات البوت" data-en="Bot Settings">إعدادات البوت</span>
+                </a>
             </div>
-            
-            <div class="hero-image">
-                <div class="bot-glow"></div>
-                <div class="bot-container">
-                    <!-- Main Bot SVG -->
-                    <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
-                        <!-- Bot Body -->
-                        <rect x="75" y="100" width="150" height="180" rx="30" fill="url(#botGradient)" stroke="#b6a591" stroke-width="2"/>
-                        
-                        <!-- Bot Head -->
-                        <rect x="90" y="40" width="120" height="100" rx="25" fill="url(#headGradient)" stroke="#b6a591" stroke-width="2"/>
-                        
-                        <!-- Eyes -->
-                        <circle cx="120" cy="80" r="12" fill="#b6a591"/>
-                        <circle cx="180" cy="80" r="12" fill="#b6a591"/>
-                        <circle cx="120" cy="80" r="6" fill="#1a1a2e"/>
-                        <circle cx="180" cy="80" r="6" fill="#1a1a2e"/>
-                        
-                        <!-- Mouth -->
-                        <path d="M130 110 Q150 120 170 110" stroke="#b6a591" stroke-width="3" stroke-linecap="round" fill="none"/>
-                        
-                        <!-- Antenna -->
-                        <line x1="150" y1="40" x2="150" y2="20" stroke="#b6a591" stroke-width="3"/>
-                        <circle cx="150" cy="15" r="5" fill="#b6a591"/>
-                        
-                        <!-- Arms -->
-                        <rect x="45" y="130" width="30" height="80" rx="15" fill="url(#armGradient)" stroke="#b6a591" stroke-width="2"/>
-                        <rect x="225" y="130" width="30" height="80" rx="15" fill="url(#armGradient)" stroke="#b6a591" stroke-width="2"/>
-                        
-                        <!-- Hands -->
-                        <circle cx="60" cy="220" r="15" fill="#b6a591"/>
-                        <circle cx="240" cy="220" r="15" fill="#b6a591"/>
-                        
-                        <!-- Chest Panel -->
-                        <rect x="110" y="140" width="80" height="60" rx="10" fill="rgba(182, 165, 145, 0.2)" stroke="#b6a591" stroke-width="1"/>
-                        
-                        <!-- Chest Buttons -->
-                        <circle cx="130" cy="160" r="4" fill="#b6a591"/>
-                        <circle cx="150" cy="160" r="4" fill="#b6a591"/>
-                        <circle cx="170" cy="160" r="4" fill="#b6a591"/>
-                        
-                        <!-- Screen -->
-                        <rect x="120" y="175" width="60" height="20" rx="5" fill="#1a1a2e" stroke="#b6a591" stroke-width="1"/>
-                        <text x="150" y="188" text-anchor="middle" fill="#b6a591" font-size="8" font-family="monospace">ULTRA</text>
-                        
-                        <!-- Legs -->
-                        <rect x="105" y="280" width="25" height="40" rx="12" fill="url(#legGradient)" stroke="#b6a591" stroke-width="2"/>
-                        <rect x="170" y="280" width="25" height="40" rx="12" fill="url(#legGradient)" stroke="#b6a591" stroke-width="2"/>
-                        
-                        <!-- Feet -->
-                        <ellipse cx="117" cy="330" rx="20" ry="8" fill="#b6a591"/>
-                        <ellipse cx="182" cy="330" rx="20" ry="8" fill="#b6a591"/>
-                        
-                        <!-- Gradients -->
-                        <defs>
-                            <linearGradient id="botGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:rgba(182, 165, 145, 0.3)"/>
-                                <stop offset="100%" style="stop-color:rgba(182, 165, 145, 0.1)"/>
-                            </linearGradient>
-                            <linearGradient id="headGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:rgba(182, 165, 145, 0.4)"/>
-                                <stop offset="100%" style="stop-color:rgba(182, 165, 145, 0.2)"/>
-                            </linearGradient>
-                            <linearGradient id="armGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:rgba(182, 165, 145, 0.3)"/>
-                                <stop offset="100%" style="stop-color:rgba(182, 165, 145, 0.1)"/>
-                            </linearGradient>
-                            <linearGradient id="legGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:rgba(182, 165, 145, 0.3)"/>
-                                <stop offset="100%" style="stop-color:rgba(182, 165, 145, 0.1)"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                
-                <!-- Floating Elements -->
-                <div class="floating-elements">
-                    <div class="floating-element">
-                        <i class="fas fa-brain" style="color: #b6a591; font-size: 1.5rem; opacity: 0.7;"></i>
-                    </div>
-                    <div class="floating-element">
-                        <i class="fas fa-comments" style="color: #b6a591; font-size: 1.2rem; opacity: 0.6;"></i>
-                    </div>
-                    <div class="floating-element">
-                        <i class="fas fa-lightbulb" style="color: #b6a591; font-size: 1.3rem; opacity: 0.8;"></i>
-                    </div>
-                    <div class="floating-element">
-                        <i class="fas fa-cog" style="color: #b6a591; font-size: 1.1rem; opacity: 0.5;"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="features-container">
-            <h2 class="features-title" data-ar="لماذا ألترا بوت؟" data-en="Why UltraBot?">لماذا ألترا بوت؟</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <h3 class="feature-title" data-ar="دعم اللغة العربية" data-en="Arabic Language Support">دعم اللغة العربية</h3>
-                    <p class="feature-description" data-ar="يفهم ويتحدث العربية بطلاقة مع دعم جميع اللهجات المحلية" data-en="Understands and speaks Arabic fluently with support for all local dialects">
-                        يفهم ويتحدث العربية بطلاقة مع دعم جميع اللهجات المحلية
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title" data-ar="سرعة فائقة" data-en="Lightning Fast">سرعة فائقة</h3>
-                    <p class="feature-description" data-ar="استجابة فورية وأداء متميز في جميع المهام" data-en="Instant response and excellent performance in all tasks">
-                        استجابة فورية وأداء متميز في جميع المهام
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="feature-title" data-ar="أمان متقدم" data-en="Advanced Security">أمان متقدم</h3>
-                    <p class="feature-description" data-ar="حماية كاملة لبياناتك مع تشفير من الدرجة العسكرية" data-en="Complete protection of your data with military-grade encryption">
-                        حماية كاملة لبياناتك مع تشفير من الدرجة العسكرية
-                    </p>
-                </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title" data-ar="التخصيص" data-en="Customization">التخصيص</div>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-palette"></i>
+                    <span data-ar="تخصيص البوت" data-en="Bot Customization">تخصيص البوت</span>
+                </a>
             </div>
-        </div>
-    </section>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" data-ar="الحساب" data-en="Account">الحساب</div>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-user"></i>
+                    <span data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-trophy"></i>
+                    <span data-ar="الترتيب العالمي" data-en="Global Ranking">الترتيب العالمي</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-crown"></i>
+                    <span data-ar="البريميوم" data-en="Premium">البريميوم</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span data-ar="تسجيل الخروج" data-en="Logout">تسجيل الخروج</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="hero-title" data-ar="ألترا بوت | UltraBot" data-en="UltraBot | ألترا بوت">ألترا بوت | UltraBot</h1>
+                <p class="hero-subtitle" data-ar="أول بوت ديسكورد عربي ذكي يقدم خدمات متعددة: الترحيب بالأعضاء الجدد، الإشراف، تشغيل الموسيقى، والألعاب. بوت شامل لجميع احتياجات سيرفرك" data-en="The first smart Arabic Discord bot offering multiple services: welcoming new members, moderation, music playback, and games. A comprehensive bot for all your server needs">
+                    أول بوت ديسكورد عربي ذكي يقدم خدمات متعددة: الترحيب بالأعضاء الجدد، الإشراف، تشغيل الموسيقى، والألعاب. بوت شامل لجميع احتياجات سيرفرك
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#" class="btn-discord">
+                        <i class="fab fa-discord"></i>
+                        <span data-ar="إضافة البوت" data-en="Add Bot">إضافة البوت</span>
+                    </a>
+                    <a href="#" class="btn-dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <h2 class="stats-title" data-ar="قوة البوت بالأرقام" data-en="Bot Power in Numbers">قوة البوت بالأرقام</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <span class="stat-number">99.9%</span>
+                        <div class="stat-label" data-ar="وقت التشغيل" data-en="Uptime">وقت التشغيل</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="stat-number">+5M</span>
+                        <div class="stat-label" data-ar="عدد المستخدمين" data-en="Users">عدد المستخدمين</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <span class="stat-number">+150K</span>
+                        <div class="stat-label" data-ar="عدد السيرفرات" data-en="Servers">عدد السيرفرات</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <span class="stat-number">24/7</span>
+                        <div class="stat-label" data-ar="الدعم الفني" data-en="Support">الدعم الفني</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Preview -->
+            <section class="features-preview">
+                <h2 class="features-title" data-ar="المميزات الرئيسية" data-en="Key Features">المميزات الرئيسية</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-hand-wave"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4 data-ar="الترحيب التلقائي" data-en="Auto Welcome">الترحيب التلقائي</h4>
+                            <p data-ar="ترحيب مخصص بالأعضاء الجدد مع رسائل وصور ترحيبية" data-en="Custom welcome for new members with welcome messages and images">ترحيب مخصص بالأعضاء الجدد مع رسائل وصور ترحيبية</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4 data-ar="الإشراف المتقدم" data-en="Advanced Moderation">الإشراف المتقدم</h4>
+                            <p data-ar="أدوات إشراف قوية لحماية سيرفرك من المخالفين" data-en="Powerful moderation tools to protect your server from violators">أدوات إشراف قوية لحماية سيرفرك من المخالفين</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4 data-ar="تشغيل الموسيقى" data-en="Music Player">تشغيل الموسيقى</h4>
+                            <p data-ar="مشغل موسيقى عالي الجودة مع دعم جميع المنصات" data-en="High-quality music player with support for all platforms">مشغل موسيقى عالي الجودة مع دعم جميع المنصات</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4 data-ar="الألعاب التفاعلية" data-en="Interactive Games">الألعاب التفاعلية</h4>
+                            <p data-ar="مجموعة متنوعة من الألعاب الممتعة لأعضاء سيرفرك" data-en="A variety of fun games for your server members">مجموعة متنوعة من الألعاب الممتعة لأعضاء سيرفرك</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script>
         function switchLanguage(lang) {
@@ -631,6 +711,11 @@
             event.target.classList.add('active');
         }
 
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
         // Add smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -654,6 +739,44 @@
                 header.style.background = 'rgba(22, 33, 62, 0.95)';
             }
         });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(e.target) && 
+                !menuToggle.contains(e.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Animate numbers on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const finalNumber = statNumber.textContent;
+                    
+                    // Simple animation for demonstration
+                    statNumber.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        statNumber.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card').forEach(card => {
+            observer.observe(card);
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9676c14704b5f935',t:'MTc1Mzg5ODQyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9676cb88168c08bb',t:'MTc1Mzg5ODg0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
