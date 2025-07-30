@@ -1861,10 +1861,10 @@
 
         // Configuration
         const config = {
-            logoUrl: 'https://up6.cc/2025/07/175389431115631.png', // Add logo URL here
+            logoUrl: 'https://up6.cc/2025/07/17374411881.png',
             bannerUrls: {
-                ar: 'https://up6.cc/2025/07/175389443571931.png', // Add Arabic banner URL here (1200x300)
-                en: 'https://up6.cc/2025/07/175389446997361.png',  // Add English banner URL here (1200x300)
+                ar: 'https://up6.cc/2025/07/.png',
+                en: 'https://up6.cc/2025/07/.png'
             },
             mongoUrl: 'mongodb://WebUltraBot:WebUltraBot@db.wick.ink:27017/db_WebUltraBot?authSource=admin'
         };
@@ -2582,4 +2582,420 @@
         // Subscribe to premium
         function subscribePremium(plan) {
             if (!isLoggedIn) {
-                showNotification(getTranslation('You must login first', 'يجب تس<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967653eb7731f919',t:'MTc1Mzg5Mzk0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+                showNotification(getTranslation('You must login first', 'يجب تسجيل الدخول أولاً'), 'error');
+                openLoginModal();
+                return;
+            }
+            
+            showConfirm(getTranslation(`Subscribe to ${plan} premium plan?`, `الاشتراك في باقة ${plan === 'basic' ? 'الأساسي' : 'المتقدم'}؟`), () => {
+                currentUser.isPremium = true;
+                currentUser.premiumType = plan;
+                updateUserData();
+                updateUIForLoggedInUser();
+                showNotification(getTranslation('Premium subscription activated!', 'تم تفعيل اشتراك البريميوم!'), 'success');
+            });
+        }
+
+        // Show page
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.style.display = 'block';
+            }
+            
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+            
+            // Special handling for certain pages
+            if (pageId === 'leaderboard') {
+                displayLeaderboard();
+            } else if (pageId === 'users') {
+                displayUsersList();
+            }
+            
+            // Close sidebar on mobile
+            if (window.innerWidth <= 1024) {
+                toggleSidebar();
+            }
+        }
+
+        // Display leaderboard
+        function displayLeaderboard() {
+            const container = document.getElementById('leaderboardList');
+            container.innerHTML = '';
+            
+            if (globalLeaderboard.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--secondary-color);">
+                        <i class="fas fa-trophy" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>${getTranslation('No players in leaderboard yet', 'لا يوجد لاعبون في الترتيب بعد')}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            globalLeaderboard.slice(0, 10).forEach((user, index) => {
+                const item = document.createElement('div');
+                item.className = 'leaderboard-item';
+                
+                let rankIcon = '';
+                if (index === 0) rankIcon = '🥇';
+                else if (index === 1) rankIcon = '🥈';
+                else if (index === 2) rankIcon = '🥉';
+                else rankIcon = `#${index + 1}`;
+                
+                item.innerHTML = `
+                    <div class="leaderboard-rank">${rankIcon}</div>
+                    <div class="leaderboard-info">
+                        <div class="leaderboard-name">
+                            ${user.displayName}
+                            ${user.isAdmin ? '<i class="fas fa-crown" style="color: #faa61a; margin-left: 0.5rem;"></i>' : ''}
+                            ${user.isPremium ? '<i class="fas fa-star" style="color: var(--primary-color); margin-left: 0.5rem;"></i>' : ''}
+                        </div>
+                        <div class="leaderboard-stats">
+                            <i class="fas fa-coins"></i> ${user.credits.toLocaleString()} ${getTranslation('coins', 'كوين')} • 
+                            <i class="fas fa-level-up-alt"></i> ${getTranslation('Level', 'مستوى')} ${user.level}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(item);
+            });
+        }
+
+        // Display users list (admin only)
+        function displayUsersList() {
+            if (!currentUser || !currentUser.isAdmin) {
+                document.getElementById('usersList').innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--secondary-color);">
+                        <i class="fas fa-lock" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>${getTranslation('Admin access required', 'صلاحية المدير مطلوبة')}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const container = document.getElementById('usersList');
+            container.innerHTML = '';
+            
+            Object.values(allUsers).forEach(user => {
+                const item = document.createElement('div');
+                item.className = 'leaderboard-item';
+                item.style.justifyContent = 'space-between';
+                
+                item.innerHTML = `
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; color: var(--background-color); font-weight: bold; margin-right: 1rem;">
+                            ${user.displayName.substring(0, 2).toUpperCase()}
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; margin-bottom: 0.25rem;">
+                                ${user.displayName} (@${user.username})
+                                ${user.isAdmin ? '<i class="fas fa-crown" style="color: #faa61a; margin-left: 0.5rem;"></i>' : ''}
+                                ${user.isPremium ? '<i class="fas fa-star" style="color: var(--primary-color); margin-left: 0.5rem;"></i>' : ''}
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.8;">
+                                ID: ${user.id} • <i class="fas fa-coins"></i> ${user.credits.toLocaleString()} • ${getTranslation('Level', 'مستوى')} ${user.level}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        ${!user.isAdmin ? `<button class="btn btn-warning" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="promoteToAdmin('${user.username}')">
+                            <i class="fas fa-user-shield"></i> ${getTranslation('Promote', 'ترقية')}
+                        </button>` : ''}
+                        <button class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="editUserCoins('${user.username}')">
+                            <i class="fas fa-coins"></i> ${getTranslation('Edit Coins', 'تعديل الكوينز')}
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(item);
+            });
+        }
+
+        // Promote user to admin
+        function promoteToAdmin(username) {
+            if (!currentUser || !currentUser.isAdmin) return;
+            
+            showConfirm(getTranslation(`Promote ${username} to admin?`, `ترقية ${username} لمدير؟`), () => {
+                if (allUsers[username]) {
+                    allUsers[username].isAdmin = true;
+                    saveToDatabase();
+                    displayUsersList();
+                    showNotification(getTranslation('User promoted to admin successfully!', 'تم ترقية المستخدم لمدير بنجاح!'), 'success');
+                }
+            });
+        }
+
+        // Edit user coins
+        function editUserCoins(username) {
+            if (!currentUser || !currentUser.isAdmin) return;
+            
+            const newCoins = prompt(getTranslation('Enter new coins amount:', 'أدخل كمية الكوينز الجديدة:'), allUsers[username].credits);
+            if (newCoins !== null && !isNaN(newCoins)) {
+                allUsers[username].credits = parseInt(newCoins);
+                saveToDatabase();
+                displayUsersList();
+                showNotification(getTranslation('Coins updated successfully!', 'تم تحديث الكوينز بنجاح!'), 'success');
+            }
+        }
+
+        // Open create account modal
+        function openCreateAccountModal() {
+            document.getElementById('createAccountModal').classList.add('show');
+        }
+
+        // Close create account modal
+        function closeCreateAccountModal() {
+            document.getElementById('createAccountModal').classList.remove('show');
+        }
+
+        // Handle create account
+        function handleCreateAccount(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('createUsername').value.toLowerCase();
+            const email = document.getElementById('createEmail').value;
+            const password = document.getElementById('createPassword').value;
+            const displayName = document.getElementById('createDisplayName').value;
+            
+            if (allUsers[username]) {
+                showNotification(getTranslation('Username already exists', 'اسم المستخدم موجود بالفعل'), 'error');
+                return;
+            }
+            
+            const newUser = {
+                id: nextUserId++,
+                username: username,
+                password: password,
+                email: email,
+                displayName: displayName,
+                credits: 1000000, // 1M coins for admin-created accounts
+                level: 10,
+                rank: null,
+                isAdmin: false,
+                isPremium: true,
+                premiumType: 'advanced',
+                verified: true
+            };
+            
+            allUsers[username] = newUser;
+            saveToDatabase();
+            closeCreateAccountModal();
+            
+            showNotification(getTranslation('Account created successfully!', 'تم إنشاء الحساب بنجاح!'), 'success');
+            
+            // Clear form
+            document.getElementById('createUsername').value = '';
+            document.getElementById('createEmail').value = '';
+            document.getElementById('createPassword').value = '';
+            document.getElementById('createDisplayName').value = '';
+        }
+
+        // Open promote admin modal
+        function openPromoteAdminModal() {
+            document.getElementById('promoteAdminModal').classList.add('show');
+        }
+
+        // Close promote admin modal
+        function closePromoteAdminModal() {
+            document.getElementById('promoteAdminModal').classList.remove('show');
+        }
+
+        // Search user for promotion
+        function searchUserForPromote() {
+            const method = document.getElementById('promoteSearchMethod').value;
+            const value = document.getElementById('promoteSearchValue').value;
+            
+            let user = null;
+            if (method === 'id') {
+                user = Object.values(allUsers).find(u => u.id == value);
+            } else if (method === 'email') {
+                user = Object.values(allUsers).find(u => u.email === value);
+            }
+            
+            const userInfo = document.getElementById('promoteUserInfo');
+            const submitBtn = document.getElementById('promoteSubmitBtn');
+            
+            if (user) {
+                userInfo.innerHTML = `
+                    <div style="color: var(--text-color);">
+                        <h4 style="margin-bottom: 0.5rem;">${user.displayName} (@${user.username})</h4>
+                        <p style="margin: 0.25rem 0;"><strong>ID:</strong> ${user.id}</p>
+                        <p style="margin: 0.25rem 0;"><strong>${getTranslation('Email', 'الإيميل')}:</strong> ${user.email}</p>
+                        <p style="margin: 0.25rem 0;"><strong>${getTranslation('Level', 'المستوى')}:</strong> ${user.level}</p>
+                        <p style="margin: 0.25rem 0;"><strong>${getTranslation('Coins', 'الكوينز')}:</strong> ${user.credits.toLocaleString()}</p>
+                        <p style="margin: 0.25rem 0;"><strong>${getTranslation('Status', 'الحالة')}:</strong> ${user.isAdmin ? getTranslation('Admin', 'مدير') : getTranslation('User', 'مستخدم')}</p>
+                    </div>
+                `;
+                userInfo.style.display = 'block';
+                submitBtn.disabled = user.isAdmin;
+                
+                if (user.isAdmin) {
+                    showNotification(getTranslation('User is already an admin', 'المستخدم مدير بالفعل'), 'error');
+                }
+            } else {
+                userInfo.style.display = 'none';
+                submitBtn.disabled = true;
+                showNotification(getTranslation('User not found', 'المستخدم غير موجود'), 'error');
+            }
+        }
+
+        // Handle promote admin
+        function handlePromoteAdmin(event) {
+            event.preventDefault();
+            
+            const method = document.getElementById('promoteSearchMethod').value;
+            const value = document.getElementById('promoteSearchValue').value;
+            const adminName = document.getElementById('promoteAdminName').value;
+            
+            let user = null;
+            if (method === 'id') {
+                user = Object.values(allUsers).find(u => u.id == value);
+            } else if (method === 'email') {
+                user = Object.values(allUsers).find(u => u.email === value);
+            }
+            
+            if (user && !user.isAdmin) {
+                user.isAdmin = true;
+                user.displayName = adminName;
+                saveToDatabase();
+                closePromoteAdminModal();
+                showNotification(getTranslation('User promoted to admin successfully!', 'تم ترقية المستخدم لمدير بنجاح!'), 'success');
+                
+                // Clear form
+                document.getElementById('promoteSearchValue').value = '';
+                document.getElementById('promoteAdminName').value = '';
+                document.getElementById('promoteUserInfo').style.display = 'none';
+                document.getElementById('promoteSubmitBtn').disabled = true;
+            }
+        }
+
+        // Open coins modal
+        function openCoinsModal() {
+            document.getElementById('coinsModal').classList.add('show');
+        }
+
+        // Close coins modal
+        function closeCoinsModal() {
+            document.getElementById('coinsModal').classList.remove('show');
+        }
+
+        // Show user info in coins modal
+        function showUserInfoInModal() {
+            const userId = document.getElementById('coinsUserId').value;
+            const user = Object.values(allUsers).find(u => u.id == userId);
+            
+            const userInfo = document.getElementById('coinsUserInfo');
+            
+            if (user) {
+                userInfo.innerHTML = `
+                    <div style="color: var(--text-color);">
+                        <h4 style="margin-bottom: 0.5rem;">${user.displayName} (@${user.username})</h4>
+                        <p style="margin: 0.25rem 0;"><strong>${getTranslation('Current Coins', 'الكوينز الحالي')}:</strong> ${user.credits.toLocaleString()}</p>
+                        <p style="margin: 0.25rem 0;"><strong>${getTranslation('Level', 'المستوى')}:</strong> ${user.level}</p>
+                        <p style="margin: 0.25rem 0;"><strong>${getTranslation('Status', 'الحالة')}:</strong> ${user.isAdmin ? getTranslation('Admin', 'مدير') : getTranslation('User', 'مستخدم')}</p>
+                    </div>
+                `;
+                userInfo.style.display = 'block';
+            } else {
+                userInfo.style.display = 'none';
+                showNotification(getTranslation('User not found', 'المستخدم غير موجود'), 'error');
+            }
+        }
+
+        // Handle coins management
+        function handleCoinsManagement(event) {
+            event.preventDefault();
+            
+            const userId = document.getElementById('coinsUserId').value;
+            const amount = parseInt(document.getElementById('coinsAmount').value);
+            
+            const user = Object.values(allUsers).find(u => u.id == userId);
+            
+            if (user) {
+                user.credits += amount;
+                saveToDatabase();
+                closeCoinsModal();
+                showNotification(getTranslation(`Added ${amount.toLocaleString()} coins to ${user.displayName}!`, `تم إضافة ${amount.toLocaleString()} كوين لـ ${user.displayName}!`), 'success');
+                
+                // Clear form
+                document.getElementById('coinsUserId').value = '';
+                document.getElementById('coinsAmount').value = '';
+                document.getElementById('coinsUserInfo').style.display = 'none';
+            } else {
+                showNotification(getTranslation('User not found', 'المستخدم غير موجود'), 'error');
+            }
+        }
+
+        // Toggle sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+
+        // Setup responsive handlers
+        function setupResponsiveHandlers() {
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024) {
+                    document.getElementById('sidebar').classList.remove('show');
+                    document.getElementById('sidebarOverlay').classList.remove('show');
+                }
+            });
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Logout
+        function logout() {
+            showConfirm(getTranslation('Are you sure you want to logout?', 'هل أنت متأكد من تسجيل الخروج؟'), () => {
+                isLoggedIn = false;
+                currentUser = null;
+                localStorage.removeItem('currentUser');
+                
+                // Reset UI
+                document.getElementById('loginBtn').style.display = 'block';
+                document.getElementById('userInfo').classList.remove('logged-in');
+                document.getElementById('adminBadge').style.display = 'none';
+                document.getElementById('adminSection').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'none';
+                document.getElementById('serverFeatures').style.display = 'none';
+                
+                // Hide protected content
+                document.getElementById('loginRequired').style.display = 'block';
+                document.getElementById('dashboardContent').style.display = 'none';
+                document.getElementById('serversLoginRequired').style.display = 'block';
+                document.getElementById('serversContent').style.display = 'none';
+                document.getElementById('customizationLoginRequired').style.display = 'block';
+                document.getElementById('customizationContent').style.display = 'none';
+                
+                showPage('home');
+                showNotification(getTranslation('Logged out successfully', 'تم تسجيل الخروج بنجاح'), 'success');
+            });
+        }
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96767845415f08bb',t:'MTc1Mzg5NTQzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
