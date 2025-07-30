@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ألترا بوت - البوت العربي الذكي | UltraBot</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #907E69;
+            --secondary-color: #B6A591;
+            --background-color: #1A1513;
+            --text-color: #F5F5F5;
+            --accent-color: #907E69;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,22 +24,26 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: #101820;
-            color: #F5F5F5;
+            background: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
+        body[dir="ltr"] {
+            font-family: 'Inter', sans-serif;
+        }
+
         /* Header */
         .header {
-            background: #101820;
+            background: var(--background-color);
             padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #00FFB2;
+            border-bottom: 1px solid var(--primary-color);
         }
 
         .nav-container {
@@ -48,7 +61,13 @@
             gap: 10px;
             font-size: 1.5rem;
             font-weight: 900;
-            color: #00FFB2;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
         }
 
         .logo i {
@@ -62,14 +81,14 @@
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #00FFB2;
+            color: var(--primary-color);
         }
 
         .auth-section {
@@ -78,9 +97,24 @@
             gap: 1rem;
         }
 
+        .language-selector {
+            background: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .language-selector:hover {
+            background: var(--secondary-color);
+        }
+
         .login-btn {
-            background: #00FFB2;
-            color: #101820;
+            background: var(--primary-color);
+            color: var(--background-color);
             padding: 0.7rem 1.5rem;
             border: none;
             border-radius: 3px;
@@ -94,7 +128,7 @@
         }
 
         .login-btn:hover {
-            background: #00E5A0;
+            background: var(--secondary-color);
             transform: translateY(-2px);
         }
 
@@ -109,8 +143,8 @@
         }
 
         .credits {
-            background: linear-gradient(45deg, #00FFB2, #00E5A0);
-            color: #101820;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-color);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-weight: 600;
@@ -121,8 +155,8 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #00FFB2, #00E5A0);
-            color: #101820;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -132,7 +166,7 @@
 
         .admin-badge {
             background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            color: #101820;
+            color: var(--background-color);
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-size: 0.8rem;
@@ -144,7 +178,7 @@
             display: none;
             background: none;
             border: none;
-            color: #fff;
+            color: var(--text-color);
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -168,13 +202,14 @@
         }
 
         .login-modal {
-            background: #16213e;
+            background: var(--secondary-color);
             border-radius: 12px;
             padding: 2rem;
             width: 90%;
             max-width: 400px;
-            border: 1px solid #00FFB2;
+            border: 1px solid var(--primary-color);
             position: relative;
+            color: var(--background-color);
         }
 
         .modal-close {
@@ -183,7 +218,7 @@
             left: 1rem;
             background: none;
             border: none;
-            color: #fff;
+            color: var(--background-color);
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -191,7 +226,7 @@
         .modal-title {
             text-align: center;
             margin-bottom: 2rem;
-            color: #00FFB2;
+            color: var(--background-color);
             font-size: 1.5rem;
             font-weight: 700;
         }
@@ -203,31 +238,31 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #fff;
+            color: var(--background-color);
             font-weight: 500;
         }
 
         .form-input {
             width: 100%;
             padding: 0.8rem;
-            background: #101820;
-            border: 1px solid #2c3e50;
+            background: var(--background-color);
+            border: 1px solid var(--primary-color);
             border-radius: 8px;
-            color: #fff;
+            color: var(--text-color);
             font-family: inherit;
             transition: border-color 0.3s;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #00FFB2;
+            border-color: var(--primary-color);
         }
 
         .form-btn {
             width: 100%;
             padding: 0.8rem;
-            background: #00FFB2;
-            color: #101820;
+            background: var(--primary-color);
+            color: var(--text-color);
             border: none;
             border-radius: 8px;
             font-weight: 600;
@@ -237,13 +272,13 @@
         }
 
         .form-btn:hover {
-            background: #00E5A0;
+            background: var(--secondary-color);
         }
 
         .form-btn.secondary {
             background: transparent;
-            color: #00FFB2;
-            border: 1px solid #00FFB2;
+            color: var(--background-color);
+            border: 1px solid var(--background-color);
         }
 
         .form-btn.google {
@@ -262,7 +297,7 @@
         .form-divider {
             text-align: center;
             margin: 1.5rem 0;
-            color: #b9bbbe;
+            color: var(--background-color);
             position: relative;
         }
 
@@ -273,11 +308,11 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: #2c3e50;
+            background: var(--background-color);
         }
 
         .form-divider span {
-            background: #16213e;
+            background: var(--secondary-color);
             padding: 0 1rem;
         }
 
@@ -287,7 +322,7 @@
         }
 
         .form-link a {
-            color: #00FFB2;
+            color: var(--background-color);
             text-decoration: none;
             cursor: pointer;
         }
@@ -309,14 +344,14 @@
             text-align: center;
             font-size: 1.2rem;
             font-weight: bold;
-            background: #101820;
-            border: 2px solid #2c3e50;
+            background: var(--background-color);
+            border: 2px solid var(--primary-color);
             border-radius: 8px;
-            color: #fff;
+            color: var(--text-color);
         }
 
         .verification-code input:focus {
-            border-color: #00FFB2;
+            border-color: var(--primary-color);
             outline: none;
         }
 
@@ -330,9 +365,9 @@
         /* Sidebar */
         .sidebar {
             width: 280px;
-            background: #101820;
+            background: var(--background-color);
             padding: 2rem 0;
-            border-left: 1px solid #00FFB2;
+            border-left: 1px solid var(--primary-color);
             transition: transform 0.3s ease;
             position: fixed;
             height: calc(100vh - 80px);
@@ -360,7 +395,7 @@
         }
 
         .sidebar-title {
-            color: #00FFB2;
+            color: var(--primary-color);
             font-size: 0.9rem;
             font-weight: 600;
             padding: 0 1.5rem;
@@ -374,7 +409,7 @@
             align-items: center;
             gap: 12px;
             padding: 0.8rem 1.5rem;
-            color: #b9bbbe;
+            color: var(--secondary-color);
             text-decoration: none;
             transition: all 0.3s;
             cursor: pointer;
@@ -386,8 +421,8 @@
         }
 
         .sidebar-item:hover, .sidebar-item.active {
-            background: #00FFB2;
-            color: #101820;
+            background: var(--primary-color);
+            color: var(--background-color);
         }
 
         .sidebar-item i {
@@ -420,7 +455,7 @@
         .content {
             flex: 1;
             padding: 2rem;
-            background: #101820;
+            background: var(--background-color);
             margin-right: 280px;
             min-height: calc(100vh - 80px);
         }
@@ -436,7 +471,7 @@
         }
 
         .page-subtitle {
-            color: #b9bbbe;
+            color: var(--secondary-color);
             font-size: 1.1rem;
         }
 
@@ -444,14 +479,14 @@
         .login-required {
             text-align: center;
             padding: 4rem 2rem;
-            background: #101820;
+            background: var(--background-color);
             border-radius: 12px;
-            border: 1px solid #00FFB2;
+            border: 1px solid var(--primary-color);
         }
 
         .login-required i {
             font-size: 4rem;
-            color: #00FFB2;
+            color: var(--primary-color);
             margin-bottom: 2rem;
         }
 
@@ -461,7 +496,7 @@
         }
 
         .login-required p {
-            color: #b9bbbe;
+            color: var(--secondary-color);
             margin-bottom: 2rem;
             font-size: 1.1rem;
         }
@@ -475,11 +510,12 @@
         }
 
         .stat-card {
-            background: #16213e;
+            background: var(--secondary-color);
             padding: 1.5rem;
             border-radius: 12px;
-            border: 1px solid #2c3e50;
+            border: 1px solid var(--primary-color);
             transition: transform 0.3s;
+            color: var(--background-color);
         }
 
         .stat-card:hover {
@@ -509,14 +545,15 @@
         .stat-value {
             font-size: 2rem;
             font-weight: 900;
-            color: #00FFB2;
+            color: var(--background-color);
             line-height: 1;
         }
 
         .stat-label {
-            color: #b9bbbe;
+            color: var(--background-color);
             font-size: 0.9rem;
             margin-top: 0.25rem;
+            opacity: 0.8;
         }
 
         /* Features Grid */
@@ -528,11 +565,12 @@
         }
 
         .feature-card {
-            background: #16213e;
+            background: var(--secondary-color);
             padding: 1.5rem;
             border-radius: 12px;
-            border: 1px solid #2c3e50;
+            border: 1px solid var(--primary-color);
             transition: all 0.3s;
+            color: var(--background-color);
         }
 
         .feature-card:hover {
@@ -556,16 +594,17 @@
         }
 
         .feature-description {
-            color: #b9bbbe;
+            color: var(--background-color);
             font-size: 0.95rem;
             line-height: 1.5;
+            opacity: 0.9;
         }
 
         .toggle-switch {
             position: relative;
             width: 50px;
             height: 25px;
-            background: #2c3e50;
+            background: var(--background-color);
             border-radius: 25px;
             cursor: pointer;
             transition: background 0.3s;
@@ -608,19 +647,19 @@
         }
 
         .btn-primary {
-            background: #5865f2;
-            color: #fff;
+            background: var(--primary-color);
+            color: var(--text-color);
         }
 
         .btn-primary:hover {
-            background: #4752c4;
+            background: var(--secondary-color);
             transform: translateY(-2px);
         }
 
         .btn-secondary {
             background: transparent;
-            color: #00FFB2;
-            border: 2px solid #5865f2;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
         }
 
         .btn-success {
@@ -642,21 +681,34 @@
         .hero-section {
             text-align: center;
             padding: 4rem 0;
-            background: linear-gradient(135deg, #5865f2, #7289da);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             margin: -2rem -2rem 2rem -2rem;
             border-radius: 0 0 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner {
+            width: 100%;
+            max-width: 1200px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
         }
 
         .hero-title {
             font-size: 3rem;
             font-weight: 900;
             margin-bottom: 1rem;
+            color: var(--background-color);
         }
 
         .hero-subtitle {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             opacity: 0.9;
+            color: var(--background-color);
         }
 
         .cta-buttons {
@@ -669,40 +721,42 @@
 
         /* Server Settings */
         .server-selector {
-            background: #16213e;
+            background: var(--secondary-color);
             padding: 1.5rem;
             border-radius: 12px;
-            border: 1px solid #2c3e50;
+            border: 1px solid var(--primary-color);
             margin-bottom: 2rem;
+            color: var(--background-color);
         }
 
         .server-dropdown {
             width: 100%;
             padding: 0.8rem;
-            background: #16213e;
-            border: 1px solid #00FFB2;
+            background: var(--background-color);
+            border: 1px solid var(--primary-color);
             border-radius: 8px;
-            color: #fff;
+            color: var(--text-color);
             font-family: inherit;
             font-size: 1rem;
         }
 
         .server-dropdown option {
-            background: #16213e;
-            color: #fff;
+            background: var(--background-color);
+            color: var(--text-color);
         }
 
         /* Settings Panel */
         .settings-panel {
-            background: #16213e;
+            background: var(--secondary-color);
             border-radius: 12px;
-            border: 1px solid #00FFB2;
+            border: 1px solid var(--primary-color);
             overflow: hidden;
+            color: var(--background-color);
         }
 
         .settings-header {
-            background: #00FFB2;
-            color: #101820;
+            background: var(--primary-color);
+            color: var(--text-color);
             padding: 1rem 1.5rem;
             font-weight: 600;
             display: flex;
@@ -719,7 +773,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 1rem 0;
-            border-bottom: 1px solid #00FFB2;
+            border-bottom: 1px solid var(--primary-color);
         }
 
         .setting-item:last-child {
@@ -728,21 +782,22 @@
 
         .setting-info h4 {
             margin-bottom: 0.25rem;
-            color: #fff;
+            color: var(--background-color);
         }
 
         .setting-info p {
-            color: #b9bbbe;
+            color: var(--background-color);
             font-size: 0.9rem;
+            opacity: 0.8;
         }
 
         /* Admin Panel */
         .admin-panel {
-            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
-            color: #101820;
+            color: var(--background-color);
         }
 
         .admin-title {
@@ -761,8 +816,8 @@
         }
 
         .admin-btn {
-            background: rgba(16, 24, 32, 0.8);
-            color: #fff;
+            background: rgba(26, 21, 19, 0.8);
+            color: var(--text-color);
             padding: 1rem;
             border: none;
             border-radius: 8px;
@@ -772,19 +827,20 @@
         }
 
         .admin-btn:hover {
-            background: rgba(16, 24, 32, 1);
+            background: rgba(26, 21, 19, 1);
             transform: translateY(-2px);
         }
 
         /* Confirmation Modal */
         .confirm-modal {
-            background: #16213e;
+            background: var(--secondary-color);
             border-radius: 12px;
             padding: 2rem;
             width: 90%;
             max-width: 400px;
             border: 1px solid #f04747;
             text-align: center;
+            color: var(--background-color);
         }
 
         .confirm-title {
@@ -795,9 +851,10 @@
         }
 
         .confirm-message {
-            color: #b9bbbe;
+            color: var(--background-color);
             margin-bottom: 2rem;
             line-height: 1.5;
+            opacity: 0.9;
         }
 
         .confirm-buttons {
@@ -967,9 +1024,67 @@
             display: block;
             animation: fadeInUp 0.3s ease-out;
         }
+
+        /* Database Status */
+        .db-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1000;
+        }
+
+        .db-status.connected {
+            background: #43b581;
+        }
+
+        .db-status.disconnected {
+            background: #f04747;
+        }
+
+        /* Leaderboard Styles */
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: var(--background-color);
+            border-radius: 8px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .leaderboard-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+            min-width: 60px;
+        }
+
+        .leaderboard-info {
+            flex: 1;
+        }
+
+        .leaderboard-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .leaderboard-stats {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
+    <!-- Database Status -->
+    <div id="dbStatus" class="db-status">
+        <i class="fas fa-database"></i> <span data-en="Connecting..." data-ar="جاري الاتصال...">جاري الاتصال...</span>
+    </div>
+
     <!-- Notification -->
     <div id="notification" class="notification"></div>
 
@@ -980,80 +1095,80 @@
             
             <!-- Login Form -->
             <div id="loginForm">
-                <h2 class="modal-title">تسجيل الدخول</h2>
+                <h2 class="modal-title" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</h2>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
-                        <label>اسم المستخدم أو الإيميل</label>
+                        <label data-en="Username or Email" data-ar="اسم المستخدم أو الإيميل">اسم المستخدم أو الإيميل</label>
                         <input type="text" class="form-input" id="loginUsername" required>
                     </div>
                     <div class="form-group">
-                        <label>كلمة المرور</label>
+                        <label data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" class="form-input" id="loginPassword" required>
                     </div>
                     <button type="submit" class="form-btn">
                         <i class="fas fa-sign-in-alt"></i>
-                        تسجيل الدخول
+                        <span data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</span>
                     </button>
                 </form>
                 
                 <div class="form-divider">
-                    <span>أو</span>
+                    <span data-en="or" data-ar="أو">أو</span>
                 </div>
                 
                 <button class="form-btn google" onclick="loginWithGoogle()">
                     <i class="fab fa-google"></i>
-                    تسجيل الدخول بـ Google
+                    <span data-en="Login with Google" data-ar="تسجيل الدخول بـ Google">تسجيل الدخول بـ Google</span>
                 </button>
                 
                 <div class="form-link">
-                    <a onclick="showRegisterForm()">ليس لديك حساب؟ إنشاء حساب جديد</a>
+                    <a onclick="showRegisterForm()" data-en="Don't have an account? Create new account" data-ar="ليس لديك حساب؟ إنشاء حساب جديد">ليس لديك حساب؟ إنشاء حساب جديد</a>
                 </div>
             </div>
 
             <!-- Register Form -->
             <div id="registerForm" style="display: none;">
-                <h2 class="modal-title">إنشاء حساب جديد</h2>
+                <h2 class="modal-title" data-en="Create New Account" data-ar="إنشاء حساب جديد">إنشاء حساب جديد</h2>
                 <form onsubmit="handleRegister(event)">
                     <div class="form-group">
-                        <label>اسم المستخدم</label>
+                        <label data-en="Username" data-ar="اسم المستخدم">اسم المستخدم</label>
                         <input type="text" class="form-input" id="registerUsername" required>
                     </div>
                     <div class="form-group">
-                        <label>الإيميل</label>
+                        <label data-en="Email" data-ar="الإيميل">الإيميل</label>
                         <input type="email" class="form-input" id="registerEmail" required>
                     </div>
                     <div class="form-group">
-                        <label>كلمة المرور</label>
+                        <label data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" class="form-input" id="registerPassword" required>
                     </div>
                     <div class="form-group">
-                        <label>تأكيد كلمة المرور</label>
+                        <label data-en="Confirm Password" data-ar="تأكيد كلمة المرور">تأكيد كلمة المرور</label>
                         <input type="password" class="form-input" id="confirmPassword" required>
                     </div>
                     <button type="submit" class="form-btn">
                         <i class="fas fa-user-plus"></i>
-                        إنشاء الحساب
+                        <span data-en="Create Account" data-ar="إنشاء الحساب">إنشاء الحساب</span>
                     </button>
                 </form>
                 
                 <div class="form-divider">
-                    <span>أو</span>
+                    <span data-en="or" data-ar="أو">أو</span>
                 </div>
                 
                 <button class="form-btn google" onclick="registerWithGoogle()">
                     <i class="fab fa-google"></i>
-                    التسجيل بـ Google
+                    <span data-en="Register with Google" data-ar="التسجيل بـ Google">التسجيل بـ Google</span>
                 </button>
                 
                 <div class="form-link">
-                    <a onclick="showLoginForm()">لديك حساب بالفعل؟ تسجيل الدخول</a>
+                    <a onclick="showLoginForm()" data-en="Already have an account? Login" data-ar="لديك حساب بالفعل؟ تسجيل الدخول">لديك حساب بالفعل؟ تسجيل الدخول</a>
                 </div>
             </div>
 
             <!-- Verification Form -->
             <div id="verificationForm" style="display: none;">
-                <h2 class="modal-title">تأكيد الحساب</h2>
-                <p style="text-align: center; color: #b9bbbe; margin-bottom: 2rem;">
+                <h2 class="modal-title" data-en="Account Verification" data-ar="تأكيد الحساب">تأكيد الحساب</h2>
+                <p style="text-align: center; color: var(--background-color); margin-bottom: 2rem;" data-en="Verification code sent to your email" data-ar="تم إرسال رمز التحقق إلى إيميلك">
                     تم إرسال رمز التحقق إلى إيميلك
                 </p>
                 <form onsubmit="handleVerification(event)">
@@ -1067,12 +1182,12 @@
                     </div>
                     <button type="submit" class="form-btn">
                         <i class="fas fa-check"></i>
-                        تأكيد الرمز
+                        <span data-en="Verify Code" data-ar="تأكيد الرمز">تأكيد الرمز</span>
                     </button>
                 </form>
                 
                 <div class="form-link">
-                    <a onclick="resendCode()">إعادة إرسال الرمز</a>
+                    <a onclick="resendCode()" data-en="Resend Code" data-ar="إعادة إرسال الرمز">إعادة إرسال الرمز</a>
                 </div>
             </div>
         </div>
@@ -1081,11 +1196,11 @@
     <!-- Confirmation Modal -->
     <div id="confirmModal" class="modal-overlay">
         <div class="confirm-modal">
-            <h3 class="confirm-title">تأكيد العملية</h3>
+            <h3 class="confirm-title" data-en="Confirm Action" data-ar="تأكيد العملية">تأكيد العملية</h3>
             <p class="confirm-message" id="confirmMessage"></p>
             <div class="confirm-buttons">
-                <button class="btn btn-danger" onclick="confirmAction()">تأكيد</button>
-                <button class="btn btn-secondary" onclick="closeConfirmModal()">إلغاء</button>
+                <button class="btn btn-danger" onclick="confirmAction()" data-en="Confirm" data-ar="تأكيد">تأكيد</button>
+                <button class="btn btn-secondary" onclick="closeConfirmModal()" data-en="Cancel" data-ar="إلغاء">إلغاء</button>
             </div>
         </div>
     </div>
@@ -1096,28 +1211,28 @@
             <button class="modal-close" onclick="closeCreateAccountModal()">&times;</button>
             <h2 class="modal-title">
                 <i class="fas fa-user-plus"></i>
-                إنشاء حساب جديد
+                <span data-en="Create New Account" data-ar="إنشاء حساب جديد">إنشاء حساب جديد</span>
             </h2>
             <form onsubmit="handleCreateAccount(event)">
                 <div class="form-group">
-                    <label>اسم المستخدم</label>
+                    <label data-en="Username" data-ar="اسم المستخدم">اسم المستخدم</label>
                     <input type="text" class="form-input" id="createUsername" required>
                 </div>
                 <div class="form-group">
-                    <label>الإيميل</label>
+                    <label data-en="Email" data-ar="الإيميل">الإيميل</label>
                     <input type="email" class="form-input" id="createEmail" required>
                 </div>
                 <div class="form-group">
-                    <label>كلمة المرور</label>
+                    <label data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                     <input type="password" class="form-input" id="createPassword" required>
                 </div>
                 <div class="form-group">
-                    <label>الاسم المعروض</label>
+                    <label data-en="Display Name" data-ar="الاسم المعروض">الاسم المعروض</label>
                     <input type="text" class="form-input" id="createDisplayName" required>
                 </div>
                 <button type="submit" class="form-btn">
                     <i class="fas fa-user-plus"></i>
-                    إنشاء الحساب
+                    <span data-en="Create Account" data-ar="إنشاء الحساب">إنشاء الحساب</span>
                 </button>
             </form>
         </div>
@@ -1129,36 +1244,36 @@
             <button class="modal-close" onclick="closePromoteAdminModal()">&times;</button>
             <h2 class="modal-title">
                 <i class="fas fa-user-shield"></i>
-                ترقية أدمن
+                <span data-en="Promote Admin" data-ar="ترقية أدمن">ترقية أدمن</span>
             </h2>
             <form onsubmit="handlePromoteAdmin(event)">
                 <div class="form-group">
-                    <label>طريقة البحث</label>
+                    <label data-en="Search Method" data-ar="طريقة البحث">طريقة البحث</label>
                     <select class="form-input" id="promoteSearchMethod">
-                        <option value="id">بالأيدي</option>
-                        <option value="email">بالإيميل</option>
+                        <option value="id" data-en="By ID" data-ar="بالأيدي">بالأيدي</option>
+                        <option value="email" data-en="By Email" data-ar="بالإيميل">بالإيميل</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>أدخل الأيدي أو الإيميل</label>
+                    <label data-en="Enter ID or Email" data-ar="أدخل الأيدي أو الإيميل">أدخل الأيدي أو الإيميل</label>
                     <input type="text" class="form-input" id="promoteSearchValue" required>
                 </div>
                 <div class="form-group">
-                    <label>اسم الأدمن</label>
+                    <label data-en="Admin Name" data-ar="اسم الأدمن">اسم الأدمن</label>
                     <input type="text" class="form-input" id="promoteAdminName" required>
                 </div>
                 <div class="form-group">
                     <button type="button" class="form-btn secondary" onclick="searchUserForPromote()">
                         <i class="fas fa-search"></i>
-                        البحث عن المستخدم
+                        <span data-en="Search User" data-ar="البحث عن المستخدم">البحث عن المستخدم</span>
                     </button>
                 </div>
-                <div id="promoteUserInfo" style="display: none; background: #101820; padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid #00FFB2;">
+                <div id="promoteUserInfo" style="display: none; background: var(--background-color); padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--primary-color);">
                     <!-- User info will be displayed here -->
                 </div>
                 <button type="submit" class="form-btn" id="promoteSubmitBtn" disabled>
                     <i class="fas fa-crown"></i>
-                    ترقية لأدمن
+                    <span data-en="Promote to Admin" data-ar="ترقية لأدمن">ترقية لأدمن</span>
                 </button>
             </form>
         </div>
@@ -1170,29 +1285,29 @@
             <button class="modal-close" onclick="closeCoinsModal()">&times;</button>
             <h2 class="modal-title">
                 <i class="fas fa-coins"></i>
-                إدارة الكوينز
+                <span data-en="Coins Management" data-ar="إدارة الكوينز">إدارة الكوينز</span>
             </h2>
             <form onsubmit="handleCoinsManagement(event)">
                 <div class="form-group">
-                    <label>أيدي المستخدم</label>
+                    <label data-en="User ID" data-ar="أيدي المستخدم">أيدي المستخدم</label>
                     <input type="number" class="form-input" id="coinsUserId" required>
                 </div>
                 <div class="form-group">
-                    <label>كمية الكوينز</label>
+                    <label data-en="Coins Amount" data-ar="كمية الكوينز">كمية الكوينز</label>
                     <input type="number" class="form-input" id="coinsAmount" required>
                 </div>
                 <div class="form-group">
                     <button type="button" class="form-btn secondary" onclick="showUserInfoInModal()">
                         <i class="fas fa-info"></i>
-                        معلومات المستخدم
+                        <span data-en="User Info" data-ar="معلومات المستخدم">معلومات المستخدم</span>
                     </button>
                 </div>
-                <div id="coinsUserInfo" style="display: none; background: #101820; padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid #00FFB2;">
+                <div id="coinsUserInfo" style="display: none; background: var(--background-color); padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--primary-color);">
                     <!-- User info will be displayed here -->
                 </div>
                 <button type="submit" class="form-btn">
                     <i class="fas fa-plus"></i>
-                    إضافة الكوينز
+                    <span data-en="Add Coins" data-ar="إضافة الكوينز">إضافة الكوينز</span>
                 </button>
             </form>
         </div>
@@ -1202,19 +1317,24 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <i class="fas fa-robot"></i>
-                ألترا بوت | UltraBot
+                <img id="logoImage" src="" alt="Logo" style="display: none;">
+                <i class="fas fa-robot" id="logoIcon"></i>
+                <span data-en="UltraBot" data-ar="ألترا بوت | UltraBot">ألترا بوت | UltraBot</span>
             </div>
             <ul class="nav-links">
-                <li><a href="#" onclick="showPage('home')">الرئيسية</a></li>
-                <li><a href="#" onclick="showPage('features')">المميزات</a></li>
-                <li><a href="#" onclick="showPage('premium')">البريميوم</a></li>
-                <li><a href="#" onclick="showPage('support')">الدعم</a></li>
+                <li><a href="#" onclick="showPage('home')" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                <li><a href="#" onclick="showPage('features')" data-en="Features" data-ar="المميزات">المميزات</a></li>
+                <li><a href="#" onclick="showPage('premium')" data-en="Premium" data-ar="البريميوم">البريميوم</a></li>
+                <li><a href="#" onclick="showPage('support')" data-en="Support" data-ar="الدعم">الدعم</a></li>
             </ul>
             <div class="auth-section">
+                <select class="language-selector" id="languageSelector" onchange="changeLanguage(this.value)">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                </select>
                 <button class="login-btn" id="loginBtn" onclick="openLoginModal()">
                     <i class="fas fa-sign-in-alt"></i>
-                    تسجيل الدخول
+                    <span data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</span>
                 </button>
                 <div class="user-info" id="userInfo">
                     <div class="credits">
@@ -1224,7 +1344,7 @@
                         <span id="userInitials"></span>
                     </div>
                     <div id="adminBadge" class="admin-badge" style="display: none;">
-                        <i class="fas fa-crown"></i> مدير
+                        <i class="fas fa-crown"></i> <span data-en="Admin" data-ar="مدير">مدير</span>
                     </div>
                 </div>
                 <button class="mobile-menu" onclick="toggleSidebar()">
@@ -1242,92 +1362,92 @@
         <!-- Sidebar -->
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-title">لوحة التحكم</div>
+                <div class="sidebar-title" data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</div>
                 <button class="sidebar-item active" onclick="showPage('dashboard')">
                     <i class="fas fa-tachometer-alt"></i>
-                    نظرة عامة
+                    <span data-en="Overview" data-ar="نظرة عامة">نظرة عامة</span>
                 </button>
                 <button class="sidebar-item" onclick="showPage('servers')">
                     <i class="fas fa-server"></i>
-                    إدارة السيرفرات
+                    <span data-en="Server Management" data-ar="إدارة السيرفرات">إدارة السيرفرات</span>
                 </button>
                 <button class="sidebar-item" onclick="showPage('settings')">
                     <i class="fas fa-cog"></i>
-                    إعدادات البوت
+                    <span data-en="Bot Settings" data-ar="إعدادات البوت">إعدادات البوت</span>
                 </button>
             </div>
 
             <div class="sidebar-section" id="adminSection" style="display: none;">
-                <div class="sidebar-title">لوحة الإدارة</div>
+                <div class="sidebar-title" data-en="System Management" data-ar="إدارة النظام">إدارة النظام</div>
                 <button class="sidebar-item" onclick="showPage('admin')">
                     <i class="fas fa-crown"></i>
-                    إدارة النظام
+                    <span data-en="System Management" data-ar="إدارة النظام">إدارة النظام</span>
                 </button>
                 <button class="sidebar-item" onclick="showPage('users')">
                     <i class="fas fa-users"></i>
-                    إدارة المستخدمين
+                    <span data-en="User Management" data-ar="إدارة المستخدمين">إدارة المستخدمين</span>
                 </button>
             </div>
 
             <div class="sidebar-section" id="serverFeatures" style="display: none;">
-                <div class="sidebar-title">خصائص السيرفر</div>
+                <div class="sidebar-title" data-en="Server Features" data-ar="خصائص السيرفر">خصائص السيرفر</div>
                 <button class="sidebar-item" onclick="toggleFeature('welcome', this)">
                     <i class="fas fa-hand-wave"></i>
-                    الترحيب والمغادرة
+                    <span data-en="Welcome & Leave" data-ar="الترحيب والمغادرة">الترحيب والمغادرة</span>
                     <span class="feature-status status-disabled">❌</span>
                 </button>
                 <button class="sidebar-item" onclick="toggleFeature('moderation', this)">
                     <i class="fas fa-shield-alt"></i>
-                    الإشراف
+                    <span data-en="Moderation" data-ar="الإشراف">الإشراف</span>
                     <span class="feature-status status-disabled">❌</span>
                 </button>
                 <button class="sidebar-item" onclick="toggleFeature('automod', this)">
                     <i class="fas fa-robot"></i>
-                    الرقابة التلقائية
+                    <span data-en="Auto Moderation" data-ar="الرقابة التلقائية">الرقابة التلقائية</span>
                     <span class="feature-status status-disabled">❌</span>
                 </button>
                 <button class="sidebar-item" onclick="toggleFeature('logs', this)">
                     <i class="fas fa-clipboard-list"></i>
-                    السجلات
+                    <span data-en="Logs" data-ar="السجلات">السجلات</span>
                     <span class="feature-status status-disabled">❌</span>
                 </button>
                 <button class="sidebar-item" onclick="toggleFeature('levels', this)">
                     <i class="fas fa-level-up-alt"></i>
-                    نظام المستويات
+                    <span data-en="Level System" data-ar="نظام المستويات">نظام المستويات</span>
                     <span class="feature-status status-disabled">❌</span>
                 </button>
                 <button class="sidebar-item" onclick="toggleFeature('music', this)">
                     <i class="fas fa-music"></i>
-                    الموسيقى
+                    <span data-en="Music" data-ar="الموسيقى">الموسيقى</span>
                     <span class="feature-status status-disabled">❌</span>
                 </button>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-title">التخصيص</div>
+                <div class="sidebar-title" data-en="Customization" data-ar="التخصيص">التخصيص</div>
                 <button class="sidebar-item" onclick="showPage('customization')">
                     <i class="fas fa-palette"></i>
-                    تخصيص البوت
+                    <span data-en="Bot Customization" data-ar="تخصيص البوت">تخصيص البوت</span>
                 </button>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-title">الحساب</div>
+                <div class="sidebar-title" data-en="Account" data-ar="الحساب">الحساب</div>
                 <button class="sidebar-item" onclick="showPage('profile')">
                     <i class="fas fa-user"></i>
-                    الملف الشخصي
+                    <span data-en="Profile" data-ar="الملف الشخصي">الملف الشخصي</span>
                 </button>
                 <button class="sidebar-item" onclick="showPage('leaderboard')">
                     <i class="fas fa-trophy"></i>
-                    الترتيب العالمي
+                    <span data-en="Global Leaderboard" data-ar="الترتيب العالمي">الترتيب العالمي</span>
                 </button>
                 <button class="sidebar-item" onclick="showPage('premium')">
                     <i class="fas fa-crown"></i>
-                    البريميوم
+                    <span data-en="Premium" data-ar="البريميوم">البريميوم</span>
                 </button>
                 <button class="sidebar-item" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i>
-                    تسجيل الخروج
+                    <span data-en="Logout" data-ar="تسجيل الخروج">تسجيل الخروج</span>
                 </button>
             </div>
         </nav>
@@ -1337,15 +1457,16 @@
             <!-- Home Page -->
             <div id="home-page" class="page-content">
                 <div class="hero-section">
-                    <h1 class="hero-title">ألترا بوت | UltraBot</h1>
-                    <p class="hero-subtitle">البوت العربي الذكي الأول في ديسكورد</p>
-                    <p class="hero-subtitle">بوت متعدد الأغراض: ترحيب، إشراف، موسيقى، ألعاب</p>
+                    <img id="heroBanner" class="hero-banner" src="" alt="Banner" style="display: none;">
+                    <h1 class="hero-title" data-en="UltraBot" data-ar="ألترا بوت | UltraBot">ألترا بوت | UltraBot</h1>
+                    <p class="hero-subtitle" data-en="The First Smart Arabic Bot on Discord" data-ar="البوت العربي الذكي الأول في ديسكورد">البوت العربي الذكي الأول في ديسكورد</p>
+                    <p class="hero-subtitle" data-en="Multi-purpose bot: Welcome, Moderation, Music, Games" data-ar="بوت متعدد الأغراض: ترحيب، إشراف، موسيقى، ألعاب">بوت متعدد الأغراض: ترحيب، إشراف، موسيقى، ألعاب</p>
                     <div class="cta-buttons">
                         <a href="#" class="btn btn-primary" onclick="addBotToServer()">
-                            <i class="fab fa-discord"></i> إضافة البوت
+                            <i class="fab fa-discord"></i> <span data-en="Add Bot" data-ar="إضافة البوت">إضافة البوت</span>
                         </a>
                         <a href="#" class="btn btn-secondary" onclick="openLoginModal()">
-                            <i class="fas fa-tachometer-alt"></i> لوحة التحكم
+                            <i class="fas fa-tachometer-alt"></i> <span data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</span>
                         </a>
                     </div>
                 </div>
@@ -1353,12 +1474,12 @@
                 <div class="stats-grid">
                     <div class="stat-card fade-in">
                         <div class="stat-header">
-                            <div class="stat-icon" style="background: #5865f2;">
+                            <div class="stat-icon" style="background: var(--primary-color);">
                                 <i class="fas fa-server"></i>
                             </div>
                             <div class="stat-info">
                                 <div class="stat-value">150K+</div>
-                                <div class="stat-label">سيرفرات</div>
+                                <div class="stat-label" data-en="Servers" data-ar="سيرفرات">سيرفرات</div>
                             </div>
                         </div>
                     </div>
@@ -1369,7 +1490,7 @@
                             </div>
                             <div class="stat-info">
                                 <div class="stat-value">5M+</div>
-                                <div class="stat-label">مستخدمين</div>
+                                <div class="stat-label" data-en="Users" data-ar="مستخدمين">مستخدمين</div>
                             </div>
                         </div>
                     </div>
@@ -1380,7 +1501,7 @@
                             </div>
                             <div class="stat-info">
                                 <div class="stat-value">99.9%</div>
-                                <div class="stat-label">وقت التشغيل</div>
+                                <div class="stat-label" data-en="Uptime" data-ar="وقت التشغيل">وقت التشغيل</div>
                             </div>
                         </div>
                     </div>
@@ -1391,7 +1512,7 @@
                             </div>
                             <div class="stat-info">
                                 <div class="stat-value">24/7</div>
-                                <div class="stat-label">دعم فني</div>
+                                <div class="stat-label" data-en="Support" data-ar="دعم فني">دعم فني</div>
                             </div>
                         </div>
                     </div>
@@ -1402,70 +1523,69 @@
             <div id="dashboard-page" class="page-content" style="display: none;">
                 <div class="login-required" id="loginRequired">
                     <i class="fas fa-lock"></i>
-                    <h2>تسجيل الدخول مطلوب</h2>
-                    <p>يجب تسجيل الدخول للوصول إلى لوحة التحكم</p>
+                    <h2 data-en="Login Required" data-ar="تسجيل الدخول مطلوب">تسجيل الدخول مطلوب</h2>
+                    <p data-en="You must login to access the dashboard" data-ar="يجب تسجيل الدخول للوصول إلى لوحة التحكم">يجب تسجيل الدخول للوصول إلى لوحة التحكم</p>
                     <button class="btn btn-primary" onclick="openLoginModal()">
                         <i class="fas fa-sign-in-alt"></i>
-                        تسجيل الدخول
+                        <span data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</span>
                     </button>
                 </div>
 
                 <div id="dashboardContent" style="display: none;">
                     <div class="page-header">
-                        <h1 class="page-title">لوحة التحكم</h1>
-                        <p class="page-subtitle">إدارة البوت وإعداداته</p>
+                        <h1 class="page-title" data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</h1>
+                        <p class="page-subtitle" data-en="Manage your bot and settings" data-ar="إدارة البوت وإعداداته">إدارة البوت وإعداداته</p>
                     </div>
 
                     <!-- Admin Panel -->
                     <div id="adminPanel" class="admin-panel" style="display: none;">
                         <div class="admin-title">
                             <i class="fas fa-crown"></i>
-                            لوحة الإدارة
+                            <span data-en="System Management" data-ar="إدارة النظام">إدارة النظام</span>
                         </div>
                         <div class="admin-controls">
-                            <button class="admin-btn" onclick="showConfirm('إضافة 1000 كوين لحسابك؟', () => addCoins(1000))">
+                            <button class="admin-btn" onclick="showConfirm(getTranslation('Add 1000 coins to your account?', 'إضافة 1000 كوين لحسابك؟'), () => addCoins(1000))">
                                 <i class="fas fa-coins"></i>
-                                إضافة كوينز
+                                <span data-en="Add Coins" data-ar="إضافة كوينز">إضافة كوينز</span>
                             </button>
-                            <button class="admin-btn" onclick="showConfirm('رفع مستواك بـ 10 مستويات؟', () => addLevels(10))">
+                            <button class="admin-btn" onclick="showConfirm(getTranslation('Increase your level by 10?', 'رفع مستواك بـ 10 مستويات؟'), () => addLevels(10))">
                                 <i class="fas fa-level-up-alt"></i>
-                                رفع المستوى
+                                <span data-en="Level Up" data-ar="رفع المستوى">رفع المستوى</span>
                             </button>
-                            <button class="admin-btn" onclick="showConfirm('تفعيل جميع المميزات المتقدمة؟', () => unlockPremium())">
+                            <button class="admin-btn" onclick="showConfirm(getTranslation('Activate all premium features?', 'تفعيل جميع المميزات المتقدمة؟'), () => unlockPremium())">
                                 <i class="fas fa-star"></i>
-                                تفعيل البريميوم
+                                <span data-en="Activate Premium" data-ar="تفعيل البريميوم">تفعيل البريميوم</span>
                             </button>
                             <button class="admin-btn" onclick="showPage('users')">
                                 <i class="fas fa-users-cog"></i>
-                                إدارة المستخدمين
+                                <span data-en="User Management" data-ar="إدارة المستخدمين">إدارة المستخدمين</span>
                             </button>
                             <button class="admin-btn" onclick="openCoinsModal()">
                                 <i class="fas fa-coins"></i>
-                                إدارة الكوينز بالأيدي
+                                <span data-en="Manage Coins by ID" data-ar="إدارة الكوينز بالأيدي">إدارة الكوينز بالأيدي</span>
                             </button>
-                            ${(currentUser?.username === 'saeed' || currentUser?.username === 'itrx') ? `
+                            <div id="superAdminControls" style="display: none;">
                                 <button class="admin-btn" onclick="openCreateAccountModal()">
                                     <i class="fas fa-user-plus"></i>
-                                    إنشاء حساب
+                                    <span data-en="Create Account" data-ar="إنشاء حساب">إنشاء حساب</span>
                                 </button>
                                 <button class="admin-btn" onclick="openPromoteAdminModal()">
                                     <i class="fas fa-user-shield"></i>
-                                    ترقية أدمن
+                                    <span data-en="Promote Admin" data-ar="ترقية أدمن">ترقية أدمن</span>
                                 </button>
-                            ` : ''}
+                            </div>
                         </div>
-
                     </div>
 
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-header">
-                                <div class="stat-icon" style="background: #5865f2;">
+                                <div class="stat-icon" style="background: var(--primary-color);">
                                     <i class="fas fa-coins"></i>
                                 </div>
                                 <div class="stat-info">
                                     <div class="stat-value" id="dashboardCredits">0</div>
-                                    <div class="stat-label">الكوينز</div>
+                                    <div class="stat-label" data-en="Coins" data-ar="الكوينز">الكوينز</div>
                                 </div>
                             </div>
                         </div>
@@ -1476,7 +1596,7 @@
                                 </div>
                                 <div class="stat-info">
                                     <div class="stat-value" id="userServers">0</div>
-                                    <div class="stat-label">السيرفرات</div>
+                                    <div class="stat-label" data-en="Servers" data-ar="السيرفرات">السيرفرات</div>
                                 </div>
                             </div>
                         </div>
@@ -1487,7 +1607,7 @@
                                 </div>
                                 <div class="stat-info">
                                     <div class="stat-value" id="userLevel">1</div>
-                                    <div class="stat-label">المستوى</div>
+                                    <div class="stat-label" data-en="Level" data-ar="المستوى">المستوى</div>
                                 </div>
                             </div>
                         </div>
@@ -1498,7 +1618,7 @@
                                 </div>
                                 <div class="stat-info">
                                     <div class="stat-value" id="userRank">-</div>
-                                    <div class="stat-label">الترتيب</div>
+                                    <div class="stat-label" data-en="Rank" data-ar="الترتيب">الترتيب</div>
                                 </div>
                             </div>
                         </div>
@@ -1510,18 +1630,18 @@
             <div id="servers-page" class="page-content" style="display: none;">
                 <div class="login-required" id="serversLoginRequired">
                     <i class="fas fa-lock"></i>
-                    <h2>تسجيل الدخول مطلوب</h2>
-                    <p>يجب تسجيل الدخول لإدارة السيرفرات</p>
+                    <h2 data-en="Login Required" data-ar="تسجيل الدخول مطلوب">تسجيل الدخول مطلوب</h2>
+                    <p data-en="You must login to manage servers" data-ar="يجب تسجيل الدخول لإدارة السيرفرات">يجب تسجيل الدخول لإدارة السيرفرات</p>
                     <button class="btn btn-primary" onclick="openLoginModal()">
                         <i class="fas fa-sign-in-alt"></i>
-                        تسجيل الدخول
+                        <span data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</span>
                     </button>
                 </div>
 
                 <div id="serversContent" style="display: none;">
                     <div class="page-header">
-                        <h1 class="page-title">إدارة السيرفرات</h1>
-                        <p class="page-subtitle">اختر سيرفر لإدارة إعدادات البوت</p>
+                        <h1 class="page-title" data-en="Server Management" data-ar="إدارة السيرفرات">إدارة السيرفرات</h1>
+                        <p class="page-subtitle" data-en="Choose a server to manage bot settings" data-ar="اختر سيرفر لإدارة إعدادات البوت">اختر سيرفر لإدارة إعدادات البوت</p>
                     </div>
 
                     <!-- Server Cards -->
@@ -1531,10 +1651,10 @@
 
                     <div class="server-selector" style="display: none;">
                         <label for="serverSelect" style="display: block; margin-bottom: 1rem; font-weight: 600;">
-                            <i class="fas fa-server"></i> اختر السيرفر:
+                            <i class="fas fa-server"></i> <span data-en="Choose Server:" data-ar="اختر السيرفر:">اختر السيرفر:</span>
                         </label>
                         <select id="serverSelect" class="server-dropdown" onchange="selectServer(this.value)">
-                            <option value="">-- اختر سيرفر --</option>
+                            <option value="" data-en="-- Choose Server --" data-ar="-- اختر سيرفر --">-- اختر سيرفر --</option>
                         </select>
                     </div>
 
@@ -1542,43 +1662,43 @@
                         <div class="settings-panel">
                             <div class="settings-header">
                                 <i class="fas fa-cog"></i>
-                                إعدادات السيرفر: <span id="selectedServerName"></span>
+                                <span data-en="Server Settings:" data-ar="إعدادات السيرفر:">إعدادات السيرفر:</span> <span id="selectedServerName"></span>
                             </div>
                             <div class="settings-content">
                                 <div class="setting-item">
                                     <div class="setting-info">
-                                        <h4>الترحيب والمغادرة</h4>
-                                        <p>رسائل ترحيب تلقائية للأعضاء الجدد</p>
+                                        <h4 data-en="Welcome & Leave" data-ar="الترحيب والمغادرة">الترحيب والمغادرة</h4>
+                                        <p data-en="Automatic welcome messages for new members" data-ar="رسائل ترحيب تلقائية للأعضاء الجدد">رسائل ترحيب تلقائية للأعضاء الجدد</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات الترحيب والمغادرة؟', () => toggleServerFeature('welcome', this))"></div>
+                                    <div class="toggle-switch" onclick="showConfirm(getTranslation('Change welcome & leave settings?', 'تغيير إعدادات الترحيب والمغادرة؟'), () => toggleServerFeature('welcome', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
-                                        <h4>نظام الإشراف</h4>
-                                        <p>أدوات الإشراف والتحكم في السيرفر</p>
+                                        <h4 data-en="Moderation System" data-ar="نظام الإشراف">نظام الإشراف</h4>
+                                        <p data-en="Moderation tools and server control" data-ar="أدوات الإشراف والتحكم في السيرفر">أدوات الإشراف والتحكم في السيرفر</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات نظام الإشراف؟', () => toggleServerFeature('moderation', this))"></div>
+                                    <div class="toggle-switch" onclick="showConfirm(getTranslation('Change moderation system settings?', 'تغيير إعدادات نظام الإشراف؟'), () => toggleServerFeature('moderation', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
-                                        <h4>الرقابة التلقائية</h4>
-                                        <p>فلترة الرسائل والمحتوى تلقائياً</p>
+                                        <h4 data-en="Auto Moderation" data-ar="الرقابة التلقائية">الرقابة التلقائية</h4>
+                                        <p data-en="Automatic message and content filtering" data-ar="فلترة الرسائل والمحتوى تلقائياً">فلترة الرسائل والمحتوى تلقائياً</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات الرقابة التلقائية؟', () => toggleServerFeature('automod', this))"></div>
+                                    <div class="toggle-switch" onclick="showConfirm(getTranslation('Change auto moderation settings?', 'تغيير إعدادات الرقابة التلقائية؟'), () => toggleServerFeature('automod', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
-                                        <h4>نظام المستويات</h4>
-                                        <p>نظام XP والمستويات للأعضاء</p>
+                                        <h4 data-en="Level System" data-ar="نظام المستويات">نظام المستويات</h4>
+                                        <p data-en="XP and level system for members" data-ar="نظام XP والمستويات للأعضاء">نظام XP والمستويات للأعضاء</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات نظام المستويات؟', () => toggleServerFeature('levels', this))"></div>
+                                    <div class="toggle-switch" onclick="showConfirm(getTranslation('Change level system settings?', 'تغيير إعدادات نظام المستويات؟'), () => toggleServerFeature('levels', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
-                                        <h4>بوت الموسيقى</h4>
-                                        <p>تشغيل الموسيقى في القنوات الصوتية</p>
+                                        <h4 data-en="Music Bot" data-ar="بوت الموسيقى">بوت الموسيقى</h4>
+                                        <p data-en="Play music in voice channels" data-ar="تشغيل الموسيقى في القنوات الصوتية">تشغيل الموسيقى في القنوات الصوتية</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات بوت الموسيقى؟', () => toggleServerFeature('music', this))"></div>
+                                    <div class="toggle-switch" onclick="showConfirm(getTranslation('Change music bot settings?', 'تغيير إعدادات بوت الموسيقى؟'), () => toggleServerFeature('music', this))"></div>
                                 </div>
                             </div>
                         </div>
@@ -1589,14 +1709,14 @@
             <!-- Leaderboard Page -->
             <div id="leaderboard-page" class="page-content" style="display: none;">
                 <div class="page-header">
-                    <h1 class="page-title">🏆 الترتيب العالمي</h1>
-                    <p class="page-subtitle">أفضل اللاعبين في النظام</p>
+                    <h1 class="page-title">🏆 <span data-en="Global Leaderboard" data-ar="الترتيب العالمي">الترتيب العالمي</span></h1>
+                    <p class="page-subtitle" data-en="Top players in the system" data-ar="أفضل اللاعبين في النظام">أفضل اللاعبين في النظام</p>
                 </div>
 
                 <div class="settings-panel">
                     <div class="settings-header">
                         <i class="fas fa-trophy"></i>
-                        المتصدرون
+                        <span data-en="Top Players" data-ar="المتصدرون">المتصدرون</span>
                     </div>
                     <div class="settings-content">
                         <div id="leaderboardList">
@@ -1610,27 +1730,27 @@
             <div id="customization-page" class="page-content" style="display: none;">
                 <div class="login-required" id="customizationLoginRequired">
                     <i class="fas fa-lock"></i>
-                    <h2>تسجيل الدخول مطلوب</h2>
-                    <p>يجب تسجيل الدخول لتخصيص البوت</p>
+                    <h2 data-en="Login Required" data-ar="تسجيل الدخول مطلوب">تسجيل الدخول مطلوب</h2>
+                    <p data-en="You must login to customize the bot" data-ar="يجب تسجيل الدخول لتخصيص البوت">يجب تسجيل الدخول لتخصيص البوت</p>
                     <button class="btn btn-primary" onclick="openLoginModal()">
                         <i class="fas fa-sign-in-alt"></i>
-                        تسجيل الدخول
+                        <span data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</span>
                     </button>
                 </div>
 
                 <div id="customizationContent" style="display: none;">
                     <div class="page-header">
-                        <h1 class="page-title">🎨 تخصيص البوت</h1>
-                        <p class="page-subtitle">خصص مظهر البوت وإعداداته الشخصية</p>
+                        <h1 class="page-title">🎨 <span data-en="Bot Customization" data-ar="تخصيص البوت">تخصيص البوت</span></h1>
+                        <p class="page-subtitle" data-en="Customize bot appearance and personal settings" data-ar="خصص مظهر البوت وإعداداته الشخصية">خصص مظهر البوت وإعداداته الشخصية</p>
                     </div>
 
                     <div id="premiumRequired" class="login-required">
                         <i class="fas fa-crown"></i>
-                        <h2>اشتراك البريميوم مطلوب</h2>
-                        <p>تخصيص البوت متاح فقط لمشتركي الباقة المتقدمة</p>
+                        <h2 data-en="Premium Subscription Required" data-ar="اشتراك البريميوم مطلوب">اشتراك البريميوم مطلوب</h2>
+                        <p data-en="Bot customization is available only for advanced package subscribers" data-ar="تخصيص البوت متاح فقط لمشتركي الباقة المتقدمة">تخصيص البوت متاح فقط لمشتركي الباقة المتقدمة</p>
                         <button class="btn btn-warning" onclick="showPage('premium')">
                             <i class="fas fa-crown"></i>
-                            ترقية للبريميوم
+                            <span data-en="Upgrade to Premium" data-ar="ترقية للبريميوم">ترقية للبريميوم</span>
                         </button>
                     </div>
 
@@ -1639,10 +1759,10 @@
                         <div class="settings-panel">
                             <div class="settings-header">
                                 <i class="fas fa-palette"></i>
-                                تخصيص البوت متاح الآن!
+                                <span data-en="Bot customization is now available!" data-ar="تخصيص البوت متاح الآن!">تخصيص البوت متاح الآن!</span>
                             </div>
                             <div class="settings-content">
-                                <p>🎉 تهانينا! يمكنك الآن تخصيص البوت بالكامل</p>
+                                <p data-en="🎉 Congratulations! You can now fully customize the bot" data-ar="🎉 تهانينا! يمكنك الآن تخصيص البوت بالكامل">🎉 تهانينا! يمكنك الآن تخصيص البوت بالكامل</p>
                             </div>
                         </div>
                     </div>
@@ -1652,8 +1772,8 @@
             <!-- Premium Page -->
             <div id="premium-page" class="page-content" style="display: none;">
                 <div class="page-header">
-                    <h1 class="page-title">اشتراكات البريميوم</h1>
-                    <p class="page-subtitle">احصل على مميزات إضافية حصرية</p>
+                    <h1 class="page-title" data-en="Premium Subscriptions" data-ar="اشتراكات البريميوم">اشتراكات البريميوم</h1>
+                    <p class="page-subtitle" data-en="Get exclusive additional features" data-ar="احصل على مميزات إضافية حصرية">احصل على مميزات إضافية حصرية</p>
                 </div>
 
                 <div class="features-grid">
@@ -1661,37 +1781,41 @@
                         <div class="feature-header">
                             <div class="feature-title">
                                 <i class="fas fa-crown" style="color: #faa61a;"></i>
-                                البريميوم الأساسي
+                                <span data-en="Basic Premium" data-ar="البريميوم الأساسي">البريميوم الأساسي</span>
                             </div>
-                            <div style="color: #faa61a; font-weight: bold;">$4.99/شهر</div>
+                            <div style="color: #faa61a; font-weight: bold;">$4.99/<span data-en="month" data-ar="شهر">شهر</span></div>
                         </div>
                         <div class="feature-description">
                             <ul style="list-style: none; padding: 0; margin: 1rem 0;">
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> مضاعفة الكوينز اليومي</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> أوامر إضافية</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> دعم أولوية</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> شارات حصرية</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="Double daily coins" data-ar="مضاعفة الكوينز اليومي">مضاعفة الكوينز اليومي</span></li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="Additional commands" data-ar="أوامر إضافية">أوامر إضافية</span></li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="Priority support" data-ar="دعم أولوية">دعم أولوية</span></li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="Exclusive badges" data-ar="شارات حصرية">شارات حصرية</span></li>
                             </ul>
-                            <button class="btn btn-warning" onclick="subscribePremium('basic')">اشترك الآن</button>
+                            <button class="btn btn-warning" onclick="subscribePremium('basic')">
+                                <span data-en="Subscribe Now" data-ar="اشترك الآن">اشترك الآن</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="feature-card" style="border: 2px solid #5865f2;">
+                    <div class="feature-card" style="border: 2px solid var(--primary-color);">
                         <div class="feature-header">
                             <div class="feature-title">
-                                <i class="fas fa-gem" style="color: #5865f2;"></i>
-                                البريميوم المتقدم
+                                <i class="fas fa-gem" style="color: var(--primary-color);"></i>
+                                <span data-en="Advanced Premium" data-ar="البريميوم المتقدم">البريميوم المتقدم</span>
                             </div>
-                            <div style="color: #5865f2; font-weight: bold;">$9.99/شهر</div>
+                            <div style="color: var(--primary-color); font-weight: bold;">$9.99/<span data-en="month" data-ar="شهر">شهر</span></div>
                         </div>
                         <div class="feature-description">
                             <ul style="list-style: none; padding: 0; margin: 1rem 0;">
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> جميع مميزات الأساسي</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> تخصيص البوت بالكامل</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> إعدادات متقدمة</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> تحليلات مفصلة</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> دعم VIP</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="All basic features" data-ar="جميع مميزات الأساسي">جميع مميزات الأساسي</span></li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="Full bot customization" data-ar="تخصيص البوت بالكامل">تخصيص البوت بالكامل</span></li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="Advanced settings" data-ar="إعدادات متقدمة">إعدادات متقدمة</span></li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="Detailed analytics" data-ar="تحليلات مفصلة">تحليلات مفصلة</span></li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> <span data-en="VIP support" data-ar="دعم VIP">دعم VIP</span></li>
                             </ul>
-                            <button class="btn btn-primary" onclick="subscribePremium('advanced')">اشترك الآن</button>
+                            <button class="btn btn-primary" onclick="subscribePremium('advanced')">
+                                <span data-en="Subscribe Now" data-ar="اشترك الآن">اشترك الآن</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1700,14 +1824,14 @@
             <!-- Users Management Page -->
             <div id="users-page" class="page-content" style="display: none;">
                 <div class="page-header">
-                    <h1 class="page-title">👥 إدارة المستخدمين</h1>
-                    <p class="page-subtitle">إدارة حسابات المستخدمين والصلاحيات</p>
+                    <h1 class="page-title">👥 <span data-en="User Management" data-ar="إدارة المستخدمين">إدارة المستخدمين</span></h1>
+                    <p class="page-subtitle" data-en="Manage user accounts and permissions" data-ar="إدارة حسابات المستخدمين والصلاحيات">إدارة حسابات المستخدمين والصلاحيات</p>
                 </div>
 
                 <div class="settings-panel">
                     <div class="settings-header">
                         <i class="fas fa-users"></i>
-                        قائمة المستخدمين
+                        <span data-en="Users List" data-ar="قائمة المستخدمين">قائمة المستخدمين</span>
                     </div>
                     <div class="settings-content">
                         <div id="usersList">
@@ -1720,8 +1844,8 @@
     </div>
 
     <!-- Footer -->
-    <footer style="background: #101820; border-top: 1px solid #00FFB2; padding: 1rem 0; text-align: center; color: #b9bbbe; font-size: 0.9rem;">
-        <p>© 2025 ألترا بوت | UltraBot - من صنع <strong style="color: #00FFB2;">iCore Studio 2025</strong></p>
+    <footer style="background: var(--background-color); border-top: 1px solid var(--primary-color); padding: 1rem 0; text-align: center; color: var(--secondary-color); font-size: 0.9rem;">
+        <p>© 2025 <span data-en="UltraBot" data-ar="ألترا بوت | UltraBot">ألترا بوت | UltraBot</span> - <span data-en="Made by" data-ar="من صنع">من صنع</span> <strong style="color: var(--primary-color);">iCore Studio 2025</strong></p>
     </footer>
 
     <script>
@@ -1732,6 +1856,18 @@
         let selectedServerId = null;
         let serverSettings = {};
         let pendingAction = null;
+        let currentLanguage = 'ar';
+        let dbConnected = false;
+
+        // Configuration
+        const config = {
+            logoUrl: '', // Add logo URL here
+            bannerUrls: {
+                ar: '', // Add Arabic banner URL here (1200x300)
+                en: ''  // Add English banner URL here (1200x300)
+            },
+            mongoUrl: 'mongodb://WebUltraBot:WebUltraBot@db.wick.ink:27017/db_WebUltraBot?authSource=admin'
+        };
 
         // Premium accounts with credentials
         const premiumAccounts = {
@@ -1772,12 +1908,176 @@
         // Admin users (can manage but not create accounts)
         let adminUsers = {};
 
+        // Global leaderboard data
+        let globalLeaderboard = [];
+
+        // Language translations
+        const translations = {
+            en: {
+                'Add 1000 coins to your account?': 'Add 1000 coins to your account?',
+                'Increase your level by 10?': 'Increase your level by 10?',
+                'Activate all premium features?': 'Activate all premium features?',
+                'Change welcome & leave settings?': 'Change welcome & leave settings?',
+                'Change moderation system settings?': 'Change moderation system settings?',
+                'Change auto moderation settings?': 'Change auto moderation settings?',
+                'Change level system settings?': 'Change level system settings?',
+                'Change music bot settings?': 'Change music bot settings?'
+            },
+            ar: {
+                'Add 1000 coins to your account?': 'إضافة 1000 كوين لحسابك؟',
+                'Increase your level by 10?': 'رفع مستواك بـ 10 مستويات؟',
+                'Activate all premium features?': 'تفعيل جميع المميزات المتقدمة؟',
+                'Change welcome & leave settings?': 'تغيير إعدادات الترحيب والمغادرة؟',
+                'Change moderation system settings?': 'تغيير إعدادات نظام الإشراف؟',
+                'Change auto moderation settings?': 'تغيير إعدادات الرقابة التلقائية؟',
+                'Change level system settings?': 'تغيير إعدادات نظام المستويات؟',
+                'Change music bot settings?': 'تغيير إعدادات بوت الموسيقى؟'
+            }
+        };
+
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
+            initializeDatabase();
             checkLoginStatus();
             showPage('home');
             setupResponsiveHandlers();
+            loadAssets();
+            updateLeaderboard();
         });
+
+        // Initialize database connection
+        function initializeDatabase() {
+            const dbStatus = document.getElementById('dbStatus');
+            
+            // Simulate database connection
+            setTimeout(() => {
+                dbConnected = true;
+                dbStatus.classList.add('connected');
+                dbStatus.innerHTML = '<i class="fas fa-database"></i> <span data-en="Connected" data-ar="متصل">متصل</span>';
+                
+                // Load data from database simulation
+                loadFromDatabase();
+                updateLanguage();
+            }, 2000);
+        }
+
+        // Load data from database simulation
+        function loadFromDatabase() {
+            // Simulate loading user data from MongoDB
+            const savedUsers = localStorage.getItem('allUsers');
+            if (savedUsers) {
+                const loadedUsers = JSON.parse(savedUsers);
+                allUsers = { ...premiumAccounts, ...loadedUsers };
+            }
+            
+            // Update leaderboard
+            updateLeaderboard();
+        }
+
+        // Save data to database simulation
+        function saveToDatabase() {
+            if (!dbConnected) return;
+            
+            // Simulate saving to MongoDB
+            const usersToSave = {};
+            Object.keys(allUsers).forEach(username => {
+                if (!premiumAccounts[username]) {
+                    usersToSave[username] = allUsers[username];
+                }
+            });
+            
+            localStorage.setItem('allUsers', JSON.stringify(usersToSave));
+            updateLeaderboard();
+        }
+
+        // Update global leaderboard
+        function updateLeaderboard() {
+            globalLeaderboard = Object.values(allUsers)
+                .filter(user => user.credits >= 1000000) // Only users with 1M+ coins
+                .sort((a, b) => b.credits - a.credits)
+                .map((user, index) => ({
+                    ...user,
+                    rank: index + 1
+                }));
+            
+            // Update ranks in allUsers
+            globalLeaderboard.forEach(user => {
+                if (allUsers[user.username]) {
+                    allUsers[user.username].rank = user.rank;
+                }
+            });
+            
+            // Update current user rank if logged in
+            if (currentUser && currentUser.credits >= 1000000) {
+                const userInLeaderboard = globalLeaderboard.find(u => u.username === currentUser.username);
+                if (userInLeaderboard) {
+                    currentUser.rank = userInLeaderboard.rank;
+                    document.getElementById('userRank').textContent = currentUser.rank;
+                }
+            }
+        }
+
+        // Load assets (logo and banners)
+        function loadAssets() {
+            // Load logo
+            if (config.logoUrl) {
+                const logoImg = document.getElementById('logoImage');
+                const logoIcon = document.getElementById('logoIcon');
+                logoImg.src = config.logoUrl;
+                logoImg.style.display = 'block';
+                logoIcon.style.display = 'none';
+            }
+            
+            // Load banner
+            updateBanner();
+        }
+
+        // Update banner based on language
+        function updateBanner() {
+            const heroBanner = document.getElementById('heroBanner');
+            const bannerUrl = config.bannerUrls[currentLanguage];
+            
+            if (bannerUrl) {
+                heroBanner.src = bannerUrl;
+                heroBanner.style.display = 'block';
+            } else {
+                heroBanner.style.display = 'none';
+            }
+        }
+
+        // Change language
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const html = document.documentElement;
+            
+            if (lang === 'en') {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+            } else {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+            }
+            
+            updateLanguage();
+            updateBanner();
+        }
+
+        // Update language for all elements
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-en][data-ar]');
+            elements.forEach(element => {
+                if (currentLanguage === 'en' && element.dataset.en) {
+                    element.textContent = element.dataset.en;
+                } else if (currentLanguage === 'ar' && element.dataset.ar) {
+                    element.textContent = element.dataset.ar;
+                }
+            });
+        }
+
+        // Get translation
+        function getTranslation(enText, arText) {
+            return currentLanguage === 'en' ? enText : arText;
+        }
 
         // Check if user is logged in
         function checkLoginStatus() {
@@ -1842,7 +2142,7 @@
                 return;
             }
             
-            showNotification('اسم المستخدم أو كلمة المرور غير صحيحة', 'error');
+            showNotification(getTranslation('Invalid username or password', 'اسم المستخدم أو كلمة المرور غير صحيحة'), 'error');
         }
 
         // Handle registration
@@ -1856,12 +2156,12 @@
             
             // Validation
             if (password !== confirmPassword) {
-                showNotification('كلمات المرور غير متطابقة', 'error');
+                showNotification(getTranslation('Passwords do not match', 'كلمات المرور غير متطابقة'), 'error');
                 return;
             }
             
             if (allUsers[username]) {
-                showNotification('اسم المستخدم موجود بالفعل', 'error');
+                showNotification(getTranslation('Username already exists', 'اسم المستخدم موجود بالفعل'), 'error');
                 return;
             }
             
@@ -1882,31 +2182,32 @@
             };
             
             allUsers[username] = newUser;
+            saveToDatabase();
             
             // Show verification form
             showVerificationForm();
-            showNotification('تم إرسال رمز التحقق إلى إيميلك', 'success');
+            showNotification(getTranslation('Verification code sent to your email', 'تم إرسال رمز التحقق إلى إيميلك'), 'success');
         }
 
         // Handle verification
         function handleVerification(event) {
             event.preventDefault();
             
-            const code = '';
+            let code = '';
             for (let i = 1; i <= 6; i++) {
                 code += document.getElementById(`code${i}`).value;
             }
             
             // Simulate verification (accept any 6-digit code)
             if (code.length === 6) {
-                showNotification('تم تأكيد الحساب بنجاح!', 'success');
+                showNotification(getTranslation('Account verified successfully!', 'تم تأكيد الحساب بنجاح!'), 'success');
                 setTimeout(() => {
                     closeLoginModal();
-                    showNotification('يمكنك الآن تسجيل الدخول', 'success');
+                    showNotification(getTranslation('You can now login', 'يمكنك الآن تسجيل الدخول'), 'success');
                     showLoginForm();
                 }, 1500);
             } else {
-                showNotification('يرجى إدخال رمز التحقق كاملاً', 'error');
+                showNotification(getTranslation('Please enter the complete verification code', 'يرجى إدخال رمز التحقق كاملاً'), 'error');
             }
         }
 
@@ -1919,20 +2220,20 @@
 
         // Resend verification code
         function resendCode() {
-            showNotification('تم إعادة إرسال رمز التحقق', 'success');
+            showNotification(getTranslation('Verification code resent', 'تم إعادة إرسال رمز التحقق'), 'success');
         }
 
         // Login with Google
         function loginWithGoogle() {
-            showNotification('سيتم توجيهك لتسجيل الدخول بـ Google...', 'info');
+            showNotification(getTranslation('Redirecting to Google login...', 'سيتم توجيهك لتسجيل الدخول بـ Google...'), 'info');
             // Simulate Google OAuth
             setTimeout(() => {
-                showNotification('تم تسجيل الدخول بـ Google بنجاح!', 'success');
+                showNotification(getTranslation('Logged in with Google successfully!', 'تم تسجيل الدخول بـ Google بنجاح!'), 'success');
                 // Create demo Google user
                 currentUser = {
                     id: nextUserId++,
                     username: 'google_user',
-                    displayName: 'مستخدم Google',
+                    displayName: getTranslation('Google User', 'مستخدم Google'),
                     email: 'user@gmail.com',
                     credits: 0,
                     level: 0,
@@ -1959,7 +2260,7 @@
             userServers = [
                 { 
                     id: 'server1', 
-                    name: 'سيرفر الألعاب', 
+                    name: getTranslation('Gaming Server', 'سيرفر الألعاب'), 
                     hasBot: true,
                     icon: 'https://cdn.discordapp.com/icons/123456789/a_1234567890abcdef.png',
                     memberCount: 1250,
@@ -1967,7 +2268,7 @@
                 },
                 { 
                     id: 'server2', 
-                    name: 'مجتمع المطورين', 
+                    name: getTranslation('Developers Community', 'مجتمع المطورين'), 
                     hasBot: true,
                     icon: 'https://cdn.discordapp.com/icons/987654321/b_0987654321fedcba.png',
                     memberCount: 850,
@@ -1975,7 +2276,7 @@
                 },
                 { 
                     id: 'server3', 
-                    name: 'سيرفر الأصدقاء', 
+                    name: getTranslation('Friends Server', 'سيرفر الأصدقاء'), 
                     hasBot: false,
                     icon: null,
                     memberCount: 45,
@@ -1985,7 +2286,7 @@
             
             updateUIForLoggedInUser();
             closeLoginModal();
-            showNotification(`مرحباً ${currentUser.displayName}! تم تسجيل الدخول بنجاح`, 'success');
+            showNotification(getTranslation(`Welcome ${currentUser.displayName}! Logged in successfully`, `مرحباً ${currentUser.displayName}! تم تسجيل الدخول بنجاح`), 'success');
             
             // Show dashboard
             showPage('dashboard');
@@ -2003,6 +2304,11 @@
                 document.getElementById('adminBadge').style.display = 'block';
                 document.getElementById('adminSection').style.display = 'block';
                 document.getElementById('adminPanel').style.display = 'block';
+                
+                // Show super admin controls for saeed and itrx
+                if (currentUser.username === 'saeed' || currentUser.username === 'itrx') {
+                    document.getElementById('superAdminControls').style.display = 'block';
+                }
             }
             
             // Update dashboard
@@ -2056,20 +2362,20 @@
                 pendingAction = null;
             }
             closeConfirmModal();
-            showNotification('تم تنفيذ العملية بنجاح!', 'success');
+            showNotification(getTranslation('Operation completed successfully!', 'تم تنفيذ العملية بنجاح!'), 'success');
         }
 
         // Admin functions
         function addCoins(amount) {
             currentUser.credits += amount;
             updateUserData();
-            showNotification(`تم إضافة ${amount.toLocaleString()} كوين!`, 'success');
+            showNotification(getTranslation(`Added ${amount.toLocaleString()} coins!`, `تم إضافة ${amount.toLocaleString()} كوين!`), 'success');
         }
 
         function addLevels(levels) {
             currentUser.level += levels;
             updateUserData();
-            showNotification(`تم رفع المستوى بـ ${levels} مستويات!`, 'success');
+            showNotification(getTranslation(`Level increased by ${levels} levels!`, `تم رفع المستوى بـ ${levels} مستويات!`), 'success');
         }
 
         function unlockPremium() {
@@ -2077,24 +2383,30 @@
             currentUser.premiumType = 'advanced';
             updateUserData();
             updateUIForLoggedInUser();
-            showNotification('تم تفعيل البريميوم المتقدم!', 'success');
+            showNotification(getTranslation('Advanced Premium activated!', 'تم تفعيل البريميوم المتقدم!'), 'success');
         }
 
         // Update user data
         function updateUserData() {
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             allUsers[currentUser.username] = currentUser;
+            saveToDatabase();
             
             // Update UI
             document.getElementById('userCredits').textContent = currentUser.credits.toLocaleString();
             document.getElementById('dashboardCredits').textContent = currentUser.credits.toLocaleString();
             document.getElementById('userLevel').textContent = currentUser.level;
+            
+            // Update leaderboard if user has 1M+ coins
+            if (currentUser.credits >= 1000000) {
+                updateLeaderboard();
+            }
         }
 
         // Populate server dropdown
         function populateServerDropdown() {
             const select = document.getElementById('serverSelect');
-            select.innerHTML = '<option value="">-- اختر سيرفر --</option>';
+            select.innerHTML = `<option value="">${getTranslation('-- Choose Server --', '-- اختر سيرفر --')}</option>`;
             
             userServers.forEach(server => {
                 if (server.hasBot) {
@@ -2120,7 +2432,7 @@
                     
                     const iconHtml = server.icon 
                         ? `<img src="${server.icon}" alt="${server.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">`
-                        : `<div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, #5865f2, #7289da); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">${server.name.substring(0, 2)}</div>`;
+                        : `<div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; color: var(--background-color); font-weight: bold; font-size: 1.5rem;">${server.name.substring(0, 2)}</div>`;
                     
                     card.innerHTML = `
                         <div class="feature-header">
@@ -2130,22 +2442,22 @@
                                     <div class="feature-title" style="font-size: 1.2rem; margin-bottom: 0.5rem;">
                                         ${server.name}
                                     </div>
-                                    <div style="color: #b9bbbe; font-size: 0.9rem;">
-                                        <i class="fas fa-users"></i> ${server.memberCount.toLocaleString()} عضو
+                                    <div style="color: var(--background-color); font-size: 0.9rem; opacity: 0.8;">
+                                        <i class="fas fa-users"></i> ${server.memberCount.toLocaleString()} ${getTranslation('members', 'عضو')}
                                         <span style="margin: 0 0.5rem;">•</span>
-                                        <i class="fas fa-circle" style="color: #43b581; font-size: 0.7rem;"></i> ${server.onlineCount} متصل
+                                        <i class="fas fa-circle" style="color: #43b581; font-size: 0.7rem;"></i> ${server.onlineCount} ${getTranslation('online', 'متصل')}
                                     </div>
                                 </div>
                             </div>
-                            <i class="fas fa-chevron-left" style="color: #00FFB2;"></i>
+                            <i class="fas fa-chevron-left" style="color: var(--background-color);"></i>
                         </div>
                         <div class="feature-description" style="margin-top: 1rem;">
                             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                                 <span style="background: #43b581; color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem;">
-                                    <i class="fas fa-robot"></i> البوت نشط
+                                    <i class="fas fa-robot"></i> ${getTranslation('Bot Active', 'البوت نشط')}
                                 </span>
-                                <span style="background: #5865f2; color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem;">
-                                    <i class="fas fa-cog"></i> قابل للإدارة
+                                <span style="background: var(--primary-color); color: var(--background-color); padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem;">
+                                    <i class="fas fa-cog"></i> ${getTranslation('Manageable', 'قابل للإدارة')}
                                 </span>
                             </div>
                         </div>
@@ -2231,11 +2543,11 @@
         // Get feature name in Arabic
         function getFeatureName(feature) {
             const names = {
-                welcome: 'الترحيب والمغادرة',
-                moderation: 'نظام الإشراف',
-                automod: 'الرقابة التلقائية',
-                levels: 'نظام المستويات',
-                music: 'بوت الموسيقى'
+                welcome: getTranslation('Welcome & Leave', 'الترحيب والمغادرة'),
+                moderation: getTranslation('Moderation System', 'نظام الإشراف'),
+                automod: getTranslation('Auto Moderation', 'الرقابة التلقائية'),
+                levels: getTranslation('Level System', 'نظام المستويات'),
+                music: getTranslation('Music Bot', 'بوت الموسيقى')
             };
             return names[feature] || feature;
         }
@@ -2243,25 +2555,25 @@
         // Toggle feature from sidebar
         function toggleFeature(feature, element) {
             if (!isLoggedIn) {
-                showNotification('يجب تسجيل الدخول أولاً', 'error');
+                showNotification(getTranslation('You must login first', 'يجب تسجيل الدخول أولاً'), 'error');
                 return;
             }
             
             if (!selectedServerId) {
-                showNotification('يجب اختيار سيرفر أولاً', 'error');
+                showNotification(getTranslation('You must choose a server first', 'يجب اختيار سيرفر أولاً'), 'error');
                 showPage('servers');
                 return;
             }
             
             const serverToggle = document.querySelector(`#serverSettings .toggle-switch[onclick*="${feature}"]`);
             if (serverToggle) {
-                showConfirm(`تغيير إعدادات ${getFeatureName(feature)}؟`, () => toggleServerFeature(feature, serverToggle));
+                showConfirm(getTranslation(`Change ${getFeatureName(feature)} settings?`, `تغيير إعدادات ${getFeatureName(feature)}؟`), () => toggleServerFeature(feature, serverToggle));
             }
         }
 
         // Add bot to server
         function addBotToServer() {
-            showNotification('سيتم توجيهك لإضافة البوت إلى سيرفر Discord...', 'info');
+            showNotification(getTranslation('Redirecting to add bot to Discord server...', 'سيتم توجيهك لإضافة البوت إلى سيرفر Discord...'), 'info');
             setTimeout(() => {
                 window.open('https://discord.com/api/oauth2/authorize?client_id=YOUR_BOT_ID&permissions=8&scope=bot', '_blank');
             }, 1000);
@@ -2270,517 +2582,4 @@
         // Subscribe to premium
         function subscribePremium(plan) {
             if (!isLoggedIn) {
-                showNotification('يجب تسجيل الدخول أولاً', 'error');
-                return;
-            }
-            
-            const plans = {
-                basic: 'الأساسي',
-                advanced: 'المتقدم'
-            };
-            
-            showNotification(`سيتم توجيهك لصفحة الدفع للاشتراك في ${plans[plan]}...`, 'info');
-        }
-
-        // Logout
-        function logout() {
-            showConfirm('هل أنت متأكد من تسجيل الخروج؟', () => {
-                localStorage.removeItem('currentUser');
-                isLoggedIn = false;
-                currentUser = null;
-                userServers = [];
-                selectedServerId = null;
-                serverSettings = {};
-                
-                // Reset UI
-                document.getElementById('loginBtn').style.display = 'block';
-                document.getElementById('userInfo').classList.remove('logged-in');
-                document.getElementById('adminBadge').style.display = 'none';
-                document.getElementById('adminSection').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'none';
-                document.getElementById('loginRequired').style.display = 'block';
-                document.getElementById('dashboardContent').style.display = 'none';
-                document.getElementById('serversLoginRequired').style.display = 'block';
-                document.getElementById('serversContent').style.display = 'none';
-                document.getElementById('customizationLoginRequired').style.display = 'block';
-                document.getElementById('customizationContent').style.display = 'none';
-                document.getElementById('serverFeatures').style.display = 'none';
-                
-                showPage('home');
-            });
-        }
-
-        // Page navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.style.display = 'none';
-            });
-            
-            const targetPage = document.getElementById(pageId + '-page');
-            if (targetPage) {
-                targetPage.style.display = 'block';
-            }
-
-            if (pageId === 'leaderboard') {
-                loadLeaderboard();
-            }
-
-            if (pageId === 'users' && currentUser?.isAdmin) {
-                loadUsersList();
-            }
-            
-            document.querySelectorAll('.sidebar-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            const activeItem = document.querySelector(`[onclick*="${pageId}"]`);
-            if (activeItem) {
-                activeItem.classList.add('active');
-            }
-            
-            if (window.innerWidth <= 1024) {
-                toggleSidebar(false);
-            }
-        }
-
-        // Toggle sidebar for mobile
-        function toggleSidebar(show) {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            
-            if (show === undefined) {
-                show = !sidebar.classList.contains('show');
-            }
-            
-            if (show) {
-                sidebar.classList.add('show');
-                overlay.classList.add('show');
-            } else {
-                sidebar.classList.remove('show');
-                overlay.classList.remove('show');
-            }
-        }
-
-        // Global leaderboard data
-        const globalLeaderboard = [
-            { username: 'Saeed', coins: 1000000000, level: 100 },
-            { username: 'iTrx', coins: 980000000, level: 95 }
-        ];
-
-        // Load leaderboard
-        function loadLeaderboard() {
-            const leaderboardList = document.getElementById('leaderboardList');
-            leaderboardList.innerHTML = '';
-            
-            globalLeaderboard.forEach((player, index) => {
-                const playerDiv = document.createElement('div');
-                playerDiv.className = 'setting-item';
-                
-                let rankIcon = '';
-                if (index === 0) rankIcon = '🥇';
-                else if (index === 1) rankIcon = '🥈';
-                
-                playerDiv.innerHTML = `
-                    <div class="setting-info">
-                        <h4>${rankIcon} ${player.username}</h4>
-                        <p>المستوى: ${player.level} | الكوينز: ${player.coins.toLocaleString()}</p>
-                    </div>
-                    <div style="color: #5865f2; font-weight: bold;">
-                        ${player.username === currentUser?.displayName ? 'أنت' : ''}
-                    </div>
-                `;
-                
-                leaderboardList.appendChild(playerDiv);
-            });
-        }
-
-        // Load users list (admin only)
-        function loadUsersList() {
-            const usersList = document.getElementById('usersList');
-            usersList.innerHTML = '';
-            
-            Object.values(allUsers).forEach(user => {
-                const userDiv = document.createElement('div');
-                userDiv.className = 'setting-item';
-                
-                const badges = [];
-                if (user.isAdmin) {
-                    if (user.username === 'saeed' || user.username === 'itrx') {
-                        badges.push('<span style="background: #ff6b6b; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">مدير رئيسي</span>');
-                    } else {
-                        badges.push('<span style="background: #5865f2; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">أدمن</span>');
-                    }
-                }
-                if (user.isPremium) badges.push('<span style="background: #faa61a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">بريميوم</span>');
-                
-                userDiv.innerHTML = `
-                    <div class="setting-info">
-                        <h4>${user.displayName} ${badges.join(' ')}</h4>
-                        <p>الأيدي: ${user.id} | المستوى: ${user.level} | الكوينز: ${user.credits.toLocaleString()} | الإيميل: ${user.email}</p>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        ${currentUser && currentUser.isAdmin ? `
-                            <button class="btn btn-warning" onclick="showConfirm('إضافة 1000 كوين لـ ${user.displayName}؟', () => addCoinsToUser('${user.username}', 1000))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                                <i class="fas fa-coins"></i>
-                            </button>
-                            <button class="btn btn-success" onclick="showConfirm('تفعيل البريميوم لـ ${user.displayName}؟', () => grantPremiumToUser('${user.username}'))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                                <i class="fas fa-crown"></i>
-                            </button>
-                            <button class="btn btn-primary" onclick="showConfirm('رفع مستوى ${user.displayName} بـ 5 مستويات؟', () => addLevelsToUser('${user.username}', 5))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                                <i class="fas fa-level-up-alt"></i>
-                            </button>
-                        ` : ''}
-                    </div>
-                `;
-                
-                usersList.appendChild(userDiv);
-            });
-        }
-
-        // Add coins to user (admin function)
-        function addCoinsToUser(username, amount) {
-            if (allUsers[username]) {
-                allUsers[username].credits += amount;
-                loadUsersList();
-                showNotification(`تم إضافة ${amount.toLocaleString()} كوين لـ ${allUsers[username].displayName}`, 'success');
-            }
-        }
-
-        // Grant premium to user (admin function)
-        function grantPremiumToUser(username) {
-            if (allUsers[username]) {
-                allUsers[username].isPremium = true;
-                allUsers[username].premiumType = 'advanced';
-                loadUsersList();
-                showNotification(`تم تفعيل البريميوم لـ ${allUsers[username].displayName}`, 'success');
-            }
-        }
-
-        // Add levels to user (admin function)
-        function addLevelsToUser(username, levels) {
-            if (allUsers[username]) {
-                allUsers[username].level += levels;
-                loadUsersList();
-                showNotification(`تم رفع مستوى ${allUsers[username].displayName} بـ ${levels} مستويات`, 'success');
-            }
-        }
-
-        // Show notification
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type} show`;
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Setup responsive handlers
-        function setupResponsiveHandlers() {
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 1024) {
-                    toggleSidebar(false);
-                }
-            });
-        }
-
-        // Open create account modal
-        function openCreateAccountModal() {
-            document.getElementById('createAccountModal').classList.add('show');
-        }
-
-        // Close create account modal
-        function closeCreateAccountModal() {
-            document.getElementById('createAccountModal').classList.remove('show');
-            clearCreateAccountForm();
-        }
-
-        // Clear create account form
-        function clearCreateAccountForm() {
-            document.getElementById('createUsername').value = '';
-            document.getElementById('createEmail').value = '';
-            document.getElementById('createPassword').value = '';
-            document.getElementById('createDisplayName').value = '';
-        }
-
-        // Handle create account form submission
-        function handleCreateAccount(event) {
-            event.preventDefault();
-            
-            if (!currentUser || !currentUser.isAdmin || (currentUser.username !== 'saeed' && currentUser.username !== 'itrx')) {
-                showNotification('فقط المديرين الرئيسيين يمكنهم إنشاء حسابات', 'error');
-                return;
-            }
-
-            const username = document.getElementById('createUsername').value.toLowerCase().trim();
-            const email = document.getElementById('createEmail').value.trim();
-            const password = document.getElementById('createPassword').value;
-            const displayName = document.getElementById('createDisplayName').value.trim();
-
-            if (allUsers[username]) {
-                showNotification('اسم المستخدم موجود بالفعل', 'error');
-                return;
-            }
-
-            // Check if email exists
-            const emailExists = Object.values(allUsers).some(user => user.email === email);
-            if (emailExists) {
-                showNotification('الإيميل مستخدم بالفعل', 'error');
-                return;
-            }
-
-            const newUser = {
-                id: nextUserId++,
-                username: username,
-                password: password,
-                email: email,
-                displayName: displayName,
-                credits: 1000,
-                level: 1,
-                rank: null,
-                isAdmin: false,
-                isPremium: false,
-                premiumType: null,
-                verified: true
-            };
-
-            allUsers[username] = newUser;
-            closeCreateAccountModal();
-            showNotification(`تم إنشاء حساب ${displayName} بنجاح! الأيدي: ${newUser.id}`, 'success');
-            
-            if (document.getElementById('users-page').style.display !== 'none') {
-                loadUsersList();
-            }
-        }
-
-        // Open promote admin modal
-        function openPromoteAdminModal() {
-            document.getElementById('promoteAdminModal').classList.add('show');
-        }
-
-        // Close promote admin modal
-        function closePromoteAdminModal() {
-            document.getElementById('promoteAdminModal').classList.remove('show');
-            clearPromoteAdminForm();
-        }
-
-        // Clear promote admin form
-        function clearPromoteAdminForm() {
-            document.getElementById('promoteSearchValue').value = '';
-            document.getElementById('promoteAdminName').value = '';
-            document.getElementById('promoteUserInfo').style.display = 'none';
-            document.getElementById('promoteSubmitBtn').disabled = true;
-        }
-
-        // Search user for promotion
-        function searchUserForPromote() {
-            const searchMethod = document.getElementById('promoteSearchMethod').value;
-            const searchValue = document.getElementById('promoteSearchValue').value.trim();
-
-            if (!searchValue) {
-                showNotification('يرجى إدخال قيمة البحث', 'error');
-                return;
-            }
-
-            let targetUser = null;
-
-            if (searchMethod === 'id') {
-                const userId = parseInt(searchValue);
-                targetUser = Object.values(allUsers).find(user => user.id === userId);
-            } else if (searchMethod === 'email') {
-                targetUser = Object.values(allUsers).find(user => user.email === searchValue);
-            }
-
-            if (!targetUser) {
-                showNotification('لم يتم العثور على المستخدم', 'error');
-                document.getElementById('promoteUserInfo').style.display = 'none';
-                document.getElementById('promoteSubmitBtn').disabled = true;
-                return;
-            }
-
-            if (targetUser.isAdmin) {
-                showNotification('هذا المستخدم أدمن بالفعل', 'error');
-                document.getElementById('promoteSubmitBtn').disabled = true;
-                return;
-            }
-
-            const badges = [];
-            if (targetUser.isPremium) badges.push('<span style="background: #faa61a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">بريميوم</span>');
-
-            document.getElementById('promoteUserInfo').innerHTML = `
-                <h4 style="color: #00FFB2; margin-bottom: 1rem;">
-                    <i class="fas fa-user"></i> معلومات المستخدم
-                </h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; font-size: 0.9rem;">
-                    <div><strong>الاسم:</strong> ${targetUser.displayName} ${badges.join(' ')}</div>
-                    <div><strong>الأيدي:</strong> ${targetUser.id}</div>
-                    <div><strong>اسم المستخدم:</strong> ${targetUser.username}</div>
-                    <div><strong>الإيميل:</strong> ${targetUser.email}</div>
-                    <div><strong>الكوينز:</strong> ${targetUser.credits.toLocaleString()}</div>
-                    <div><strong>المستوى:</strong> ${targetUser.level}</div>
-                </div>
-            `;
-
-            document.getElementById('promoteUserInfo').style.display = 'block';
-            document.getElementById('promoteAdminName').value = targetUser.displayName;
-            document.getElementById('promoteSubmitBtn').disabled = false;
-        }
-
-        // Handle promote admin form submission
-        function handlePromoteAdmin(event) {
-            event.preventDefault();
-            
-            if (!currentUser || !currentUser.isAdmin || (currentUser.username !== 'saeed' && currentUser.username !== 'itrx')) {
-                showNotification('فقط المديرين الرئيسيين يمكنهم ترقية الأدمن', 'error');
-                return;
-            }
-
-            const searchMethod = document.getElementById('promoteSearchMethod').value;
-            const searchValue = document.getElementById('promoteSearchValue').value.trim();
-            const adminName = document.getElementById('promoteAdminName').value.trim();
-
-            let targetUser = null;
-
-            if (searchMethod === 'id') {
-                const userId = parseInt(searchValue);
-                targetUser = Object.values(allUsers).find(user => user.id === userId);
-            } else if (searchMethod === 'email') {
-                targetUser = Object.values(allUsers).find(user => user.email === searchValue);
-            }
-
-            if (!targetUser) {
-                showNotification('لم يتم العثور على المستخدم', 'error');
-                return;
-            }
-
-            if (targetUser.isAdmin) {
-                showNotification('هذا المستخدم أدمن بالفعل', 'error');
-                return;
-            }
-
-            targetUser.isAdmin = true;
-            targetUser.displayName = adminName;
-            adminUsers[targetUser.username] = targetUser;
-
-            closePromoteAdminModal();
-            showNotification(`تم ترقية ${adminName} إلى أدمن بنجاح!`, 'success');
-            
-            if (document.getElementById('users-page').style.display !== 'none') {
-                loadUsersList();
-            }
-        }
-
-        // Open coins modal
-        function openCoinsModal() {
-            document.getElementById('coinsModal').classList.add('show');
-        }
-
-        // Close coins modal
-        function closeCoinsModal() {
-            document.getElementById('coinsModal').classList.remove('show');
-            clearCoinsForm();
-        }
-
-        // Clear coins form
-        function clearCoinsForm() {
-            document.getElementById('coinsUserId').value = '';
-            document.getElementById('coinsAmount').value = '';
-            document.getElementById('coinsUserInfo').style.display = 'none';
-        }
-
-        // Show user info in coins modal
-        function showUserInfoInModal() {
-            const userId = parseInt(document.getElementById('coinsUserId').value);
-            
-            if (!userId) {
-                showNotification('يرجى إدخال الأيدي أولاً', 'error');
-                return;
-            }
-            
-            const targetUser = Object.values(allUsers).find(user => user.id === userId);
-            
-            if (!targetUser) {
-                showNotification('لم يتم العثور على مستخدم بهذا الأيدي', 'error');
-                document.getElementById('coinsUserInfo').style.display = 'none';
-                return;
-            }
-            
-            const badges = [];
-            if (targetUser.isAdmin) badges.push('<span style="background: #ff6b6b; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">مدير</span>');
-            if (targetUser.isPremium) badges.push('<span style="background: #faa61a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">بريميوم</span>');
-            
-            document.getElementById('coinsUserInfo').innerHTML = `
-                <h4 style="color: #00FFB2; margin-bottom: 1rem;">
-                    <i class="fas fa-user"></i> معلومات المستخدم
-                </h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; font-size: 0.9rem;">
-                    <div><strong>الاسم:</strong> ${targetUser.displayName} ${badges.join(' ')}</div>
-                    <div><strong>الأيدي:</strong> ${targetUser.id}</div>
-                    <div><strong>اسم المستخدم:</strong> ${targetUser.username}</div>
-                    <div><strong>الإيميل:</strong> ${targetUser.email}</div>
-                    <div><strong>الكوينز الحالية:</strong> ${targetUser.credits.toLocaleString()}</div>
-                    <div><strong>المستوى:</strong> ${targetUser.level}</div>
-                </div>
-            `;
-            
-            document.getElementById('coinsUserInfo').style.display = 'block';
-        }
-
-        // Handle coins management form submission
-        function handleCoinsManagement(event) {
-            event.preventDefault();
-            
-            const userId = parseInt(document.getElementById('coinsUserId').value);
-            const amount = parseInt(document.getElementById('coinsAmount').value);
-            
-            if (!amount || amount <= 0) {
-                showNotification('يرجى إدخال كمية كوينز صحيحة', 'error');
-                return;
-            }
-            
-            const targetUser = Object.values(allUsers).find(user => user.id === userId);
-            
-            if (!targetUser) {
-                showNotification('لم يتم العثور على مستخدم بهذا الأيدي', 'error');
-                return;
-            }
-            
-            targetUser.credits += amount;
-            
-            // Update if it's the current user
-            if (currentUser && currentUser.id === userId) {
-                currentUser.credits = targetUser.credits;
-                updateUserData();
-            }
-            
-            closeCoinsModal();
-            showNotification(`تم إضافة ${amount.toLocaleString()} كوين للمستخدم ${targetUser.displayName}`, 'success');
-            
-            if (document.getElementById('users-page').style.display !== 'none') {
-                loadUsersList();
-            }
-        }
-
-
-
-        // Animation observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-card, .feature-card').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9675a99a2309f935',t:'MTc1Mzg4Njk2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+                showNotification(getTranslation('You must login first', 'يجب تس<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967653eb7731f919',t:'MTc1Mzg5Mzk0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
