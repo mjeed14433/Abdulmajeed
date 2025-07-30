@@ -78,7 +78,7 @@
             gap: 1rem;
         }
 
-        .discord-login {
+        .login-btn {
             background: #00FFB2;
             color: #101820;
             padding: 0.7rem 1.5rem;
@@ -93,7 +93,7 @@
             gap: 8px;
         }
 
-        .discord-login:hover {
+        .login-btn:hover {
             background: #00E5A0;
             transform: translateY(-2px);
         }
@@ -130,6 +130,16 @@
             cursor: pointer;
         }
 
+        .admin-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: #101820;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+
         .mobile-menu {
             display: none;
             background: none;
@@ -137,6 +147,177 @@
             color: #fff;
             font-size: 1.5rem;
             cursor: pointer;
+        }
+
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .login-modal {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #00FFB2;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #00FFB2;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            background: #101820;
+            border: 1px solid #2c3e50;
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00FFB2;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: #00FFB2;
+            color: #101820;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .form-btn:hover {
+            background: #00E5A0;
+        }
+
+        .form-btn.secondary {
+            background: transparent;
+            color: #00FFB2;
+            border: 1px solid #00FFB2;
+        }
+
+        .form-btn.google {
+            background: #db4437;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-btn.google:hover {
+            background: #c23321;
+        }
+
+        .form-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #b9bbbe;
+            position: relative;
+        }
+
+        .form-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #2c3e50;
+        }
+
+        .form-divider span {
+            background: #16213e;
+            padding: 0 1rem;
+        }
+
+        .form-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .form-link a {
+            color: #00FFB2;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-link a:hover {
+            text-decoration: underline;
+        }
+
+        .verification-code {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .verification-code input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #101820;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        .verification-code input:focus {
+            border-color: #00FFB2;
+            outline: none;
         }
 
         /* Main Layout */
@@ -555,6 +736,76 @@
             font-size: 0.9rem;
         }
 
+        /* Admin Panel */
+        .admin-panel {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: #101820;
+        }
+
+        .admin-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .admin-btn {
+            background: rgba(16, 24, 32, 0.8);
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .admin-btn:hover {
+            background: rgba(16, 24, 32, 1);
+            transform: translateY(-2px);
+        }
+
+        /* Confirmation Modal */
+        .confirm-modal {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #f04747;
+            text-align: center;
+        }
+
+        .confirm-title {
+            color: #f04747;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .confirm-message {
+            color: #b9bbbe;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .sidebar {
@@ -633,6 +884,11 @@
                 width: 35px;
                 height: 35px;
             }
+
+            .login-modal {
+                width: 95%;
+                padding: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -671,61 +927,6 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-
-        /* Customization Styles */
-        .customization-section {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .current-avatar, .logo-preview, .banner-preview {
-            flex-shrink: 0;
-        }
-
-        .upload-section {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .color-section .setting-item {
-            border-bottom: 1px solid #2c3e50;
-            padding: 1rem 0;
-        }
-
-        .color-section .setting-item:last-child {
-            border-bottom: none;
-        }
-
-        /* File Upload Styles */
-        .upload-area {
-            border: 2px dashed #5865f2;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            background: #16213e;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .upload-area:hover {
-            background: #1a1f3a;
-            border-color: #7289da;
-        }
-
-        .upload-area.dragover {
-            background: #1a1f3a;
-            border-color: #43b581;
-        }
-
-        /* Preview Styles */
-        #logoPreview img, #bannerPreview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
         }
 
         /* Animations */
@@ -772,6 +973,123 @@
     <!-- Notification -->
     <div id="notification" class="notification"></div>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="login-modal">
+            <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+            
+            <!-- Login Form -->
+            <div id="loginForm">
+                <h2 class="modal-title">تسجيل الدخول</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>اسم المستخدم أو الإيميل</label>
+                        <input type="text" class="form-input" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" class="form-input" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="form-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل الدخول
+                    </button>
+                </form>
+                
+                <div class="form-divider">
+                    <span>أو</span>
+                </div>
+                
+                <button class="form-btn google" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i>
+                    تسجيل الدخول بـ Google
+                </button>
+                
+                <div class="form-link">
+                    <a onclick="showRegisterForm()">ليس لديك حساب؟ إنشاء حساب جديد</a>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" style="display: none;">
+                <h2 class="modal-title">إنشاء حساب جديد</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>اسم المستخدم</label>
+                        <input type="text" class="form-input" id="registerUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label>الإيميل</label>
+                        <input type="email" class="form-input" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" class="form-input" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label>تأكيد كلمة المرور</label>
+                        <input type="password" class="form-input" id="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="form-btn">
+                        <i class="fas fa-user-plus"></i>
+                        إنشاء الحساب
+                    </button>
+                </form>
+                
+                <div class="form-divider">
+                    <span>أو</span>
+                </div>
+                
+                <button class="form-btn google" onclick="registerWithGoogle()">
+                    <i class="fab fa-google"></i>
+                    التسجيل بـ Google
+                </button>
+                
+                <div class="form-link">
+                    <a onclick="showLoginForm()">لديك حساب بالفعل؟ تسجيل الدخول</a>
+                </div>
+            </div>
+
+            <!-- Verification Form -->
+            <div id="verificationForm" style="display: none;">
+                <h2 class="modal-title">تأكيد الحساب</h2>
+                <p style="text-align: center; color: #b9bbbe; margin-bottom: 2rem;">
+                    تم إرسال رمز التحقق إلى إيميلك
+                </p>
+                <form onsubmit="handleVerification(event)">
+                    <div class="verification-code">
+                        <input type="text" maxlength="1" id="code1" oninput="moveToNext(this, 'code2')">
+                        <input type="text" maxlength="1" id="code2" oninput="moveToNext(this, 'code3')">
+                        <input type="text" maxlength="1" id="code3" oninput="moveToNext(this, 'code4')">
+                        <input type="text" maxlength="1" id="code4" oninput="moveToNext(this, 'code5')">
+                        <input type="text" maxlength="1" id="code5" oninput="moveToNext(this, 'code6')">
+                        <input type="text" maxlength="1" id="code6">
+                    </div>
+                    <button type="submit" class="form-btn">
+                        <i class="fas fa-check"></i>
+                        تأكيد الرمز
+                    </button>
+                </form>
+                
+                <div class="form-link">
+                    <a onclick="resendCode()">إعادة إرسال الرمز</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="confirm-modal">
+            <h3 class="confirm-title">تأكيد العملية</h3>
+            <p class="confirm-message" id="confirmMessage"></p>
+            <div class="confirm-buttons">
+                <button class="btn btn-danger" onclick="confirmAction()">تأكيد</button>
+                <button class="btn btn-secondary" onclick="closeConfirmModal()">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="nav-container">
@@ -786,16 +1104,19 @@
                 <li><a href="#" onclick="showPage('support')">الدعم</a></li>
             </ul>
             <div class="auth-section">
-                <a href="#" class="discord-login" id="loginBtn" onclick="loginWithDiscord()">
-                    <i class="fab fa-discord"></i>
-                    تسجيل دخول بـ Discord
-                </a>
+                <button class="login-btn" id="loginBtn" onclick="openLoginModal()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول
+                </button>
                 <div class="user-info" id="userInfo">
                     <div class="credits">
                         <i class="fas fa-coins"></i> <span id="userCredits">0</span>
                     </div>
                     <div class="user-avatar" id="userAvatar" onclick="toggleUserMenu()">
                         <span id="userInitials"></span>
+                    </div>
+                    <div id="adminBadge" class="admin-badge" style="display: none;">
+                        <i class="fas fa-crown"></i> مدير
                     </div>
                 </div>
                 <button class="mobile-menu" onclick="toggleSidebar()">
@@ -825,6 +1146,18 @@
                 <button class="sidebar-item" onclick="showPage('settings')">
                     <i class="fas fa-cog"></i>
                     إعدادات البوت
+                </button>
+            </div>
+
+            <div class="sidebar-section" id="adminSection" style="display: none;">
+                <div class="sidebar-title">لوحة الإدارة</div>
+                <button class="sidebar-item" onclick="showPage('admin')">
+                    <i class="fas fa-crown"></i>
+                    إدارة النظام
+                </button>
+                <button class="sidebar-item" onclick="showPage('users')">
+                    <i class="fas fa-users"></i>
+                    إدارة المستخدمين
                 </button>
             </div>
 
@@ -903,7 +1236,7 @@
                         <a href="#" class="btn btn-primary" onclick="addBotToServer()">
                             <i class="fab fa-discord"></i> إضافة البوت
                         </a>
-                        <a href="#" class="btn btn-secondary" onclick="loginWithDiscord()">
+                        <a href="#" class="btn btn-secondary" onclick="openLoginModal()">
                             <i class="fas fa-tachometer-alt"></i> لوحة التحكم
                         </a>
                     </div>
@@ -960,12 +1293,12 @@
             <!-- Dashboard Page -->
             <div id="dashboard-page" class="page-content" style="display: none;">
                 <div class="login-required" id="loginRequired">
-                    <i class="fab fa-discord"></i>
+                    <i class="fas fa-lock"></i>
                     <h2>تسجيل الدخول مطلوب</h2>
-                    <p>يجب تسجيل الدخول بحساب Discord للوصول إلى لوحة التحكم</p>
-                    <button class="btn btn-primary" onclick="loginWithDiscord()">
-                        <i class="fab fa-discord"></i>
-                        تسجيل دخول بـ Discord
+                    <p>يجب تسجيل الدخول للوصول إلى لوحة التحكم</p>
+                    <button class="btn btn-primary" onclick="openLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل الدخول
                     </button>
                 </div>
 
@@ -973,6 +1306,32 @@
                     <div class="page-header">
                         <h1 class="page-title">لوحة التحكم</h1>
                         <p class="page-subtitle">إدارة البوت وإعداداته</p>
+                    </div>
+
+                    <!-- Admin Panel -->
+                    <div id="adminPanel" class="admin-panel" style="display: none;">
+                        <div class="admin-title">
+                            <i class="fas fa-crown"></i>
+                            لوحة الإدارة
+                        </div>
+                        <div class="admin-controls">
+                            <button class="admin-btn" onclick="showConfirm('إضافة 1000 كوين لحسابك؟', () => addCoins(1000))">
+                                <i class="fas fa-coins"></i>
+                                إضافة كوينز
+                            </button>
+                            <button class="admin-btn" onclick="showConfirm('رفع مستواك بـ 10 مستويات؟', () => addLevels(10))">
+                                <i class="fas fa-level-up-alt"></i>
+                                رفع المستوى
+                            </button>
+                            <button class="admin-btn" onclick="showConfirm('تفعيل جميع المميزات المتقدمة؟', () => unlockPremium())">
+                                <i class="fas fa-star"></i>
+                                تفعيل البريميوم
+                            </button>
+                            <button class="admin-btn" onclick="showPage('users')">
+                                <i class="fas fa-users-cog"></i>
+                                إدارة المستخدمين
+                            </button>
+                        </div>
                     </div>
 
                     <div class="stats-grid">
@@ -1027,12 +1386,12 @@
             <!-- Servers Page -->
             <div id="servers-page" class="page-content" style="display: none;">
                 <div class="login-required" id="serversLoginRequired">
-                    <i class="fab fa-discord"></i>
+                    <i class="fas fa-lock"></i>
                     <h2>تسجيل الدخول مطلوب</h2>
-                    <p>يجب تسجيل الدخول بحساب Discord لإدارة السيرفرات</p>
-                    <button class="btn btn-primary" onclick="loginWithDiscord()">
-                        <i class="fab fa-discord"></i>
-                        تسجيل دخول بـ Discord
+                    <p>يجب تسجيل الدخول لإدارة السيرفرات</p>
+                    <button class="btn btn-primary" onclick="openLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل الدخول
                     </button>
                 </div>
 
@@ -1063,35 +1422,35 @@
                                         <h4>الترحيب والمغادرة</h4>
                                         <p>رسائل ترحيب تلقائية للأعضاء الجدد</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="toggleServerFeature('welcome', this)"></div>
+                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات الترحيب والمغادرة؟', () => toggleServerFeature('welcome', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
                                         <h4>نظام الإشراف</h4>
                                         <p>أدوات الإشراف والتحكم في السيرفر</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="toggleServerFeature('moderation', this)"></div>
+                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات نظام الإشراف؟', () => toggleServerFeature('moderation', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
                                         <h4>الرقابة التلقائية</h4>
                                         <p>فلترة الرسائل والمحتوى تلقائياً</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="toggleServerFeature('automod', this)"></div>
+                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات الرقابة التلقائية؟', () => toggleServerFeature('automod', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
                                         <h4>نظام المستويات</h4>
                                         <p>نظام XP والمستويات للأعضاء</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="toggleServerFeature('levels', this)"></div>
+                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات نظام المستويات؟', () => toggleServerFeature('levels', this))"></div>
                                 </div>
                                 <div class="setting-item">
                                     <div class="setting-info">
                                         <h4>بوت الموسيقى</h4>
                                         <p>تشغيل الموسيقى في القنوات الصوتية</p>
                                     </div>
-                                    <div class="toggle-switch" onclick="toggleServerFeature('music', this)"></div>
+                                    <div class="toggle-switch" onclick="showConfirm('تغيير إعدادات بوت الموسيقى؟', () => toggleServerFeature('music', this))"></div>
                                 </div>
                             </div>
                         </div>
@@ -1122,12 +1481,12 @@
             <!-- Customization Page -->
             <div id="customization-page" class="page-content" style="display: none;">
                 <div class="login-required" id="customizationLoginRequired">
-                    <i class="fab fa-discord"></i>
+                    <i class="fas fa-lock"></i>
                     <h2>تسجيل الدخول مطلوب</h2>
-                    <p>يجب تسجيل الدخول بحساب Discord لتخصيص البوت</p>
-                    <button class="btn btn-primary" onclick="loginWithDiscord()">
-                        <i class="fab fa-discord"></i>
-                        تسجيل دخول بـ Discord
+                    <p>يجب تسجيل الدخول لتخصيص البوت</p>
+                    <button class="btn btn-primary" onclick="openLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل الدخول
                     </button>
                 </div>
 
@@ -1137,131 +1496,27 @@
                         <p class="page-subtitle">خصص مظهر البوت وإعداداته الشخصية</p>
                     </div>
 
-                    <div class="settings-panel" style="margin-bottom: 2rem;">
-                        <div class="settings-header">
-                            <i class="fas fa-image"></i>
-                            صورة البوت
-                        </div>
-                        <div class="settings-content">
-                            <div class="customization-section">
-                                <div class="current-avatar">
-                                    <img id="botAvatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%235865f2'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-family='Arial'%3E🤖%3C/text%3E%3C/svg%3E" alt="صورة البوت" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #5865f2;">
-                                </div>
-                                <div class="upload-section">
-                                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="uploadAvatar(this)">
-                                    <button class="btn btn-primary" onclick="document.getElementById('avatarUpload').click()">
-                                        <i class="fas fa-upload"></i>
-                                        رفع صورة جديدة
-                                    </button>
-                                    <p style="color: #b9bbbe; font-size: 0.9rem; margin-top: 0.5rem;">
-                                        الحد الأقصى: 2MB | الأنواع المدعومة: JPG, PNG, GIF
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="settings-panel" style="margin-bottom: 2rem;">
-                        <div class="settings-header">
-                            <i class="fas fa-tag"></i>
-                            اللوقو والعلامة التجارية
-                        </div>
-                        <div class="settings-content">
-                            <div class="customization-section">
-                                <div class="logo-preview">
-                                    <div id="logoPreview" style="width: 200px; height: 60px; background: #16213e; border: 2px dashed #5865f2; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #b9bbbe; margin-bottom: 1rem;">
-                                        <i class="fas fa-image" style="font-size: 2rem;"></i>
-                                    </div>
-                                </div>
-                                <div class="upload-section">
-                                    <input type="file" id="logoUpload" accept="image/*" style="display: none;" onchange="uploadLogo(this)">
-                                    <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()">
-                                        <i class="fas fa-upload"></i>
-                                        رفع لوقو
-                                    </button>
-                                    <p style="color: #b9bbbe; font-size: 0.9rem; margin-top: 0.5rem;">
-                                        الأبعاد المثلى: 200x60 بكسل | PNG شفاف مفضل
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="settings-panel" style="margin-bottom: 2rem;">
-                        <div class="settings-header">
-                            <i class="fas fa-image"></i>
-                            صورة البانر
-                        </div>
-                        <div class="settings-content">
-                            <div class="customization-section">
-                                <div class="banner-preview">
-                                    <div id="bannerPreview" style="width: 100%; height: 150px; background: linear-gradient(135deg, #5865f2, #7289da); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; margin-bottom: 1rem; position: relative; overflow: hidden;">
-                                        <div style="text-align: center;">
-                                            <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
-                                            <p>صورة البانر</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="upload-section">
-                                    <input type="file" id="bannerUpload" accept="image/*" style="display: none;" onchange="uploadBanner(this)">
-                                    <button class="btn btn-primary" onclick="document.getElementById('bannerUpload').click()">
-                                        <i class="fas fa-upload"></i>
-                                        رفع صورة بانر
-                                    </button>
-                                    <p style="color: #b9bbbe; font-size: 0.9rem; margin-top: 0.5rem;">
-                                        الأبعاد المثلى: 1200x300 بكسل | الحد الأقصى: 5MB
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="settings-panel">
-                        <div class="settings-header">
-                            <i class="fas fa-palette"></i>
-                            الألوان والثيم
-                        </div>
-                        <div class="settings-content">
-                            <div class="color-section">
-                                <div class="setting-item">
-                                    <div class="setting-info">
-                                        <h4>اللون الأساسي</h4>
-                                        <p>لون البوت الرئيسي في الرسائل والإعدادات</p>
-                                    </div>
-                                    <input type="color" id="primaryColor" value="#5865f2" onchange="updatePrimaryColor(this.value)" style="width: 50px; height: 40px; border: none; border-radius: 8px; cursor: pointer;">
-                                </div>
-                                <div class="setting-item">
-                                    <div class="setting-info">
-                                        <h4>لون الخلفية</h4>
-                                        <p>لون خلفية الرسائل المدمجة</p>
-                                    </div>
-                                    <input type="color" id="backgroundColor" value="#16213e" onchange="updateBackgroundColor(this.value)" style="width: 50px; height: 40px; border: none; border-radius: 8px; cursor: pointer;">
-                                </div>
-                                <div class="setting-item">
-                                    <div class="setting-info">
-                                        <h4>نمط الثيم</h4>
-                                        <p>اختر النمط العام للبوت</p>
-                                    </div>
-                                    <select id="themeStyle" onchange="updateTheme(this.value)" style="padding: 0.5rem; background: #0f1419; border: 1px solid #2c3e50; border-radius: 8px; color: #fff;">
-                                        <option value="modern">عصري</option>
-                                        <option value="classic">كلاسيكي</option>
-                                        <option value="minimal">بسيط</option>
-                                        <option value="gaming">ألعاب</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <button class="btn btn-success" onclick="saveCustomization()">
-                            <i class="fas fa-save"></i>
-                            حفظ التخصيصات
+                    <div id="premiumRequired" class="login-required">
+                        <i class="fas fa-crown"></i>
+                        <h2>اشتراك البريميوم مطلوب</h2>
+                        <p>تخصيص البوت متاح فقط لمشتركي الباقة المتقدمة</p>
+                        <button class="btn btn-warning" onclick="showPage('premium')">
+                            <i class="fas fa-crown"></i>
+                            ترقية للبريميوم
                         </button>
-                        <button class="btn btn-secondary" onclick="resetCustomization()" style="margin-right: 1rem;">
-                            <i class="fas fa-undo"></i>
-                            إعادة تعيين
-                        </button>
+                    </div>
+
+                    <div id="customizationPanel" style="display: none;">
+                        <!-- Customization content will be shown for premium users -->
+                        <div class="settings-panel">
+                            <div class="settings-header">
+                                <i class="fas fa-palette"></i>
+                                تخصيص البوت متاح الآن!
+                            </div>
+                            <div class="settings-content">
+                                <p>🎉 تهانينا! يمكنك الآن تخصيص البوت بالكامل</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1303,12 +1558,32 @@
                         <div class="feature-description">
                             <ul style="list-style: none; padding: 0; margin: 1rem 0;">
                                 <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> جميع مميزات الأساسي</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> بوت خاص مخصص</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> تخصيص البوت بالكامل</li>
                                 <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> إعدادات متقدمة</li>
                                 <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> تحليلات مفصلة</li>
                                 <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> دعم VIP</li>
                             </ul>
                             <button class="btn btn-primary" onclick="subscribePremium('advanced')">اشترك الآن</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Management Page -->
+            <div id="users-page" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">👥 إدارة المستخدمين</h1>
+                    <p class="page-subtitle">إدارة حسابات المستخدمين والصلاحيات</p>
+                </div>
+
+                <div class="settings-panel">
+                    <div class="settings-header">
+                        <i class="fas fa-users"></i>
+                        قائمة المستخدمين
+                    </div>
+                    <div class="settings-content">
+                        <div id="usersList">
+                            <!-- سيتم ملؤها بـ JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -1323,29 +1598,49 @@
         let userServers = [];
         let selectedServerId = null;
         let serverSettings = {};
+        let pendingAction = null;
+
+        // Premium accounts with credentials
+        const premiumAccounts = {
+            'saeed': {
+                username: 'saeed',
+                password: 'saeed2024',
+                email: 'saeed@smartbot.com',
+                displayName: 'Saeed',
+                credits: 1000000000, // مليار كوين
+                level: 100,
+                rank: 1,
+                isAdmin: true,
+                isPremium: true,
+                premiumType: 'advanced'
+            },
+            'itrx': {
+                username: 'itrx',
+                password: 'itrx2024',
+                email: 'itrx@smartbot.com',
+                displayName: 'iTrx',
+                credits: 980000000, // 980 مليون كوين
+                level: 95,
+                rank: 2,
+                isAdmin: true,
+                isPremium: true,
+                premiumType: 'advanced'
+            }
+        };
+
+        // All registered users
+        let allUsers = { ...premiumAccounts };
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
-            // Set default coins for new users
-            if (!localStorage.getItem('discordUser')) {
-                // البداية بـ 0 كوين للجميع
-                const defaultUser = {
-                    credits: 0,
-                    level: 0,
-                    rank: null
-                };
-            }
             checkLoginStatus();
             showPage('home');
             setupResponsiveHandlers();
         });
 
-        // Check if user is logged in (simulate checking localStorage/cookies)
+        // Check if user is logged in
         function checkLoginStatus() {
-            // تصفير البيانات المحفوظة
-            localStorage.removeItem('discordUser');
-            
-            const savedUser = localStorage.getItem('discordUser');
+            const savedUser = localStorage.getItem('currentUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
                 isLoggedIn = true;
@@ -1353,40 +1648,183 @@
             }
         }
 
-        // Simulate Discord OAuth login
-        function loginWithDiscord() {
-            showNotification('جاري تسجيل الدخول...', 'info');
+        // Open login modal
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('show');
+            showLoginForm();
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('show');
+        }
+
+        // Show login form
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('verificationForm').style.display = 'none';
+        }
+
+        // Show register form
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('verificationForm').style.display = 'none';
+        }
+
+        // Show verification form
+        function showVerificationForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('verificationForm').style.display = 'block';
+        }
+
+        // Handle login
+        function handleLogin(event) {
+            event.preventDefault();
             
-            // Simulate API call delay
+            const username = document.getElementById('loginUsername').value.toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+            
+            // Check premium accounts first
+            if (premiumAccounts[username] && premiumAccounts[username].password === password) {
+                currentUser = { ...premiumAccounts[username] };
+                loginSuccess();
+                return;
+            }
+            
+            // Check regular users
+            if (allUsers[username] && allUsers[username].password === password) {
+                currentUser = { ...allUsers[username] };
+                loginSuccess();
+                return;
+            }
+            
+            showNotification('اسم المستخدم أو كلمة المرور غير صحيحة', 'error');
+        }
+
+        // Handle registration
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('registerUsername').value.toLowerCase();
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation
+            if (password !== confirmPassword) {
+                showNotification('كلمات المرور غير متطابقة', 'error');
+                return;
+            }
+            
+            if (allUsers[username]) {
+                showNotification('اسم المستخدم موجود بالفعل', 'error');
+                return;
+            }
+            
+            // Create new user (regular user - no premium features)
+            const newUser = {
+                username: username,
+                password: password,
+                email: email,
+                displayName: username,
+                credits: 0,
+                level: 0,
+                rank: null,
+                isAdmin: false,
+                isPremium: false,
+                premiumType: null,
+                verified: false
+            };
+            
+            allUsers[username] = newUser;
+            
+            // Show verification form
+            showVerificationForm();
+            showNotification('تم إرسال رمز التحقق إلى إيميلك', 'success');
+        }
+
+        // Handle verification
+        function handleVerification(event) {
+            event.preventDefault();
+            
+            const code = '';
+            for (let i = 1; i <= 6; i++) {
+                code += document.getElementById(`code${i}`).value;
+            }
+            
+            // Simulate verification (accept any 6-digit code)
+            if (code.length === 6) {
+                showNotification('تم تأكيد الحساب بنجاح!', 'success');
+                setTimeout(() => {
+                    closeLoginModal();
+                    showNotification('يمكنك الآن تسجيل الدخول', 'success');
+                    showLoginForm();
+                }, 1500);
+            } else {
+                showNotification('يرجى إدخال رمز التحقق كاملاً', 'error');
+            }
+        }
+
+        // Move to next verification input
+        function moveToNext(current, nextId) {
+            if (current.value.length === 1 && nextId) {
+                document.getElementById(nextId).focus();
+            }
+        }
+
+        // Resend verification code
+        function resendCode() {
+            showNotification('تم إعادة إرسال رمز التحقق', 'success');
+        }
+
+        // Login with Google
+        function loginWithGoogle() {
+            showNotification('سيتم توجيهك لتسجيل الدخول بـ Google...', 'info');
+            // Simulate Google OAuth
             setTimeout(() => {
-                // Simulate successful login
+                showNotification('تم تسجيل الدخول بـ Google بنجاح!', 'success');
+                // Create demo Google user
                 currentUser = {
-                    id: '123456789',
-                    username: 'itrx7',
-                    discriminator: '1234',
-                    avatar: null,
+                    username: 'google_user',
+                    displayName: 'مستخدم Google',
+                    email: 'user@gmail.com',
                     credits: 0,
                     level: 0,
-                    rank: null
+                    rank: null,
+                    isAdmin: false,
+                    isPremium: false,
+                    premiumType: null
                 };
-                
-                // Simulate user servers
-                userServers = [
-                    { id: 'server1', name: 'iCore Studio', hasBot: true },
-                    { id: 'server2', name: 'Khat Studio', hasBot: true },
-                    { id: 'server3', name: 'Test Server', hasBot: false }
-                ];
-
-                isLoggedIn = true;
-                localStorage.setItem('discordUser', JSON.stringify(currentUser));
-                updateUIForLoggedInUser();
-                showNotification('تم تسجيل الدخول بنجاح!', 'success');
-                
-                // Show dashboard if on login required page
-                if (document.getElementById('loginRequired').style.display !== 'none') {
-                    showPage('dashboard');
-                }
+                loginSuccess();
             }, 2000);
+        }
+
+        // Register with Google
+        function registerWithGoogle() {
+            loginWithGoogle(); // Same process for demo
+        }
+
+        // Login success
+        function loginSuccess() {
+            isLoggedIn = true;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // Simulate user servers for demo
+            userServers = [
+                { id: 'server1', name: 'سيرفر الألعاب', hasBot: true },
+                { id: 'server2', name: 'مجتمع المطورين', hasBot: true },
+                { id: 'server3', name: 'سيرفر الأصدقاء', hasBot: false }
+            ];
+            
+            updateUIForLoggedInUser();
+            closeLoginModal();
+            showNotification(`مرحباً ${currentUser.displayName}! تم تسجيل الدخول بنجاح`, 'success');
+            
+            // Show dashboard
+            showPage('dashboard');
         }
 
         // Update UI for logged in user
@@ -1394,7 +1832,14 @@
             document.getElementById('loginBtn').style.display = 'none';
             document.getElementById('userInfo').classList.add('logged-in');
             document.getElementById('userCredits').textContent = currentUser.credits.toLocaleString();
-            document.getElementById('userInitials').textContent = currentUser.username.substring(0, 2).toUpperCase();
+            document.getElementById('userInitials').textContent = currentUser.displayName.substring(0, 2).toUpperCase();
+            
+            // Show admin badge if admin
+            if (currentUser.isAdmin) {
+                document.getElementById('adminBadge').style.display = 'block';
+                document.getElementById('adminSection').style.display = 'block';
+                document.getElementById('adminPanel').style.display = 'block';
+            }
             
             // Update dashboard
             document.getElementById('loginRequired').style.display = 'none';
@@ -1413,8 +1858,72 @@
             document.getElementById('customizationLoginRequired').style.display = 'none';
             document.getElementById('customizationContent').style.display = 'block';
             
+            // Check premium access for customization
+            if (currentUser.isPremium && currentUser.premiumType === 'advanced') {
+                document.getElementById('premiumRequired').style.display = 'none';
+                document.getElementById('customizationPanel').style.display = 'block';
+            } else {
+                document.getElementById('premiumRequired').style.display = 'block';
+                document.getElementById('customizationPanel').style.display = 'none';
+            }
+            
             // Show server features in sidebar
             document.getElementById('serverFeatures').style.display = 'block';
+        }
+
+        // Show confirmation modal
+        function showConfirm(message, action) {
+            document.getElementById('confirmMessage').textContent = message;
+            document.getElementById('confirmModal').classList.add('show');
+            pendingAction = action;
+        }
+
+        // Close confirmation modal
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('show');
+            pendingAction = null;
+        }
+
+        // Confirm action
+        function confirmAction() {
+            if (pendingAction) {
+                pendingAction();
+                pendingAction = null;
+            }
+            closeConfirmModal();
+            showNotification('تم تنفيذ العملية بنجاح!', 'success');
+        }
+
+        // Admin functions
+        function addCoins(amount) {
+            currentUser.credits += amount;
+            updateUserData();
+            showNotification(`تم إضافة ${amount.toLocaleString()} كوين!`, 'success');
+        }
+
+        function addLevels(levels) {
+            currentUser.level += levels;
+            updateUserData();
+            showNotification(`تم رفع المستوى بـ ${levels} مستويات!`, 'success');
+        }
+
+        function unlockPremium() {
+            currentUser.isPremium = true;
+            currentUser.premiumType = 'advanced';
+            updateUserData();
+            updateUIForLoggedInUser();
+            showNotification('تم تفعيل البريميوم المتقدم!', 'success');
+        }
+
+        // Update user data
+        function updateUserData() {
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            allUsers[currentUser.username] = currentUser;
+            
+            // Update UI
+            document.getElementById('userCredits').textContent = currentUser.credits.toLocaleString();
+            document.getElementById('dashboardCredits').textContent = currentUser.credits.toLocaleString();
+            document.getElementById('userLevel').textContent = currentUser.level;
         }
 
         // Populate server dropdown
@@ -1445,13 +1954,11 @@
             document.getElementById('selectedServerName').textContent = server.name;
             document.getElementById('serverSettings').style.display = 'block';
             
-            // Load server settings (simulate API call)
             loadServerSettings(serverId);
         }
 
         // Load server settings
         function loadServerSettings(serverId) {
-            // Simulate loading server settings
             if (!serverSettings[serverId]) {
                 serverSettings[serverId] = {
                     welcome: false,
@@ -1462,7 +1969,6 @@
                 };
             }
             
-            // Update toggle switches
             const settings = serverSettings[serverId];
             document.querySelectorAll('#serverSettings .toggle-switch').forEach((toggle, index) => {
                 const features = ['welcome', 'moderation', 'automod', 'levels', 'music'];
@@ -1481,13 +1987,11 @@
             const isActive = element.classList.contains('active');
             element.classList.toggle('active');
             
-            // Update server settings
             if (!serverSettings[selectedServerId]) {
                 serverSettings[selectedServerId] = {};
             }
             serverSettings[selectedServerId][feature] = !isActive;
             
-            // Update sidebar status
             const sidebarItem = document.querySelector(`[onclick*="${feature}"]`);
             if (sidebarItem) {
                 const statusElement = sidebarItem.querySelector('.feature-status');
@@ -1501,9 +2005,6 @@
                     statusElement.classList.add('status-disabled');
                 }
             }
-            
-            // Simulate API call to save settings
-            showNotification(`تم ${!isActive ? 'تفعيل' : 'إيقاف'} ${getFeatureName(feature)}`, 'success');
         }
 
         // Get feature name in Arabic
@@ -1531,17 +2032,15 @@
                 return;
             }
             
-            // Find corresponding toggle in server settings
             const serverToggle = document.querySelector(`#serverSettings .toggle-switch[onclick*="${feature}"]`);
             if (serverToggle) {
-                toggleServerFeature(feature, serverToggle);
+                showConfirm(`تغيير إعدادات ${getFeatureName(feature)}؟`, () => toggleServerFeature(feature, serverToggle));
             }
         }
 
         // Add bot to server
         function addBotToServer() {
             showNotification('سيتم توجيهك لإضافة البوت إلى سيرفر Discord...', 'info');
-            // In real implementation, this would redirect to Discord OAuth with bot permissions
             setTimeout(() => {
                 window.open('https://discord.com/api/oauth2/authorize?client_id=YOUR_BOT_ID&permissions=8&scope=bot', '_blank');
             }, 1000);
@@ -1560,63 +2059,64 @@
             };
             
             showNotification(`سيتم توجيهك لصفحة الدفع للاشتراك في ${plans[plan]}...`, 'info');
-            // In real implementation, this would redirect to payment processor
         }
 
         // Logout
         function logout() {
-            localStorage.removeItem('discordUser');
-            isLoggedIn = false;
-            currentUser = null;
-            userServers = [];
-            selectedServerId = null;
-            serverSettings = {};
-            
-            // Reset UI
-            document.getElementById('loginBtn').style.display = 'block';
-            document.getElementById('userInfo').classList.remove('logged-in');
-            document.getElementById('loginRequired').style.display = 'block';
-            document.getElementById('dashboardContent').style.display = 'none';
-            document.getElementById('serversLoginRequired').style.display = 'block';
-            document.getElementById('serversContent').style.display = 'none';
-            document.getElementById('customizationLoginRequired').style.display = 'block';
-            document.getElementById('customizationContent').style.display = 'none';
-            document.getElementById('serverFeatures').style.display = 'none';
-            
-            showNotification('تم تسجيل الخروج بنجاح', 'success');
-            showPage('home');
+            showConfirm('هل أنت متأكد من تسجيل الخروج؟', () => {
+                localStorage.removeItem('currentUser');
+                isLoggedIn = false;
+                currentUser = null;
+                userServers = [];
+                selectedServerId = null;
+                serverSettings = {};
+                
+                // Reset UI
+                document.getElementById('loginBtn').style.display = 'block';
+                document.getElementById('userInfo').classList.remove('logged-in');
+                document.getElementById('adminBadge').style.display = 'none';
+                document.getElementById('adminSection').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'none';
+                document.getElementById('loginRequired').style.display = 'block';
+                document.getElementById('dashboardContent').style.display = 'none';
+                document.getElementById('serversLoginRequired').style.display = 'block';
+                document.getElementById('serversContent').style.display = 'none';
+                document.getElementById('customizationLoginRequired').style.display = 'block';
+                document.getElementById('customizationContent').style.display = 'none';
+                document.getElementById('serverFeatures').style.display = 'none';
+                
+                showPage('home');
+            });
         }
 
         // Page navigation
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page-content').forEach(page => {
                 page.style.display = 'none';
             });
             
-            // Show selected page
             const targetPage = document.getElementById(pageId + '-page');
             if (targetPage) {
                 targetPage.style.display = 'block';
             }
 
-            // Load leaderboard if showing leaderboard page
             if (pageId === 'leaderboard') {
                 loadLeaderboard();
             }
+
+            if (pageId === 'users' && currentUser?.isAdmin) {
+                loadUsersList();
+            }
             
-            // Update sidebar active state
             document.querySelectorAll('.sidebar-item').forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Add active class to clicked item
             const activeItem = document.querySelector(`[onclick*="${pageId}"]`);
             if (activeItem) {
                 activeItem.classList.add('active');
             }
             
-            // Close mobile sidebar
             if (window.innerWidth <= 1024) {
                 toggleSidebar(false);
             }
@@ -1640,39 +2140,18 @@
             }
         }
 
-        // Global leaderboard data - only top 2 players
+        // Global leaderboard data
         const globalLeaderboard = [
-            { username: 'Saeed', coins: 1000000000 }, // مليار كوينز
-            { username: 'iTrx', coins: 980000000 }   // 980 مليون كوينز
+            { username: 'Saeed', coins: 1000000000, level: 100 },
+            { username: 'iTrx', coins: 980000000, level: 95 }
         ];
 
-        // Calculate level based on coins with 5% difficulty increase per million
-        function calculateLevel(coins) {
-            if (coins < 1000) return 0; // البداية من المستوى 0
-            
-            let level = 0; // البداية من المستوى 0
-            let requiredCoins = 1000; // البداية من 1000
-            let currentCoins = coins;
-            
-            while (currentCoins >= requiredCoins) {
-                currentCoins -= requiredCoins;
-                level++;
-                // كل مليون كوين يزيد الصعوبة 5%
-                if (level % 1000 === 0) { // كل 1000 مستوى (تقريباً مليون كوين)
-                    requiredCoins = Math.floor(requiredCoins * 1.05);
-                }
-            }
-            
-            return level;
-        }
-
-        // Load leaderboard - only show top 2
+        // Load leaderboard
         function loadLeaderboard() {
             const leaderboardList = document.getElementById('leaderboardList');
             leaderboardList.innerHTML = '';
             
-            // Only show first 2 players
-            globalLeaderboard.slice(0, 2).forEach((player, index) => {
+            globalLeaderboard.forEach((player, index) => {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'setting-item';
                 
@@ -1680,32 +2159,69 @@
                 if (index === 0) rankIcon = '🥇';
                 else if (index === 1) rankIcon = '🥈';
                 
-                const level = calculateLevel(player.coins);
-                
                 playerDiv.innerHTML = `
                     <div class="setting-info">
                         <h4>${rankIcon} ${player.username}</h4>
-                        <p>المستوى: ${level} | الكوينز: ${player.coins.toLocaleString()}</p>
+                        <p>المستوى: ${player.level} | الكوينز: ${player.coins.toLocaleString()}</p>
                     </div>
                     <div style="color: #5865f2; font-weight: bold;">
-                        ${player.username === currentUser?.username ? 'أنت' : ''}
+                        ${player.username === currentUser?.displayName ? 'أنت' : ''}
                     </div>
                 `;
                 
                 leaderboardList.appendChild(playerDiv);
             });
+        }
 
-            // Add message if no more players
-            const noMoreDiv = document.createElement('div');
-            noMoreDiv.className = 'setting-item';
-            noMoreDiv.style.textAlign = 'center';
-            noMoreDiv.style.color = '#b9bbbe';
-            noMoreDiv.innerHTML = `
-                <div class="setting-info">
-                    <p>🏆 الترتيب العالمي يظهر أفضل لاعبين فقط</p>
-                </div>
-            `;
-            leaderboardList.appendChild(noMoreDiv);
+        // Load users list (admin only)
+        function loadUsersList() {
+            const usersList = document.getElementById('usersList');
+            usersList.innerHTML = '';
+            
+            Object.values(allUsers).forEach(user => {
+                const userDiv = document.createElement('div');
+                userDiv.className = 'setting-item';
+                
+                const badges = [];
+                if (user.isAdmin) badges.push('<span style="background: #ff6b6b; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">مدير</span>');
+                if (user.isPremium) badges.push('<span style="background: #faa61a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">بريميوم</span>');
+                
+                userDiv.innerHTML = `
+                    <div class="setting-info">
+                        <h4>${user.displayName} ${badges.join(' ')}</h4>
+                        <p>المستوى: ${user.level} | الكوينز: ${user.credits.toLocaleString()} | الإيميل: ${user.email}</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-warning" onclick="showConfirm('إضافة 1000 كوين لـ ${user.displayName}؟', () => addCoinsToUser('${user.username}', 1000))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
+                            <i class="fas fa-coins"></i>
+                        </button>
+                        <button class="btn btn-success" onclick="showConfirm('تفعيل البريميوم لـ ${user.displayName}؟', () => grantPremiumToUser('${user.username}'))" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
+                            <i class="fas fa-crown"></i>
+                        </button>
+                    </div>
+                `;
+                
+                usersList.appendChild(userDiv);
+            });
+        }
+
+        // Add coins to user (admin function)
+        function addCoinsToUser(username, amount) {
+            if (allUsers[username]) {
+                allUsers[username].credits += amount;
+                loadUsersList();
+                showNotification(`تم إضافة ${amount.toLocaleString()} كوين لـ ${allUsers[username].displayName}`, 'success');
+            }
+        }
+
+        // Grant premium to user (admin function)
+        function grantPremiumToUser(username) {
+            if (allUsers[username]) {
+                allUsers[username].isPremium = true;
+                allUsers[username].premiumType = 'advanced';
+                loadUsersList();
+                showNotification(`تم تفعيل البريميوم لـ ${allUsers[username].displayName}`, 'success');
+            }
         }
 
         // Show notification
@@ -1742,160 +2258,9 @@
             });
         }, observerOptions);
 
-        // Observe all cards
         document.querySelectorAll('.stat-card, .feature-card').forEach(el => {
             observer.observe(el);
         });
-
-        // Customization Functions
-        function uploadAvatar(input) {
-            const file = input.files[0];
-            if (!file) return;
-            
-            // Check file size (2MB limit)
-            if (file.size > 2 * 1024 * 1024) {
-                showNotification('حجم الملف كبير جداً! الحد الأقصى 2MB', 'error');
-                return;
-            }
-            
-            // Check file type
-            if (!file.type.startsWith('image/')) {
-                showNotification('نوع الملف غير مدعوم! يرجى اختيار صورة', 'error');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('botAvatar').src = e.target.result;
-                showNotification('تم رفع صورة البوت بنجاح!', 'success');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function uploadLogo(input) {
-            const file = input.files[0];
-            if (!file) return;
-            
-            // Check file size (2MB limit)
-            if (file.size > 2 * 1024 * 1024) {
-                showNotification('حجم الملف كبير جداً! الحد الأقصى 2MB', 'error');
-                return;
-            }
-            
-            // Check file type
-            if (!file.type.startsWith('image/')) {
-                showNotification('نوع الملف غير مدعوم! يرجى اختيار صورة', 'error');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const logoPreview = document.getElementById('logoPreview');
-                logoPreview.innerHTML = `<img src="${e.target.result}" alt="اللوقو" style="width: 100%; height: 100%; object-fit: contain;">`;
-                showNotification('تم رفع اللوقو بنجاح!', 'success');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function uploadBanner(input) {
-            const file = input.files[0];
-            if (!file) return;
-            
-            // Check file size (5MB limit)
-            if (file.size > 5 * 1024 * 1024) {
-                showNotification('حجم الملف كبير جداً! الحد الأقصى 5MB', 'error');
-                return;
-            }
-            
-            // Check file type
-            if (!file.type.startsWith('image/')) {
-                showNotification('نوع الملف غير مدعوم! يرجى اختيار صورة', 'error');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const bannerPreview = document.getElementById('bannerPreview');
-                bannerPreview.style.backgroundImage = `url(${e.target.result})`;
-                bannerPreview.style.backgroundSize = 'cover';
-                bannerPreview.style.backgroundPosition = 'center';
-                bannerPreview.innerHTML = '';
-                showNotification('تم رفع صورة البانر بنجاح!', 'success');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function updatePrimaryColor(color) {
-            // Update CSS custom property or apply color changes
-            document.documentElement.style.setProperty('--primary-color', color);
-            showNotification('تم تحديث اللون الأساسي!', 'success');
-        }
-
-        function updateBackgroundColor(color) {
-            // Update CSS custom property or apply color changes
-            document.documentElement.style.setProperty('--background-color', color);
-            showNotification('تم تحديث لون الخلفية!', 'success');
-        }
-
-        function updateTheme(theme) {
-            const themes = {
-                modern: 'عصري',
-                classic: 'كلاسيكي',
-                minimal: 'بسيط',
-                gaming: 'ألعاب'
-            };
-            showNotification(`تم تطبيق الثيم ${themes[theme]}!`, 'success');
-        }
-
-        function saveCustomization() {
-            // Simulate saving customization settings
-            showNotification('جاري حفظ التخصيصات...', 'info');
-            
-            setTimeout(() => {
-                // Simulate API call to save settings
-                const customizationData = {
-                    avatar: document.getElementById('botAvatar').src,
-                    logo: document.getElementById('logoPreview').innerHTML,
-                    banner: document.getElementById('bannerPreview').style.backgroundImage,
-                    primaryColor: document.getElementById('primaryColor').value,
-                    backgroundColor: document.getElementById('backgroundColor').value,
-                    theme: document.getElementById('themeStyle').value
-                };
-                
-                // Save to localStorage for demo
-                localStorage.setItem('botCustomization', JSON.stringify(customizationData));
-                
-                showNotification('تم حفظ جميع التخصيصات بنجاح! ✨', 'success');
-            }, 1500);
-        }
-
-        function resetCustomization() {
-            if (confirm('هل أنت متأكد من إعادة تعيين جميع التخصيصات؟')) {
-                // Reset to default values
-                document.getElementById('botAvatar').src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%235865f2'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-family='Arial'%3E🤖%3C/text%3E%3C/svg%3E";
-                
-                document.getElementById('logoPreview').innerHTML = '<i class="fas fa-image" style="font-size: 2rem;"></i>';
-                
-                const bannerPreview = document.getElementById('bannerPreview');
-                bannerPreview.style.backgroundImage = '';
-                bannerPreview.style.background = '#101820';
-                bannerPreview.style.border = '3px solid white';
-                bannerPreview.innerHTML = `
-                    <div style="text-align: center;">
-                        <h2 style="margin: 0; font-size: 2rem; font-weight: bold;">هنا البنر</h2>
-                    </div>
-                `;
-                
-                document.getElementById('primaryColor').value = '#5865f2';
-                document.getElementById('backgroundColor').value = '#16213e';
-                document.getElementById('themeStyle').value = 'modern';
-                
-                // Remove from localStorage
-                localStorage.removeItem('botCustomization');
-                
-                showNotification('تم إعادة تعيين جميع التخصيصات!', 'success');
-            }
-        }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96754538f6b2f935',t:'MTc1Mzg4Mjg1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96756c3b446ef925',t:'MTc1Mzg4NDQ1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
