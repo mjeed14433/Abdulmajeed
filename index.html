@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سمارت كوينز - العملة الذكية</title>
+    <title>سمارت بوت - البوت العربي الذكي</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,46 +15,41 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            background: #1a1a2e;
+            color: #fff;
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
         /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        .header {
+            background: #16213e;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
         }
 
-        nav {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 0 2rem;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #667eea;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #5865f2;
         }
 
-        .logo::before {
-            content: "💎";
+        .logo i {
             font-size: 2rem;
         }
 
@@ -64,340 +60,355 @@
         }
 
         .nav-links a {
+            color: #fff;
             text-decoration: none;
-            color: #333;
             font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: #5865f2;
         }
 
-        .login-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .credits {
+            background: linear-gradient(45deg, #5865f2, #7289da);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-weight: 600;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #5865f2, #7289da);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        .main-container {
+            margin-top: 80px;
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #16213e;
+            padding: 2rem 0;
+            border-left: 1px solid #2c3e50;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            color: #7289da;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.8rem 1.5rem;
+            color: #b9bbbe;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .sidebar-item:hover, .sidebar-item.active {
+            background: #5865f2;
+            color: #fff;
+        }
+
+        .sidebar-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .feature-status {
+            margin-right: auto;
+            font-size: 0.8rem;
+        }
+
+        .status-enabled {
+            color: #43b581;
+        }
+
+        .status-disabled {
+            color: #f04747;
+        }
+
+        .status-new {
+            background: #faa61a;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 2rem;
+            background: #0f1419;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #b9bbbe;
+            font-size: 1.1rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #16213e;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #2c3e50;
             transition: transform 0.3s;
         }
 
-        .login-btn:hover {
-            transform: translateY(-2px);
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
 
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            padding: 4rem 0;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
+        .stat-header {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
         }
 
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #5865f2;
+        }
+
+        .stat-label {
+            color: #b9bbbe;
+            font-size: 0.9rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: #16213e;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #2c3e50;
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: #2c3e50;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #43b581;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 21px;
+            height: 21px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            right: 2px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(-25px);
+        }
+
+        /* Buttons */
         .btn {
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            text-align: center;
         }
 
         .btn-primary {
-            background: white;
-            color: #667eea;
+            background: #5865f2;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #4752c4;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
             background: transparent;
-            color: white;
-            border: 2px solid white;
+            color: #5865f2;
+            border: 2px solid #5865f2;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        .btn-success {
+            background: #43b581;
+            color: #fff;
         }
 
-        /* Features Section */
-        .features {
-            background: white;
-            padding: 4rem 0;
+        .btn-warning {
+            background: #faa61a;
+            color: #fff;
         }
 
-        .section-title {
+        /* Daily Reward */
+        .daily-reward {
+            background: linear-gradient(135deg, #faa61a, #f57c00);
+            padding: 1.5rem;
+            border-radius: 12px;
             text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #333;
+            margin-bottom: 2rem;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
+        .reward-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #333;
+        /* Leaderboard */
+        .leaderboard {
+            background: #16213e;
+            border-radius: 12px;
+            border: 1px solid #2c3e50;
+            overflow: hidden;
         }
 
-        /* Smart Coins Section */
-        .smart-coins {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 4rem 0;
-            color: white;
-        }
-
-        .coins-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .coin-stat {
-            background: rgba(255,255,255,0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .coin-stat h3 {
-            font-size: 2rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Bot Section */
-        .bot-section {
-            background: white;
-            padding: 4rem 0;
-        }
-
-        .bot-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .bot-card {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .bot-card:hover {
-            transform: scale(1.05);
-        }
-
-        /* Premium Section */
-        .premium {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            padding: 4rem 0;
-        }
-
-        .premium-plans {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .plan-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .plan-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #667eea;
-            margin: 1rem 0;
-        }
-
-        .plan-features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .plan-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .plan-features li:before {
-            content: "✅";
-            margin-left: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            padding: 3rem 0 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #667eea;
-        }
-
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin: 0.5rem 0;
-        }
-
-        .footer-section a:hover {
-            color: #667eea;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 2rem;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-        }
-
-        .close {
-            color: #aaa;
-            float: left;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: #667eea;
-        }
-
-        .form-group {
-            margin: 1rem 0;
-            text-align: right;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .leaderboard-header {
+            background: #5865f2;
+            padding: 1rem 1.5rem;
             font-weight: 600;
         }
 
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: 'Tajawal', sans-serif;
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #2c3e50;
         }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
+        .leaderboard-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank {
+            font-weight: 900;
+            color: #faa61a;
+            min-width: 30px;
+        }
+
+        .user-name {
+            flex: 1;
+        }
+
+        .user-score {
+            font-weight: 600;
+            color: #43b581;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: 2;
+            }
+            
+            .content {
+                order: 1;
+            }
+            
             .nav-links {
                 display: none;
             }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
         }
 
-        /* Animation */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -413,354 +424,465 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        /* Color Theme Variables */
-        :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #ffecd2;
+        /* Home Page Styles */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #5865f2, #7289da);
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">سمارت كوينز</div>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                سمارت بوت
+            </div>
             <ul class="nav-links">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#features">المميزات</a></li>
-                <li><a href="#bot">البوت</a></li>
-                <li><a href="#premium">المميز</a></li>
-                <li><a href="#contact">تواصل</a></li>
+                <li><a href="#" onclick="showPage('home')">الرئيسية</a></li>
+                <li><a href="#" onclick="showPage('dashboard')">لوحة التحكم</a></li>
+                <li><a href="#" onclick="showPage('premium')">البريميوم</a></li>
+                <li><a href="#" onclick="showPage('leaderboard')">المتصدرين</a></li>
             </ul>
-            <button class="login-btn" onclick="openModal('loginModal')">تسجيل الدخول</button>
-        </nav>
+            <div class="user-info">
+                <div class="credits">
+                    <i class="fas fa-coins"></i> 3,139
+                </div>
+                <div class="user-avatar">itrx7</div>
+            </div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1 class="fade-in">سمارت كوينز</h1>
-            <p class="fade-in">العملة الذكية الجديدة مع نظام الضرائب المتقدم والحد اليومي</p>
-            <div class="cta-buttons fade-in">
-                <button class="btn btn-primary" onclick="openModal('buyModal')">شراء العملة</button>
-                <button class="btn btn-secondary" onclick="openModal('botModal')">تجربة البوت</button>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">لوحة التحكم</div>
+                <a href="#" class="sidebar-item active" onclick="showPage('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    نظرة عامة
+                </a>
+                <a href="#" class="sidebar-item" onclick="showPage('server-settings')">
+                    <i class="fas fa-cog"></i>
+                    إعدادات السيرفر
+                </a>
+                <a href="#" class="sidebar-item" onclick="showPage('embed')">
+                    <i class="fas fa-code"></i>
+                    رسائل الإيمبد
+                    <span class="status-new">تحديث</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showPage('premium')">
+                    <i class="fas fa-crown"></i>
+                    اشتراكات البريميوم
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">مميزات سمارت كوينز</h2>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>نظام الضرائب الذكي</h3>
-                    <p>نظام ضرائب متقدم لمنع التضخم والحفاظ على استقرار العملة</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⏰</div>
-                    <h3>حد يومي محدود</h3>
-                    <p>10,000 عملة فقط يومياً لضمان الندرة والقيمة</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🔥</div>
-                    <h3>حرق العملات المخالفة</h3>
-                    <p>الحسابات المخالفة يتم تصفير عملاتها تلقائياً</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">💰</div>
-                    <h3>الدفع بالدولار</h3>
-                    <p>شراء العملة بالدولار الأمريكي لضمان الاستقرار</p>
-                </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">الخصائص</div>
+                <a href="#" class="sidebar-item" onclick="toggleFeature('general')">
+                    <i class="fas fa-comments"></i>
+                    الأوامر العامة
+                    <span class="feature-status status-enabled">✅</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="toggleFeature('welcome')">
+                    <i class="fas fa-hand-wave"></i>
+                    الترحيب & المغادرة
+                    <span class="feature-status status-enabled">✅</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="toggleFeature('logs')">
+                    <i class="fas fa-clipboard-list"></i>
+                    اللوق
+                    <span class="feature-status status-enabled">✅</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="toggleFeature('colors')">
+                    <i class="fas fa-palette"></i>
+                    الألوان
+                    <span class="feature-status status-enabled">✅</span>
+                    <span class="status-new">تحديث</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="toggleFeature('moderation')">
+                    <i class="fas fa-shield-alt"></i>
+                    الإشراف
+                    <span class="feature-status status-disabled">❌</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="toggleFeature('automod')">
+                    <i class="fas fa-robot"></i>
+                    الرقابة التلقائية
+                    <span class="feature-status status-disabled">❌</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="toggleFeature('autoreply')">
+                    <i class="fas fa-reply"></i>
+                    الرد التلقائي
+                    <span class="feature-status status-disabled">❌</span>
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Smart Coins Info -->
-    <section class="smart-coins">
-        <div class="container">
-            <h2 class="section-title">إحصائيات العملة</h2>
-            <div class="coins-info">
-                <div class="coin-stat">
-                    <h3 id="dailyLimit">10,000</h3>
-                    <p>الحد اليومي للعملة</p>
-                </div>
-                <div class="coin-stat">
-                    <h3 id="currentPrice">$0.50</h3>
-                    <p>السعر الحالي</p>
-                </div>
-                <div class="coin-stat">
-                    <h3 id="totalSupply">1,000,000</h3>
-                    <p>إجمالي المعروض</p>
-                </div>
-                <div class="coin-stat">
-                    <h3 id="burnedCoins">50,000</h3>
-                    <p>العملات المحروقة</p>
-                </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">خصائص إضافية</div>
+                <a href="#" class="sidebar-item" onclick="showPage('starboard')">
+                    <i class="fas fa-star"></i>
+                    ستاريبورد
+                    <span class="status-new">جديد</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showPage('temp-rooms')">
+                    <i class="fas fa-plus"></i>
+                    الرومات المؤقتة
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Bot Section -->
-    <section class="bot-section" id="bot">
-        <div class="container">
-            <h2 class="section-title">البوت الذكي</h2>
-            <div class="bot-features">
-                <div class="bot-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>إدارة تلقائية</h3>
-                    <p>البوت يدير حساباتك ومعاملاتك تلقائياً</p>
-                </div>
-                <div class="bot-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>تحليلات متقدمة</h3>
-                    <p>تقارير مفصلة عن أداء استثماراتك</p>
-                </div>
-                <div class="bot-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3>تنبيهات فورية</h3>
-                    <p>إشعارات فورية لجميع المعاملات والتحديثات</p>
-                </div>
-                <div class="bot-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>حماية متقدمة</h3>
-                    <p>نظام حماية متطور ضد الاحتيال والمخالفات</p>
-                </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">الحساب</div>
+                <a href="#" class="sidebar-item" onclick="showPage('profile')">
+                    <i class="fas fa-user"></i>
+                    خلفيات البروفايل
+                </a>
+                <a href="#" class="sidebar-item" onclick="showPage('badges')">
+                    <i class="fas fa-medal"></i>
+                    شارات البروفايل
+                </a>
+                <a href="#" class="sidebar-item" onclick="showPage('daily-reward')">
+                    <i class="fas fa-gift"></i>
+                    المكافأة اليومية
+                </a>
+                <a href="#" class="sidebar-item" onclick="showPage('credit-log')">
+                    <i class="fas fa-history"></i>
+                    سجل الكريدت
+                </a>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- Premium Section -->
-    <section class="premium" id="premium">
-        <div class="container">
-            <h2 class="section-title">الاشتراكات المميزة</h2>
-            <div class="premium-plans">
-                <div class="plan-card">
-                    <h3>الخطة الأساسية</h3>
-                    <div class="plan-price">$9.99</div>
-                    <p>شهرياً</p>
-                    <ul class="plan-features">
-                        <li>شراء حتى 1000 عملة يومياً</li>
-                        <li>تقارير أساسية</li>
-                        <li>دعم فني عادي</li>
-                        <li>رسوم ضرائب 5%</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="subscribePlan('basic')">اشترك الآن</button>
+        <!-- Content Area -->
+        <main class="content">
+            <!-- Home Page -->
+            <div id="home-page" class="page-content">
+                <div class="hero-section">
+                    <h1 class="hero-title">سمارت بوت</h1>
+                    <p class="hero-subtitle">البوت العربي الذكي الأول في ديسكورد</p>
+                    <p class="hero-subtitle">بوت متعدد الأغراض: ترحيب، إشراف، أوامر اجتماعية</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary" onclick="addBot()">
+                            <i class="fab fa-discord"></i> إضافة البوت في Discord
+                        </a>
+                        <a href="#" class="btn btn-secondary" onclick="showPage('dashboard')">
+                            <i class="fas fa-tachometer-alt"></i> لوحة التحكم
+                        </a>
+                    </div>
                 </div>
-                <div class="plan-card">
-                    <h3>الخطة المتقدمة</h3>
-                    <div class="plan-price">$19.99</div>
-                    <p>شهرياً</p>
-                    <ul class="plan-features">
-                        <li>شراء حتى 5000 عملة يومياً</li>
-                        <li>تقارير متقدمة</li>
-                        <li>دعم فني أولوية</li>
-                        <li>رسوم ضرائب 3%</li>
-                        <li>بوت ذكي متقدم</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="subscribePlan('advanced')">اشترك الآن</button>
-                </div>
-                <div class="plan-card">
-                    <h3>الخطة الاحترافية</h3>
-                    <div class="plan-price">$49.99</div>
-                    <p>شهرياً</p>
-                    <ul class="plan-features">
-                        <li>شراء حتى 10000 عملة يومياً</li>
-                        <li>تقارير شاملة</li>
-                        <li>دعم فني VIP</li>
-                        <li>رسوم ضرائب 1%</li>
-                        <li>بوت ذكي احترافي</li>
-                        <li>تحليلات AI</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="subscribePlan('pro')">اشترك الآن</button>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>سمارت كوينز</h3>
-                    <p>العملة الذكية الجديدة مع نظام متقدم للحماية والاستقرار</p>
-                </div>
-                <div class="footer-section">
-                    <h3>روابط سريعة</h3>
-                    <a href="#home">الرئيسية</a>
-                    <a href="#features">المميزات</a>
-                    <a href="#bot">البوت</a>
-                    <a href="#premium">المميز</a>
-                </div>
-                <div class="footer-section">
-                    <h3>تواصل معنا</h3>
-                    <a href="mailto:info@smartcoins.com">info@smartcoins.com</a>
-                    <a href="tel:+1234567890">+1 (234) 567-890</a>
-                </div>
-                <div class="footer-section">
-                    <h3>تطوير</h3>
-                    <p>صُنع بواسطة خَط ستديو</p>
-                    <p>جميع الحقوق محفوظة © 2024</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #5865f2;">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div>
+                                <div class="stat-value">2.5M+</div>
+                                <div class="stat-label">سيرفرات</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #43b581;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="stat-value">50M+</div>
+                                <div class="stat-label">مستخدمين</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #faa61a;">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <div class="stat-value">99.9%</div>
+                                <div class="stat-label">وقت التشغيل</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
 
-    <!-- Modals -->
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>تسجيل الدخول</h2>
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label>البريد الإلكتروني:</label>
-                    <input type="email" required>
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">لوحة التحكم</h1>
+                    <p class="page-subtitle">إدارة البوت وإعداداته</p>
                 </div>
-                <div class="form-group">
-                    <label>كلمة المرور:</label>
-                    <input type="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary">دخول</button>
-            </form>
-        </div>
-    </div>
 
-    <!-- Buy Modal -->
-    <div id="buyModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('buyModal')">&times;</span>
-            <h2>شراء سمارت كوينز</h2>
-            <p><strong>تنبيه:</strong> هذا نموذج تجريبي - لا يتم الدفع الفعلي</p>
-            <form onsubmit="handleBuy(event)">
-                <div class="form-group">
-                    <label>كمية العملة المطلوبة:</label>
-                    <input type="number" id="coinAmount" min="1" max="10000" required onchange="calculatePrice()">
+                <!-- User Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #5865f2;">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div>
+                                <div class="stat-value">3,139</div>
+                                <div class="stat-label">الكريدت</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #43b581;">
+                                <i class="fas fa-level-up-alt"></i>
+                            </div>
+                            <div>
+                                <div class="stat-value">17</div>
+                                <div class="stat-label">المستوى</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #faa61a;">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <div class="stat-value">9,489,475</div>
+                                <div class="stat-label">الترتيب</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #f04747;">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div>
+                                <div class="stat-value">⭐</div>
+                                <div class="stat-label">السمعة</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>المبلغ بالدولار:</label>
-                    <input type="text" id="dollarAmount" readonly>
-                </div>
-                <div class="form-group">
-                    <label>الضرائب (5%):</label>
-                    <input type="text" id="taxAmount" readonly>
-                </div>
-                <div class="form-group">
-                    <label>المجموع النهائي:</label>
-                    <input type="text" id="totalAmount" readonly>
-                </div>
-                <button type="submit" class="btn btn-primary">شراء الآن</button>
-            </form>
-        </div>
-    </div>
 
-    <!-- Bot Modal -->
-    <div id="botModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('botModal')">&times;</span>
-            <h2>البوت الذكي</h2>
-            <p><strong>تنبيه:</strong> هذا نموذج تجريبي للبوت</p>
-            <div style="background: #f5f5f5; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
-                <p><strong>🤖 البوت:</strong> مرحباً! أنا البوت الذكي لسمارت كوينز</p>
-                <p><strong>🤖 البوت:</strong> يمكنني مساعدتك في إدارة حسابك ومراقبة استثماراتك</p>
-                <p><strong>🤖 البوت:</strong> رصيدك الحالي: 0 سمارت كوين</p>
+                <!-- Daily Reward -->
+                <div class="daily-reward">
+                    <div class="reward-icon">🎁</div>
+                    <h3>احصل على مكافأتك اليومية!</h3>
+                    <p>+100 كريدت متاح الآن</p>
+                    <button class="btn btn-primary" onclick="claimReward()">استلام المكافأة</button>
+                </div>
+
+                <!-- Features Status -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-title">
+                                <i class="fas fa-microphone" style="color: #43b581;"></i>
+                                الفويس أونلاين
+                            </div>
+                            <div class="toggle-switch active"></div>
+                        </div>
+                        <p>تتبع المستخدمين في القنوات الصوتية</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-title">
+                                <i class="fas fa-shield" style="color: #43b581;"></i>
+                                مكافحة الغزو
+                            </div>
+                            <div class="toggle-switch active"></div>
+                        </div>
+                        <p>حماية متقدمة ضد الغزوات والسبام</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-title">
+                                <i class="fas fa-link" style="color: #43b581;"></i>
+                                الروابط (بريميوم)
+                            </div>
+                            <div class="toggle-switch active"></div>
+                        </div>
+                        <p>إدارة وفلترة الروابط تلقائياً</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-title">
+                                <i class="fab fa-twitch" style="color: #9146ff;"></i>
+                                إشعارات تويتش
+                            </div>
+                            <div class="toggle-switch active"></div>
+                        </div>
+                        <p>إشعارات البث المباشر من تويتش</p>
+                    </div>
+                </div>
             </div>
-            <form onsubmit="handleBotCommand(event)">
-                <div class="form-group">
-                    <label>أرسل أمر للبوت:</label>
-                    <input type="text" placeholder="مثال: عرض الرصيد" required>
+
+            <!-- Leaderboard Page -->
+            <div id="leaderboard-page" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">قوائم المتصدرين</h1>
+                    <p class="page-subtitle">أفضل المستخدمين في المجتمع</p>
                 </div>
-                <button type="submit" class="btn btn-primary">إرسال</button>
-            </form>
-        </div>
+
+                <div class="leaderboard">
+                    <div class="leaderboard-header">
+                        <i class="fas fa-trophy"></i> أعلى 100 بواسطة XP
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="rank">#1</div>
+                        <div class="user-name">Ahmed_Pro</div>
+                        <div class="user-score">125,430 XP</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="rank">#2</div>
+                        <div class="user-name">Sara_Gaming</div>
+                        <div class="user-score">98,750 XP</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="rank">#3</div>
+                        <div class="user-name">Mohammed_Dev</div>
+                        <div class="user-score">87,320 XP</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="rank">#4</div>
+                        <div class="user-name">Fatima_Art</div>
+                        <div class="user-score">76,890 XP</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="rank">#5</div>
+                        <div class="user-name">Omar_Music</div>
+                        <div class="user-score">65,430 XP</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Page -->
+            <div id="premium-page" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">اشتراكات البريميوم</h1>
+                    <p class="page-subtitle">احصل على مميزات إضافية حصرية</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card" style="border: 2px solid #faa61a;">
+                        <div class="feature-header">
+                            <div class="feature-title">
+                                <i class="fas fa-crown" style="color: #faa61a;"></i>
+                                البريميوم الأساسي
+                            </div>
+                            <div style="color: #faa61a; font-weight: bold;">$4.99/شهر</div>
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> مضاعفة XP</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> خلفيات حصرية</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> أوامر إضافية</li>
+                        </ul>
+                        <button class="btn btn-warning">اشترك الآن</button>
+                    </div>
+                    <div class="feature-card" style="border: 2px solid #5865f2;">
+                        <div class="feature-header">
+                            <div class="feature-title">
+                                <i class="fas fa-gem" style="color: #5865f2;"></i>
+                                البريميوم المتقدم
+                            </div>
+                            <div style="color: #5865f2; font-weight: bold;">$9.99/شهر</div>
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> جميع مميزات الأساسي</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> بوت خاص</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> دعم أولوية</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #43b581;"></i> تخصيص كامل</li>
+                        </ul>
+                        <button class="btn btn-primary">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
-        // Modal Functions
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show selected page
+            document.getElementById(pageId + '-page').style.display = 'block';
+            
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            event.target.classList.add('active');
         }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
+        // Toggle Feature
+        function toggleFeature(featureName) {
+            const statusElement = event.target.querySelector('.feature-status');
+            if (statusElement.classList.contains('status-enabled')) {
+                statusElement.textContent = '❌';
+                statusElement.classList.remove('status-enabled');
+                statusElement.classList.add('status-disabled');
+                alert(`تم إيقاف ${featureName}`);
+            } else {
+                statusElement.textContent = '✅';
+                statusElement.classList.remove('status-disabled');
+                statusElement.classList.add('status-enabled');
+                alert(`تم تفعيل ${featureName}`);
             }
         }
 
-        // Calculate price for buying coins
-        function calculatePrice() {
-            const amount = document.getElementById('coinAmount').value;
-            const price = 0.50; // Price per coin in USD
-            const subtotal = amount * price;
-            const tax = subtotal * 0.05; // 5% tax
-            const total = subtotal + tax;
-
-            document.getElementById('dollarAmount').value = '$' + subtotal.toFixed(2);
-            document.getElementById('taxAmount').value = '$' + tax.toFixed(2);
-            document.getElementById('totalAmount').value = '$' + total.toFixed(2);
+        // Add Bot to Discord
+        function addBot() {
+            alert('سيتم توجيهك لإضافة البوت إلى سيرفر Discord الخاص بك!');
+            // In real implementation, this would redirect to Discord OAuth
         }
 
-        // Handle login form
-        function handleLogin(event) {
-            event.preventDefault();
-            alert('تم تسجيل الدخول بنجاح! (نموذج تجريبي)');
-            closeModal('loginModal');
+        // Claim Daily Reward
+        function claimReward() {
+            alert('تم استلام المكافأة اليومية! +100 كريدت');
+            // Update credits display
+            document.querySelector('.credits').innerHTML = '<i class="fas fa-coins"></i> 3,239';
         }
 
-        // Handle buy form
-        function handleBuy(event) {
-            event.preventDefault();
-            const amount = document.getElementById('coinAmount').value;
-            alert(`تم شراء ${amount} سمارت كوين بنجاح! (نموذج تجريبي)`);
-            closeModal('buyModal');
-            
-            // Update daily limit counter
-            const currentLimit = parseInt(document.getElementById('dailyLimit').textContent.replace(',', ''));
-            const newLimit = currentLimit - parseInt(amount);
-            document.getElementById('dailyLimit').textContent = newLimit.toLocaleString();
-        }
-
-        // Handle bot commands
-        function handleBotCommand(event) {
-            event.preventDefault();
-            const command = event.target.querySelector('input').value;
-            alert(`البوت: تم تنفيذ الأمر "${command}" (نموذج تجريبي)`);
-            event.target.reset();
-        }
-
-        // Subscribe to plan
-        function subscribePlan(planType) {
-            const plans = {
-                basic: 'الأساسية',
-                advanced: 'المتقدمة',
-                pro: 'الاحترافية'
-            };
-            alert(`تم الاشتراك في الخطة ${plans[planType]} بنجاح! (نموذج تجريبي)`);
-        }
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Toggle switches functionality
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
             });
         });
 
-        // Add fade-in animation on scroll
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+        });
+
+        // Smooth animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -774,34 +896,10 @@
             });
         }, observerOptions);
 
-        // Observe all cards and sections
-        document.querySelectorAll('.feature-card, .bot-card, .plan-card, .coin-stat').forEach(el => {
+        // Observe all cards
+        document.querySelectorAll('.stat-card, .feature-card').forEach(el => {
             observer.observe(el);
         });
-
-        // Update statistics periodically (demo)
-        setInterval(() => {
-            const priceElement = document.getElementById('currentPrice');
-            const currentPrice = parseFloat(priceElement.textContent.replace('$', ''));
-            const change = (Math.random() - 0.5) * 0.02; // Random change up to 2 cents
-            const newPrice = Math.max(0.01, currentPrice + change);
-            priceElement.textContent = '$' + newPrice.toFixed(2);
-        }, 5000);
-
-        // Color theme changer (demo functionality)
-        function changeTheme(color) {
-            document.documentElement.style.setProperty('--primary-color', color);
-        }
-
-        // Add theme selector (hidden by default, can be activated)
-        const themeColors = ['#667eea', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
-        let currentTheme = 0;
-
-        // Double click to change theme (easter egg)
-        document.addEventListener('dblclick', () => {
-            currentTheme = (currentTheme + 1) % themeColors.length;
-            changeTheme(themeColors[currentTheme]);
-        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9674e46bd608f931',t:'MTc1Mzg3ODg4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9674f875231b7917',t:'MTc1Mzg3OTcwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
